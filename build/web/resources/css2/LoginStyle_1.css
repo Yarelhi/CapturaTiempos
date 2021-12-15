@@ -1,0 +1,5 @@
+nav.color-nav.fixed {
+    position: fixed;
+    top: -5px;   
+    z-index: 4;
+}

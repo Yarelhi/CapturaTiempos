@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/10/2021 05:06:06 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.ItgExpenseReportsDetail" table="itg_expense_reports_detail" catalog="itg_time_module" optimistic-lock="version">
+        <id name="expenseId" type="java.lang.Integer">
+            <column name="EXPENSE_ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="itgExpenseReportsAll" class="Model.ItgExpenseReportsAll" fetch="select">
+            <column name="ITG_EXPENSE_REPORTS_ALL_ALL_REPORT_ID" />
+        </many-to-one>
+        <many-to-one name="itgExpenseTypes" class="Model.ItgExpenseTypes" fetch="select">
+            <column name="ITG_EXPENSE_TYPES_SPEND_ID" />
+        </many-to-one>
+        <property name="expenseDate" type="date">
+            <column name="EXPENSE_DATE" length="10" />
+        </property>
+        <property name="specify" type="string">
+            <column name="SPECIFY" length="150" />
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="150" />
+        </property>
+        <property name="totalExpense" type="java.lang.Long">
+            <column name="TOTAL_EXPENSE" precision="10" scale="0" />
+        </property>
+        <property name="attribute1" type="string">
+            <column name="ATTRIBUTE1" length="150" />
+        </property>
+        <property name="attribute2" type="string">
+            <column name="ATTRIBUTE2" length="150" />
+        </property>
+        <property name="attribute3" type="java.lang.Long">
+            <column name="ATTRIBUTE3" precision="10" scale="0" />
+        </property>
+        <property name="creationDate" type="date">
+            <column name="CREATION_DATE" length="10" />
+        </property>
+        <property name="createdBy" type="java.lang.Long">
+            <column name="CREATED_BY" precision="10" scale="0" />
+        </property>
+        <property name="lastUpdateDate" type="date">
+            <column name="LAST_UPDATE_DATE" length="10" />
+        </property>
+        <property name="lastUpdatedBy" type="java.lang.Long">
+            <column name="LAST_UPDATED_BY" precision="10" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

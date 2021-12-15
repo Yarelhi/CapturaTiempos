@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/10/2021 05:06:06 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.ItgUsersAll" table="itg_users_all" catalog="itg_time_module" optimistic-lock="version">
+        <id name="userId" type="java.lang.Integer">
+            <column name="USER_ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="itgCompany" class="Model.ItgCompany" fetch="select">
+            <column name="ORGANIZACION_ID" />
+        </many-to-one>
+        <many-to-one name="itgPersonalInfoAll" class="Model.ItgPersonalInfoAll" fetch="select">
+            <column name="ITG_PERSONAL_INFO_ALL_PERSONAL_DATA_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="itgUserRolesAll" class="Model.ItgUserRolesAll" fetch="select">
+            <column name="ITG_USER_ROLES_ALL_USER_ROLE_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="itgUsersAllByIdDirector" class="Model.ItgUsersAll" fetch="select">
+            <column name="ID_DIRECTOR" />
+        </many-to-one>
+        <many-to-one name="itgUsersAllByIdManager" class="Model.ItgUsersAll" fetch="select">
+            <column name="ID_MANAGER" />
+        </many-to-one>
+        <many-to-one name="itgUsersAllByIdLeader" class="Model.ItgUsersAll" fetch="select">
+            <column name="ID_LEADER" />
+        </many-to-one>
+        <many-to-one name="itgWorkArea" class="Model.ItgWorkArea" fetch="select">
+            <column name="ITG_WORK_AREA_AREA_ID" />
+        </many-to-one>
+        <property name="username" type="string">
+            <column name="USERNAME" length="240" />
+        </property>
+        <property name="password" type="string">
+            <column name="PASSWORD" length="300" />
+        </property>
+        <property name="lastLogin" type="date">
+            <column name="LAST_LOGIN" length="10" />
+        </property>
+        <property name="attribute1" type="string">
+            <column name="ATTRIBUTE1" length="150" />
+        </property>
+        <property name="attribute2" type="string">
+            <column name="ATTRIBUTE2" length="150" />
+        </property>
+        <property name="attribute3" type="string">
+            <column name="ATTRIBUTE3" length="150" />
+        </property>
+        <property name="attribute4" type="string">
+            <column name="ATTRIBUTE4" length="150" />
+        </property>
+        <property name="status" type="java.lang.Integer">
+            <column name="Status" />
+        </property>
+        <property name="creationDate" type="date">
+            <column name="CREATION_DATE" length="10" />
+        </property>
+        <property name="createdBy" type="java.lang.Long">
+            <column name="CREATED_BY" precision="10" scale="0" />
+        </property>
+        <property name="lastUpdateDate" type="date">
+            <column name="LAST_UPDATE_DATE" length="10" />
+        </property>
+        <property name="lastUpdatedBy" type="java.lang.Long">
+            <column name="LAST_UPDATED_BY" precision="10" scale="0" />
+        </property>
+        <property name="fullNameDirector" type="string">
+            <column name="FULL_NAME_DIRECTOR" length="350" />
+        </property>
+        <property name="fullNameManager" type="string">
+            <column name="FULL_NAME_MANAGER" length="350" />
+        </property>
+        <property name="fullNameLeader" type="string">
+            <column name="FULL_NAME_LEADER" length="350" />
+        </property>
+        <property name="mailDirector" type="string">
+            <column name="MAIL_DIRECTOR" length="50" />
+        </property>
+        <property name="mailManager" type="string">
+            <column name="MAIL_MANAGER" length="50" />
+        </property>
+        <property name="mailLeader" type="string">
+            <column name="MAIL_LEADER" length="50" />
+        </property>
+        <property name="startDateAbsence" type="date">
+            <column name="START_DATE_ABSENCE" length="10" />
+        </property>
+        <property name="endDateAbsence" type="date">
+            <column name="END_DATE_ABSENCE" length="10" />
+        </property>
+        <set name="itgUsersAllsForIdDirector" table="itg_users_all" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_DIRECTOR" />
+            </key>
+            <one-to-many class="Model.ItgUsersAll" />
+        </set>
+        <set name="itgUsersAllsForIdManager" table="itg_users_all" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_MANAGER" />
+            </key>
+            <one-to-many class="Model.ItgUsersAll" />
+        </set>
+        <set name="itgUsersAllsForIdLeader" table="itg_users_all" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ID_LEADER" />
+            </key>
+            <one-to-many class="Model.ItgUsersAll" />
+        </set>
+        <set name="itgActivitiesAlls" table="itg_activities_all" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="APPROVAL_USER_ID" />
+            </key>
+            <one-to-many class="Model.ItgActivitiesAll" />
+        </set>
+    </class>
+</hibernate-mapping>

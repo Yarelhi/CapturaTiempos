@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/10/2021 05:06:06 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.ItgActivitiesAll" table="itg_activities_all" catalog="itg_time_module" optimistic-lock="version">
+        <id name="activityId" type="java.lang.Integer">
+            <column name="ACTIVITY_ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="itgPersonalInfoAll" class="Model.ItgPersonalInfoAll" fetch="select">
+            <column name="ITG_PERSONAL_INFO_ALL_PERSONAL_DATA_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="itgProjectsAll" class="Model.ItgProjectsAll" fetch="select">
+            <column name="ITG_PROJECTS_ALL_PROJECT_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="itgUsersAll" class="Model.ItgUsersAll" fetch="select">
+            <column name="APPROVAL_USER_ID" />
+        </many-to-one>
+        <property name="startDay" type="java.lang.Long">
+            <column name="START_DAY" precision="10" scale="0" />
+        </property>
+        <property name="endDay" type="java.lang.Long">
+            <column name="END_DAY" precision="10" scale="0" />
+        </property>
+        <property name="month" type="string">
+            <column name="MONTH" length="150" />
+        </property>
+        <property name="year" type="java.lang.Long">
+            <column name="YEAR" precision="10" scale="0" />
+        </property>
+        <property name="elaboratedBy" type="string">
+            <column name="ELABORATED_BY" length="240" />
+        </property>
+        <property name="authorizedBy" type="string">
+            <column name="AUTHORIZED_BY" length="240" />
+        </property>
+        <property name="attribute1" type="string">
+            <column name="ATTRIBUTE1" length="150" />
+        </property>
+        <property name="attribute2" type="string">
+            <column name="ATTRIBUTE2" length="150" />
+        </property>
+        <property name="attribute3" type="string">
+            <column name="ATTRIBUTE3" length="150" />
+        </property>
+        <property name="attribute4" type="string">
+            <column name="ATTRIBUTE4" length="150" />
+        </property>
+        <property name="numberWeek" type="string">
+            <column name="NUMBER_WEEK" length="150" />
+        </property>
+        <property name="creationDate" type="date">
+            <column name="CREATION_DATE" length="10" />
+        </property>
+        <property name="createdBy" type="java.lang.Long">
+            <column name="CREATED_BY" precision="10" scale="0" />
+        </property>
+        <property name="lastUpdateDate" type="date">
+            <column name="LAST_UPDATE_DATE" length="10" />
+        </property>
+        <property name="lastUpdatedBy" type="java.lang.Long">
+            <column name="LAST_UPDATED_BY" precision="10" scale="0" />
+        </property>
+        <property name="weekstartDate" type="date">
+            <column name="WEEKSTART_DATE" length="10" />
+        </property>
+        <property name="weekEndDate" type="date">
+            <column name="WEEK_END_DATE" length="10" />
+        </property>
+        <property name="recordDate" type="date">
+            <column name="RECORD_DATE" length="10" />
+        </property>
+        <property name="submittedDate" type="date">
+            <column name="SUBMITTED_DATE" length="10" />
+        </property>
+        <property name="approvalDate" type="date">
+            <column name="APPROVAL_DATE" length="10" />
+        </property>
+        <property name="totalHours" type="string">
+            <column name="TOTAL_HOURS" length="45" />
+        </property>
+        <property name="statusTimecard" type="string">
+            <column name="STATUS_TIMECARD" length="45" />
+        </property>
+        <property name="comments" type="string">
+            <column name="COMMENTS" length="150" />
+        </property>
+        <property name="approvalFullName" type="string">
+            <column name="APPROVAL_FULL_NAME" length="50" />
+        </property>
+        <set name="itgActivitiesDetails" table="itg_activities_detail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ITG_ACTIVITIES_ALL_ACTIVITY_ID" not-null="true" />
+            </key>
+            <one-to-many class="Model.ItgActivitiesDetail" />
+        </set>
+        <set name="itgInvoiceAlls" table="itg_invoice_all" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ITG_PERSONAL_INFO_ALL_PERSONAL_DATA_ID" not-null="true" />
+            </key>
+            <one-to-many class="Model.ItgInvoiceAll" />
+        </set>
+    </class>
+</hibernate-mapping>

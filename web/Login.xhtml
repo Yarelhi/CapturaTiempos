@@ -1,0 +1,134 @@
+<?xmll version='1.0' encoding='UTF-8'?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <style type="text/css">
+        body {  
+            background-image: url(resources/img/fondo-neutro.png);
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 88%;                
+        }          
+    </style>
+    <!--background="resources/img/fondo.png"-->
+    <h:head>
+        <title>Login</title>       
+        <link href="resources/css2/LoginStyle.css" rel="stylesheet" type="text/css"/>
+        <link href="resources/css2/bootstrap.css" rel="stylesheet" type="text/css"/>
+    </h:head>                           
+    <h:body>        
+        <nav class="color-nav fixed" >
+            <img src="resources/img/tel2.png" width="60pxl" height="50pxl"/>
+            <!--<a id="logo" href="http://www.it-globalsolutions.com/"  onclick="target = '_blank';"> 
+              </a>-->
+                <img src="resources/img/img.png" width="195pxl" height="100pxl"/>
+                               
+            <img src="resources/img/he.png" width="1010pxl" height="50pxl"/>                                                                                         
+        </nav>        
+        <div align="center" class="form-signin">            
+            <table width="100%" border="0" >
+                <tr>
+                    <td width="20%">
+                    </td>
+                    <td>
+                        <div id="navbar-example" class="navbar navbar-static">
+                            <div class="navbar-inner">
+                                <div class="container" style="width: auto;">
+                                    <div class="login">
+                                        <h:form id="formLogin"  >
+                                            <p:growl id="mensajeGeneral" sticky="true" showDetail="true" life="3000" />
+                                            <p:panel  widgetVar="dlg" >
+                                                <br/>
+                                                <h1 id="logo" align="center">
+                                                    <img src="resources/img/logo-user.png" width="200" heigh="250"/>                            
+                                                </h1>
+                                                <!--<center><h1><font color="#4E80E5" face="Roman" ><strong> <p>iT-Global Systems Solutions</p></strong></font></h1></center>-->
+
+                                                <br/>
+                                                <center><h:panelGrid columns="2"   cellpadding="10">                                                                 
+                                                        <h:outputLabel  for="usuario" value="User:" class="glyphicon glyphicon-user"/>
+                                                        <p:inputText id="usuario" value="#{loginBeanSession.usuario.username}" placeholder="Usuario" required="true" label="username" 
+                                                                     requiredMessage="escriba el usuario porfavor"/>
+                                                        <h:outputLabel for="" value="" />
+                                                        <h:outputLabel for="" value="" />
+                                                        <h:outputLabel for="password" value="Password:" class="glyphicon glyphicon-lock"/>                                                                
+                                                        <p:password id="password" value="#{loginBeanSession.usuario.password}" placeholder="Contraseña" required="true" label="password"
+                                                                    requiredMessage="escriba el password porfavor"/>
+                                                        <BR/>
+                                                        <f:facet name="footer">
+
+                                                            <center><p:commandButton styleClass="btn btn-success btn-block"  value="Login" oncomplete="handleLoginRequest(xhr,status,args)"
+                                                                                     actionListener="#{loginBeanSession.loginSession(actionEvent)}" update=":formLogin"  />
+                                                            </center>
+
+                                                        </f:facet>                             
+                                                    </h:panelGrid></center>                                                
+                                            </p:panel>                                            
+                                        </h:form>                                             
+                                    </div>
+
+                                    <script type="text/javascript">
+                                        function handleLoginRequest(xhr, status, args) {
+                                            if (args.validationFailed || !args.loggedIn)
+                                            {
+                                                jQuery('#formLogin').effect("shake", {times: 5}, 100);
+                                            } else {
+                                                location.href = args.ruta;
+                                            }
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </td> 
+                    <td width="5%"  VALIGN="BOTTOM">
+                        <h1 id="logo" align="center">
+                            <img src="resources/img/oracle.png" width="200" heigh="250"/>                            
+                        </h1>
+                    </td>
+                </tr>               
+            </table>
+        </div>                           
+
+        <div class="footer" > 
+            <div align="center" >
+                <table width="89%" border="0" >
+                    <!--<tr>
+                        <td width="25%">
+                            <a href="https://twitter.com/IT_Global16" target="_blank">
+                                <img alt="" src="resources/img/redes-TW.png"/></a>
+                            <a href="https://www.facebook.com/IT-Global-305088833199401/" target="_blank">
+                                <img alt="" src="resources/img/redes-Fc.png"/></a>
+                            <a href="https://www.linkedin.com/company/it-global?report%2Esuccess=8zaNG1HwhPbAR9iQhZ5rfGeqz_vQFftHun0ZWU0Wy9vNemRJ8vtcKdJvzQfW8XagyOJSKg0XvfJ1dp" target="_blank"><img alt="" src="resources/img/redes-in.png"/></a>
+                            <a href="https://www.youtube.com/channel/UCjd2yAsLggO1qhjUsEHJw2Q" target="_blank">
+                                <img alt="" src="resources/img/redes-YT.png"/></a>
+                            <a href="http://www.it-globalsolutions.com/" target="_blank">
+                                <img alt="" src="resources/img/logo-it-global-inferior.png" width="60" heigh="5"/></a>
+                        </td>                      
+                        <td>                            
+                            <div class="sites-subfooter-content">                                
+                                <div dir="ltr">                                                                        
+                                    <div style="text-align:center"><b><font size="2">Cel. +52 01 241 41 73043</font></b></div>
+                                    <div style="text-align:center"><b><font size="2">E-Mail: it-global-sales@it-globalsolutions.com;</font></b></div>
+                                    <div style="text-align:center"><b><font size="2">Dir. Calle Emilio Carranza 911-A , Apizaco Tlax.;</font></b></div>                                    
+                                </div>                                
+                            </div>                                                                        
+                        </td> 
+                        <td width="20%">                                
+                        </td>           
+                    </tr>-->                                                              
+                    <tr>
+                        <td colspan="3">
+                            <pre><strong>&copy; Copyright 2017 It-Global Solutions</strong></pre>
+                        </td>
+                    </tr>
+                </table>                
+            </div>            
+        </div>
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    </h:body>
+</html>

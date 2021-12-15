@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+        <title>Creación Reportes</title>
+        <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/sb-admin.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css2/Formularios.css" rel="stylesheet" type="text/css"/>
+        <style type="text/css">
+            .ui-growl{
+                position:absolute;
+                top:9%;
+                left:75%;
+                z-index:9999;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+
+        
+
+            <ui:composition template="../../plantillas/Tema4.xhtml">
+ 
+            <ui:define name="top">
+                
+                
+            </ui:define>
+     
+     
+ <ui:define name="left">
+               
+            </ui:define>
+     
+   
+     <ui:define name="content">
+             
+         <div id="wrapper">
+                <!-- /.navbar-collapse -->
+           
+
+            <div id="page-wrapper">
+
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">
+
+                                <small><font color="gray" >Asignación de consultores a proyectos</font></small>
+                            </h1>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <i class="fa fa-home"></i><h:link outcome="G-Index"> Inicio</h:link>
+                                </li>
+                                <li>
+                                    <i class="fa fa-fw fa-search"></i><h:link outcome="G-ActivitiesSearch"> Busqueda de consultor asignado</h:link>
+                                </li>
+                                <li>
+                                    <i class="fa fa-fw fa-plus-circle"></i><h:link outcome="G-ActivitiesR"> Reporte de Actividades</h:link>
+                                </li>
+                                <li>
+                                    <i class="fa fa-fw fa-file"></i><h:link outcome="G-VerReporte"> Ver Reporte</h:link>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-fw fa-book"></i> Asignar consultor a proyecto
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+                 <h:form id="contact_form" class="contact_form" >
+                        <p:growl id="message" showDetail="true" />
+                        <div class="col-lg-6">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">* Nombre de consultor: </span>
+                                <h:selectOneMenu class="form-control" value="#{activitiesBean.actividades.itgPersonalInfoAll.personalDataId}" a:required="true"
+                                                 requiredMessage="* Obligatorio - Nombre Consultor">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItems value="#{activitiesBean.listEmpleado}"/>
+                                </h:selectOneMenu>
+                            </div>                        
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">* Cliente: </span>
+                                <h:selectOneMenu class="form-control" id="Cliente" value="#{activitiesBean.cliente}"  a:required="true"
+                                                 requiredMessage="* Obligatorio - Cliente">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:ajax execute="Cliente" render="Proyecto" />
+                                    <f:selectItems value="#{projectsBean.listClientes}"/>
+                                    
+                                     
+                                </h:selectOneMenu>
+                            </div>                        
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">* Proyecto: </span>
+                                <h:selectOneMenu class="form-control" id="Proyecto" value="#{activitiesBean.actividades.itgProjectsAll.projectId}" a:required="true"
+                                                 requiredMessage="* Obligatorio - Proyecto" >
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItems value="#{activitiesBean.listProyectos}"/>
+                                </h:selectOneMenu>
+                            </div>                        
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">* Semana:  </span>
+                                <h:selectOneMenu class="form-control" value="#{activitiesBean.actividades.numberWeek}" a:required="true"
+                                                 requiredMessage="* Obligatorio - Semana">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Semana 1" itemValue="Semana 1"/>
+                                    <f:selectItem itemLabel="Semana 2" itemValue="Semana 2"/>
+                                    <f:selectItem itemLabel="Semana 3" itemValue="Semana 3"/>
+                                    <f:selectItem itemLabel="Semana 4" itemValue="Semana 4"/>
+                                    <f:selectItem itemLabel="Semana 5" itemValue="Semana 5"/>
+                                </h:selectOneMenu>
+                            </div>                        
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">* Día Inicio: </span>
+                                <h:selectOneMenu class="form-control" value="#{activitiesBean.actividades.startDay}" a:required="true" requiredMessage="* Obligatorio - Día Inicio">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="1" itemValue="1"/>
+                                    <f:selectItem itemLabel="2" itemValue="2"/>
+                                    <f:selectItem itemLabel="3" itemValue="3"/>
+                                    <f:selectItem itemLabel="4" itemValue="4"/>
+                                    <f:selectItem itemLabel="5" itemValue="5"/>
+                                    <f:selectItem itemLabel="6" itemValue="6"/>
+                                    <f:selectItem itemLabel="7" itemValue="7"/>
+                                    <f:selectItem itemLabel="8" itemValue="8"/>
+                                    <f:selectItem itemLabel="9" itemValue="9"/>
+                                    <f:selectItem itemLabel="10" itemValue="10"/>
+                                    <f:selectItem itemLabel="11" itemValue="11"/>
+                                    <f:selectItem itemLabel="12" itemValue="12"/>
+                                    <f:selectItem itemLabel="13" itemValue="13"/>
+                                    <f:selectItem itemLabel="14" itemValue="14"/>
+                                    <f:selectItem itemLabel="15" itemValue="15"/>
+                                    <f:selectItem itemLabel="16" itemValue="16"/>
+                                    <f:selectItem itemLabel="17" itemValue="17"/>
+                                    <f:selectItem itemLabel="18" itemValue="18"/>
+                                    <f:selectItem itemLabel="19" itemValue="19"/>
+                                    <f:selectItem itemLabel="20" itemValue="20"/>
+                                    <f:selectItem itemLabel="21" itemValue="21"/>
+                                    <f:selectItem itemLabel="22" itemValue="22"/>
+                                    <f:selectItem itemLabel="23" itemValue="23"/>
+                                    <f:selectItem itemLabel="24" itemValue="24"/>
+                                    <f:selectItem itemLabel="25" itemValue="25"/>
+                                    <f:selectItem itemLabel="26" itemValue="26"/>
+                                    <f:selectItem itemLabel="27" itemValue="27"/>
+                                    <f:selectItem itemLabel="28" itemValue="28"/>
+                                    <f:selectItem itemLabel="29" itemValue="29"/>
+                                    <f:selectItem itemLabel="30" itemValue="30"/>
+                                    <f:selectItem itemLabel="31" itemValue="31"/>                                   
+                                </h:selectOneMenu>
+                            </div>                        
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">* Día Final: </span>
+                                <h:selectOneMenu class="form-control" value="#{activitiesBean.actividades.endDay}" a:required="true" requiredMessage="* Obligatorio - Día Final">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="1" itemValue="1"/>
+                                    <f:selectItem itemLabel="2" itemValue="2"/>
+                                    <f:selectItem itemLabel="3" itemValue="3"/>
+                                    <f:selectItem itemLabel="4" itemValue="4"/>
+                                    <f:selectItem itemLabel="5" itemValue="5"/>
+                                    <f:selectItem itemLabel="6" itemValue="6"/>
+                                    <f:selectItem itemLabel="7" itemValue="7"/>
+                                    <f:selectItem itemLabel="8" itemValue="8"/>
+                                    <f:selectItem itemLabel="9" itemValue="9"/>
+                                    <f:selectItem itemLabel="10" itemValue="10"/>
+                                    <f:selectItem itemLabel="11" itemValue="11"/>
+                                    <f:selectItem itemLabel="12" itemValue="12"/>
+                                    <f:selectItem itemLabel="13" itemValue="13"/>
+                                    <f:selectItem itemLabel="14" itemValue="14"/>
+                                    <f:selectItem itemLabel="15" itemValue="15"/>
+                                    <f:selectItem itemLabel="16" itemValue="16"/>
+                                    <f:selectItem itemLabel="17" itemValue="17"/>
+                                    <f:selectItem itemLabel="18" itemValue="18"/>
+                                    <f:selectItem itemLabel="19" itemValue="19"/>
+                                    <f:selectItem itemLabel="20" itemValue="20"/>
+                                    <f:selectItem itemLabel="21" itemValue="21"/>
+                                    <f:selectItem itemLabel="22" itemValue="22"/>
+                                    <f:selectItem itemLabel="23" itemValue="23"/>
+                                    <f:selectItem itemLabel="24" itemValue="24"/>
+                                    <f:selectItem itemLabel="25" itemValue="25"/>
+                                    <f:selectItem itemLabel="26" itemValue="26"/>
+                                    <f:selectItem itemLabel="27" itemValue="27"/>
+                                    <f:selectItem itemLabel="28" itemValue="28"/>
+                                    <f:selectItem itemLabel="29" itemValue="29"/>
+                                    <f:selectItem itemLabel="30" itemValue="30"/>
+                                    <f:selectItem itemLabel="31" itemValue="31"/>                                   
+                                </h:selectOneMenu>
+                            </div>                        
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">* Mes:  </span>
+                                <h:selectOneMenu class="form-control" value="#{activitiesBean.actividades.month}" a:required="true"
+                                                 requiredMessage="* Obligatorio - Mes" id="mes">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Enero" itemValue="Enero"/>
+                                    <f:selectItem itemLabel="Febrero" itemValue="Febrero"/>
+                                    <f:selectItem itemLabel="Marzo" itemValue="Marzo"/>
+                                    <f:selectItem itemLabel="Abril" itemValue="Abril"/>
+                                    <f:selectItem itemLabel="Mayo" itemValue="Mayo"/>
+                                    <f:selectItem itemLabel="Junio" itemValue="Junio"/>
+                                    <f:selectItem itemLabel="Julio" itemValue="Julio"/>
+                                    <f:selectItem itemLabel="Agosto" itemValue="Agosto"/>
+                                    <f:selectItem itemLabel="Septiembre" itemValue="Septiembre"/>
+                                    <f:selectItem itemLabel="Octubre" itemValue="Octubre"/>
+                                    <f:selectItem itemLabel="Noviembre" itemValue="Noviembre"/>
+                                    <f:selectItem itemLabel="Diciembre" itemValue="Diciembre"/> 
+                                </h:selectOneMenu>
+                            </div>                        
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">* Año: </span>
+                                <h:inputText class="form-control" value="#{activitiesBean.actividades.year}" a:type="number" a:required="true" requiredMessage="* Obligatorio - Año"/>
+                            </div>                            
+                        </div>
+                        
+                        <div class="col-lg-6">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">* Autorizó: </span>
+                                <h:inputText class="form-control" a:required="true" value="#{activitiesBean.actividades.authorizedBy}"
+                                             requiredMessage="* Obligatorio - Autorizó"/>
+                            </div>                      
+                        </div>
+                        <div class="col-lg-6">
+                            <p:commandButton value="Aceptar" styleClass="btn btn-default btn btn-primary" actionListener="#{activitiesBean.nuevaActividad()}" update="message :contact_form">
+                                <p:confirm header="Confirmación" message="¿Deseas insertar este registro?" icon="ui-icon-alert"/>
+                            </p:commandButton>
+                            <p:commandButton value="Cancelar" styleClass="btn btn-default btn btn-primary">
+                                <p:ajax update=":contact_form" resetValues="true" />
+                            </p:commandButton>
+                        </div>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+
+                    </h:form><br></br>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- /#page-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+
+       
+        <script src="../../resources/js/bootstrap.min.js" type="text/javascript"></script>        
+         </ui:define>
+</ui:composition>
+    </h:body>
+
+</html>
+
+

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="Views/Direccion/ReportAprobar.xhtml" x="1150" y="1050" zoom="true"/>
+        <Node id="Views/Admin/A-AdminIndex.xhtml" x="1650" y="900" zoom="true"/>
+        <Node id="Views/Gerente/G-ActivitiesSearch.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="Views/Direccion/ActivitiesR.xhtml" x="2400" y="450" zoom="true"/>
+        <Node id="Views/Admin/A-UserSearch.xhtml" x="650" y="1200" zoom="true"/>
+        <Node id="Views/Direccion/EmployeeSearch.xhtml" x="1400" y="900" zoom="true"/>
+        <Node id="Views/Gerente/G-NewReport.xhtml" x="150" y="1050" zoom="true"/>
+        <Node id="Views/Admin/A-RClientes.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="Views/Consultor/C-ReportAprobar.xhtml" x="1150" y="600" zoom="true"/>
+        <Node id="Views/Contador/C-NewReport.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="Views/Admin/A-ViewReport.xhtml" x="150" y="1500" zoom="true"/>
+        <Node id="Views/Admin/A-ProjectsSearch.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="Views/Direccion/UserSearch.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="Views/Direccion/D-NewReport.xhtml" x="2150" y="600" zoom="true"/>
+        <Node id="newxhtml.xhtml" x="1400" y="450" zoom="true"/>
+        <Node id="Views/Lider/L-ReportAprobar.xhtml" x="900" y="1050" zoom="true"/>
+        <Node id="Views/Direccion/VerReporte.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="plantillas/Tema4.xhtml" x="1150" y="1200" zoom="true"/>
+        <Node id="Views/Direccion/Employees.xhtml" x="650" y="300" zoom="true"/>
+        <Node id="Views/Admin/A-DesPlan.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="Views/Admin/A-Invoised_2.xhtml" x="1900" y="750" zoom="true"/>
+        <Node id="Views/Admin/A-Projects.xhtml" x="650" y="900" zoom="true"/>
+        <Node id="Views/Direccion/Users.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="Views/Contador/C-ReportAprobar.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="Views/Admin/A-Users.xhtml" x="400" y="1200" zoom="true"/>
+        <Node id="Views/Admin/AG-Projects.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="Views/Direccion/CustomerF.xhtml" x="900" y="750" zoom="true"/>
+        <Node id="Views/Direccion/ActivitiesSearch.xhtml" x="900" y="900" zoom="true"/>
+        <Node id="Views/Consultor/ModifReport.xhtml" x="2150" y="450" zoom="true"/>
+        <Node id="Views/Consultor/C-Index.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="Views/Contador/C-ViewReport.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="plantillas/Tema6.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="Views/Direccion/Direccionindex.xhtml" x="1900" y="600" zoom="true"/>
+        <Node id="Views/Gerente/G-Index.xhtml" x="1400" y="1050" zoom="true"/>
+        <Node id="plantillas/Tema3.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="Views/Consultor/ViewReport.xhtml" x="1900" y="150" zoom="true"/>
+        <Node id="Views/Admin/A-ActivitiesR.xhtml" x="2150" y="300" zoom="true"/>
+        <Node id="Views/Gerente/G-ActivitiesC.xhtml" x="1900" y="450" zoom="true"/>
+        <Node id="Views/Direccion/Invoised_2.xhtml" x="1900" y="300" zoom="true"/>
+        <Node id="Views/Lider/L-NewReport.xhtml" x="2400" y="300" zoom="true"/>
+        <Node id="Views/Consultor/C-VerReporte.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="Views/Admin/A-Employees.xhtml" x="650" y="1500" zoom="true"/>
+        <Node id="Views/Contador/CP-PagarReport.xhtml" x="1150" y="750" zoom="true"/>
+        <Node id="plantillas/Tema5.xhtml" x="650" y="1050" zoom="true"/>
+        <Node id="Views/Admin/A-ActivitiesC.xhtml" x="2650" y="300" zoom="true"/>
+        <Node id="Views/Consultor/NewReport.xhtml" x="2650" y="150" zoom="true"/>
+        <Node id="Views/Admin/A-CustomerF.xhtml" x="400" y="1350" zoom="true"/>
+        <Node id="plantillas/Tema2.xhtml" x="400" y="1050" zoom="true"/>
+        <Node id="Views/Gerente/G-ViewReport.xhtml" x="900" y="1200" zoom="true"/>
+        <Node id="Views/Direccion/ActivitiesC.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="Views/Contador/CP-Index.xhtml" x="1650" y="300" zoom="true"/>
+        <Node id="Views/Admin/A-CustomerM.xhtml" x="650" y="1350" zoom="true"/>
+        <Node id="Views/Lider/L-Index.xhtml" x="2900" y="150" zoom="true"/>
+        <Node id="Views/Direccion/ProjectsSearch.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="Views/Gerente/G-VerReporte.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="Views/Gerente/G-ReportAprobar.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="Views/Direccion/Projects.xhtml" x="400" y="1500" zoom="true"/>
+        <Node id="Views/Admin/A-CustomerFSearch.xhtml" x="150" y="1350" zoom="true"/>
+        <Node id="Views/Direccion/CustomerFSearch.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="Views/Admin/A-NewReport.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="Views/Admin/A-ReportAprobar.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="Views/Direccion/CustomerM.xhtml" x="2400" y="150" zoom="true"/>
+        <Node id="Views/Consultor/C-ActivitiesR.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="Views/Lider/L-ViewReport.xhtml" x="900" y="1350" zoom="true"/>
+        <Node id="Login.xhtml" x="150" y="1650" zoom="true"/>
+        <Node id="Views/Admin/A-ActivitiesSearch.xhtml" x="1400" y="750" zoom="true"/>
+        <Node id="Views/Gerente/G-ActivitiesR.xhtml" x="1650" y="600" zoom="true"/>
+        <Node id="Views/Direccion/D-ViewReport.xhtml" x="150" y="1200" zoom="true"/>
+        <Node id="Views/Direccion/RClientes.xhtml" x="1150" y="900" zoom="true"/>
+        <Node id="Views/Direccion/DAG-Projects.xhtml" x="1650" y="450" zoom="true"/>
+        <Node id="Views/Admin/A-VerReporte.xhtml" x="1400" y="600" zoom="true"/>
+        <Node id="Views/Direccion/DesPlan.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="Views/Admin/A-EmployeeSearch.xhtml" x="2150" y="150" zoom="true"/>
+        <Node id="plantillas/Tema.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="Views/Direccion/Cities.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="Views/Admin/A-Cities.xhtml" x="1650" y="750" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

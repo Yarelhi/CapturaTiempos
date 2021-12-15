@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/10/2021 05:06:06 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.ItgExpenseReportsAll" table="itg_expense_reports_all" catalog="itg_time_module" optimistic-lock="version">
+        <id name="reportId" type="java.lang.Integer">
+            <column name="REPORT_ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="itgPersonalApprover" class="Model.ItgPersonalInfoAll" fetch="select">
+            <column name="ITG_PERSONAL_INFO_ALL_APROVER_ID" />
+        </many-to-one>
+        <many-to-one name="itgPersonalInfoAll" class="Model.ItgPersonalInfoAll" fetch="select">
+            <column name="ITG_PERSONAL_INFO_ALL_PERSONAL_DATA_ID" />
+        </many-to-one>
+        <many-to-one name="itgProjectsAll" class="Model.ItgProjectsAll" fetch="select">
+            <column name="ITG_PROJECTS_ALL_PROJECT_ID" />
+        </many-to-one>
+        <many-to-one name="itgReportStatus" class="Model.ItgReportStatus" fetch="select">
+            <column name="ITG_REPORT_STATUS_STATUS_ID" />
+        </many-to-one>
+        <many-to-one name="itgVouchersStatus" class="Model.ItgVouchersStatus" fetch="select">
+            <column name="ITG_VOUCHERS_STATUS_VOUCHER_ID" />
+        </many-to-one>
+        <property name="nameReport" type="boolean">
+            <column name="NAME_REPORT" length="150" />
+        </property>
+        <property name="reasonExpense" type="string">
+            <column name="REASON_EXPENSE" length="150" />
+        </property>
+        <property name="reportDate" type="date">
+            <column name="REPORT_DATE" length="10" />
+        </property>
+        <property name="paymentMethod" type="string">
+            <column name="PAYMENT_METHOD" length="150" />
+        </property>
+        <property name="anexos" type="binary">
+            <column name="ANEXOS" />
+        </property>
+        <property name="pdf" type="binary">
+            <column name="PDF" />
+        </property>
+        <property name="totalExpenseReport" type="java.lang.Long">
+            <column name="TOTAL_EXPENSE_REPORT" precision="10" scale="0" />
+        </property>
+        <property name="attribute1" type="string">
+            <column name="ATTRIBUTE1" length="150" />
+        </property>
+        <property name="attribute2" type="binary">
+            <column name="ATTRIBUTE2" />
+        </property>
+        <property name="attribute3" type="java.lang.Long">
+            <column name="ATTRIBUTE3" precision="10" scale="0" />
+        </property>
+        <property name="attribute4" type="boolean">
+            <column name="ATTRIBUTE4" length="50" />
+        </property>
+        <property name="attribute5" type="boolean">
+            <column name="ATTRIBUTE5" length="150" />
+        </property>
+        <property name="attribute6" type="string">
+            <column name="ATTRIBUTE6" length="150" />
+        </property>
+        <property name="attribute7" type="string">
+            <column name="ATTRIBUTE7" length="150" />
+        </property>
+        <property name="attribute8" type="string">
+            <column name="ATTRIBUTE8" length="150" />
+        </property>
+        <property name="creationDate" type="date">
+            <column name="CREATION_DATE" length="10" />
+        </property>
+        <property name="createdBy" type="java.lang.Long">
+            <column name="CREATED_BY" precision="10" scale="0" />
+        </property>
+        <property name="lastUpdateDate" type="date">
+            <column name="LAST_UPDATE_DATE" length="10" />
+        </property>
+        <property name="lastUpdatedBy" type="java.lang.Long">
+            <column name="LAST_UPDATED_BY" precision="10" scale="0" />
+        </property>
+        <set name="itgExpenseReportsDetails" table="itg_expense_reports_detail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ITG_EXPENSE_REPORTS_ALL_ALL_REPORT_ID" />
+            </key>
+            <one-to-many class="Model.ItgExpenseReportsDetail" />
+        </set>
+    </class>
+</hibernate-mapping>

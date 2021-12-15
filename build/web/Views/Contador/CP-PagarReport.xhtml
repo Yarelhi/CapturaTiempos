@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        
+        
+        <title>Gastos por Pagar</title>
+        
+        <link href="../resources/css/login.css" rel="stylesheet" type="text/css"/>
+            <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../../resources/css/sb-admin.css" rel="stylesheet" type="text/css"/>
+            <link href="../../resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../../resources/css2/Formularios.css" rel="stylesheet" type="text/css"/>
+            <style type="text/css">
+                .ui-growl{
+                    position:absolute;
+                    top:9%;
+                    left:75%;
+                    z-index:9999;
+                }
+                 .old {
+                     background-color: #fca752 !important;
+                     background-image: none !important;
+                     color: #000000 !important;
+                 }
+      
+                
+            </style>
+    </h:head>
+    
+    
+    <body>
+        <ui:composition template="../../plantillas/Tema5.xhtml">
+            <ui:define name="top">
+                
+                
+            </ui:define>
+           
+            <ui:define name="left">
+               
+            </ui:define>
+            
+            <ui:define name="content">
+                <div id="wrapper">
+            
+        <!-- Navigation-->
+        
+        <div id="page-wrapper">
+            
+            <div class="container-fluid">
+                
+                
+                <!-- Page Heading -->
+             <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            
+                            <small>Gastos por Pagar</small>
+                            
+                                  
+             
+                                
+                                
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i><h:link outcome="CP-Index"> Inicio</h:link>
+                            </li>
+                            <li>
+                                <i class="fa fa-fw fa-plus-square"></i><h:link outcome="C-NewReport"> Nuevo Reporte</h:link>
+                            </li>
+                            <li>
+                                <i class="fa fa-fa fa-file-pdf-o"></i><h:link outcome="C-ViewReport">Ver Reportes</h:link>
+                            </li>
+                            <li>
+                                <i class="fa fa-pencil-square-o"></i><h:link outcome="C-ReportAprobar">Aprobar Reportes</h:link>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-credit-card"></i>Gastos por pagar
+                            </li>
+                            
+                        </ol>
+                    </div>
+                </div>
+                <p:growl id="MensajeGrl" autoUpdate="true" showDetail="true" />
+                <h:form id="FormMostrarReportesA">
+                    <p:dataTable id="tablaMostrarReportesA" var="reportesA" value="#{reportExpensesBean.tableReportApro}"
+                                 emptyMessage="No hay Reportes" scrollable="true"
+                                  scrollWidth="100%" paginator="true" rows="10" reflow="true" editable="true">
+                    <p:column headerText="Acciones" width="200">
+                        <p:commandButton value="Status" oncomplete="PF('dlgmodificarStatus').show();"
+                                                 update=":formModificarS">
+                            <f:setPropertyActionListener target="#{reportExpensesBean.statusP}" value="#{reportesA}"/>                                                     
+                                </p:commandButton>
+                        
+                        <p:commandButton action="#{reportExpensesBean.generarReporte()}" value="PDF"  ajax="false"  onclick="target='_blank';">
+                            <f:setPropertyActionListener target="#{reportExpensesBean.obtenerReporte}" value="#{reportesA}"/>
+                        </p:commandButton>
+                                    </p:column>
+                         <p:column headerText="Número de Reporte" width="180">
+                             <h:outputText value="#{reportesA.reportId}" />
+                        </p:column>
+                        <p:column headerText="Nombre del empleado" width="200" filterBy="#{reportesA.itgPersonalInfoAll.name} #{reportesA.itgPersonalInfoAll.paternSurname}">
+                            <h:outputText value="#{reportesA.itgPersonalInfoAll.name} #{reportesA.itgPersonalInfoAll.paternSurname}" />
+                        </p:column>
+                        
+                        <p:column headerText="Fecha de creación" width="180">
+                            <h:outputText value="#{reportesA.reportDate}" />
+                        </p:column>
+                        
+                        <p:column headerText="Status" width="250">
+                            <h:outputText value="#{reportesA.itgReportStatus.statusName}" />
+                        </p:column>
+                        
+                        <p:column headerText="Total $" width="200" >
+                            <h:outputText value="#{reportesA.totalExpenseReport}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+                
+                <p:dialog id="dlg" widgetVar="dlgmodificarStatus" header="Modificar Status del Reporte" showEffect="explode" hideEffect="explode" modal="true">
+                                <h:form id="formModificarS">
+                                    <p:panelGrid columns="4" style="margin: 0 auto">
+                                        <p:outputLabel value="Status:"/>
+                                        <h:selectOneMenu class="form-control" id="Pro2" value="#{reportExpensesBean.statusP.itgReportStatus.statusId}" immediate="true" valueChangeListener="#{reportExpensesBean.valuChange}">
+                                            <f:selectItems value="#{reportExpensesBean.listStatusReportP}"/>
+                                        </h:selectOneMenu>
+                                       
+                                        
+                                        <p:commandButton  value="Modificar" oncomplete="PF('dlgmodificarStatus').hide();" 
+                                                          actionListener="#{reportExpensesBean.modificarStatusP()}"
+                                                 update=":FormMostrarReportesA:tablaMostrarReportesA"/>
+                                         <p:commandButton value="Cancelar" onclick="PF('dlgmodificarStatus').hide();" />
+                                        
+                                    </p:panelGrid>
+                                </h:form>
+                            </p:dialog>
+
+                </div>
+            
+        </div>
+                </div>
+                <script src="../../resources/js/bootstrap.min.js" type="text/javascript"></script>
+                
+                
+                
+            </ui:define>
+        </ui:composition>
+      
+    </body>
+</html>
+

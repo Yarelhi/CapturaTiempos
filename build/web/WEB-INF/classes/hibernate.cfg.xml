@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.enable_lazy_load_no_trans">true</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/itg_time_module</property>
+    <property name="hibernate.connection.username">root</property>
+    <mapping resource="Model/ItgEmployeesTypesAll.hbm.xml"/>
+    <mapping resource="Model/ItgListValues.hbm.xml"/>
+    <mapping resource="Model/ItgListValuesDet.hbm.xml"/>
+    <mapping resource="Model/ItgCountriesAll.hbm.xml"/>
+    <mapping resource="Model/ItgPersonalInfoAll.hbm.xml"/>
+    <mapping resource="Model/ItgReportStatus.hbm.xml"/>
+    <mapping resource="Model/ItgUsersAll.hbm.xml"/>
+    <mapping resource="Model/ItgExpenseReportsDetail.hbm.xml"/>
+    <mapping resource="Model/ItgExpenseTypes.hbm.xml"/>
+    <mapping resource="Model/ItgStatesAll.hbm.xml"/>
+    <mapping resource="Model/ItgExpenseReportsAll.hbm.xml"/>
+    <mapping resource="Model/ItgVouchersStatus.hbm.xml"/>
+    <mapping resource="Model/ItgCitiesAll.hbm.xml"/>
+    <mapping resource="Model/ItgActivitiesAll.hbm.xml"/>
+    <mapping resource="Model/ItgPrueba.hbm.xml"/>
+    <mapping resource="Model/ItgActivitiesDetail.hbm.xml"/>
+    <mapping resource="Model/ItgProjectsAll.hbm.xml"/>
+    <mapping resource="Model/ItgWorkArea.hbm.xml"/>
+    <mapping resource="Model/ItgInvoiceAll.hbm.xml"/>
+    <mapping resource="Model/ItgUserRolesAll.hbm.xml"/>
+    <mapping resource="Model/ItgParties.hbm.xml"/>
+    <mapping resource="Model/ItgCompany.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,39 @@
+SELECT u.Status AS Stat, v.VALUE_LIST_DETAIL_VALUE, v.VALUE_LIST_DETAIL_ID AS VID
+FROM xxeks_users_all AS u, xxeks_values_lists_details AS v
+WHERE VALUE_LIST_DETAIL_VALUE = ( 
+SELECT v.VALUE_LIST_DETAIL_VALUE
+FROM xxeks_values_lists_details AS v
+WHERE v.VALUE_LIST_DETAIL_ID = u.Status ) 
+//SQL
+
+
+
+//HQL//
+SELECT u.status AS Stat, v.valueListDetailValue, v.valueListDetailId AS VID
+FROM XxeksUsersAll AS u, XxeksValuesListsDetails AS v
+WHERE v.valueListDetailValue  = (
+SELECT v.valueListDetailValue
+FROM  XxeksValuesListsDetails AS v
+WHERE v.valueListDetailId = u.status )
+//HQL//
+
+
+//SQL//
+SELECT * 
+FROM xxeks_activities, xxeks_activities_report
+WHERE NUMBER_WEEK =3
+AND ELABORATED_BY =  "Angel"
+//SQL//
+
+
+SELECT * 
+FROM Xxeks_Personal_Data_All AS p, Xxeks_Employees_Customers_All AS c
+WHERE c.employee_Customer_Id = p.XXEKS_EMPLOYEES_CUSTOMERS_ALL_EMPLOYEE_CUSTOMER_ID
+AND c.Name
+IN (
+'Empleado',  'Practicante',  'Becario'
+)
+
+
+FROM XxeksPersonalDataAll WHERE XXEKS_EMPLOYEES_CUSTOMERS_ALL_EMPLOYEE_CUSTOMER_ID = 2 OR\n" +
+"XXEKS_EMPLOYEES_CUSTOMERS_ALL_EMPLOYEE_CUSTOMER_ID = 4 OR XXEKS_EMPLOYEES_CUSTOMERS_ALL_EMPLOYEE_CUSTOMER_ID = 5

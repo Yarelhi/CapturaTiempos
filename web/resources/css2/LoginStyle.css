@@ -1,0 +1,193 @@
+body {    
+  height: 100%;
+}
+nav.color-nav.fixed {
+    position: fixed;
+    top: -5px;   
+    z-index: 4;
+}
+.login{  
+    width: 350px;
+    margin-left: auto;
+    margin-right:auto;
+    margin-top: 20%;
+    font-size: 100%;
+   
+}
+.clientes{  
+    width: 350px;
+    margin-left: auto;
+    margin-right:auto;
+    margin-top: 1%;
+    font-size: 100%;
+   
+}
+.form-signin {    
+  width: 90%;
+    margin-left: auto;
+    margin-right:auto;
+    margin-top: 0%;
+    font-size: 100%;  
+}
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+  margin-bottom: 10px;
+  color:#999999;
+  font-family:Arabic Typesetting;
+}
+.form-signin .checkbox {
+  font-weight: normal;
+}
+.form-signin .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+.form-signin .form-control:focus {
+  z-index: 2;
+}
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+
+header{
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    position: fixed;    
+    left: 0;
+    z-index: 999;
+    background-color: #fff;
+}
+.header h1#logo {
+    display:inline-block;
+    height: 150px;
+    float: left;
+    margin-left:50px;
+    font-family: "Oswald", sans-serif;
+     //font-size: 60px;
+    color: white;
+    font-weight: 400;
+
+}
+.header nav {
+    display: inline-block;
+    float: right;
+    margin-right:50px;
+
+}
+.header nav a {
+    line-height: 150px;
+    margin-left: 20px;
+    color: #0e5ba1;
+    text-decoration:none;
+    font-size: 18px;
+}
+
+.header nav a:hover {
+    color: #b2b2b2;
+}
+
+.header.smaller {
+    height: 75px;
+}
+.header.smaller h1#logo {
+    width: 150px;
+    height: 75px;
+    font-size: 30px;
+}
+.header.smaller nav a {
+    line-height: 75px;
+}
+.footer{
+    background: url('../../resources/img/piePagina.jpg') no-repeat;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: 89%;     
+}
+
+@media all and (max-width: 660px) {
+    .header h1#logo {
+        display: block;
+        float: none;
+        margin: 0 auto;
+        height: 100px;
+        line-height:100px;
+        text-align: center;
+    }
+    .header nav {
+        display: block;
+        float: none;
+        height: 50px;
+        line-height:50px;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .header nav a {
+        line-height: 50px;
+        margin: 0 10px;
+    }
+    .header.smaller {
+        height: 75px;
+    }
+    .header.smaller h1#logo {
+        height: 40px;
+        line-height: 40px;
+        font-size: 30px;
+    }
+    .header.smaller nav {
+        height: 35px;
+        line-height:35px;
+    }
+    .header.smaller nav a {
+        line-height: 35px;
+    }
+
+    .footer h1#logo {
+        display: block;
+        float: none;
+        margin: 0 auto;
+        height: 100px;
+        line-height:100px;
+        text-align: center;
+    }
+    .footer nav {
+        display: block;
+        float: none;
+        height: 50px;
+        line-height:50px;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .footer nav a {
+        line-height: 50px;
+        margin: 0 10px;
+    }
+    .footer.smaller {
+        height: 75px;
+    }
+    .footer.smaller h1#logo {
+        height: 40px;
+        line-height: 40px;
+        font-size: 30px;
+    }
+    .footer.smaller nav {
+        height: 35px;
+        line-height:35px;
+    }
+    .footer.smaller nav a {
+        line-height: 35px;
+    }
+}

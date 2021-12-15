@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/10/2021 05:06:06 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.ItgActivitiesDetail" table="itg_activities_detail" catalog="itg_time_module" optimistic-lock="version">
+        <id name="activityReportId" type="java.lang.Integer">
+            <column name="ACTIVITY_REPORT_ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="itgActivitiesAll" class="Model.ItgActivitiesAll" fetch="select">
+            <column name="ITG_ACTIVITIES_ALL_ACTIVITY_ID" not-null="true" />
+        </many-to-one>
+        <property name="module" type="string">
+            <column name="MODULE" length="150" />
+        </property>
+        <property name="phase" type="string">
+            <column name="PHASE" length="150" />
+        </property>
+        <property name="activity" type="string">
+            <column name="ACTIVITY" length="500" />
+        </property>
+        <property name="mondayHours" type="java.lang.Double">
+            <column name="MONDAY_HOURS" precision="22" scale="0" />
+        </property>
+        <property name="tuesdayHours" type="java.lang.Double">
+            <column name="TUESDAY_HOURS" precision="22" scale="0" />
+        </property>
+        <property name="wednesdayHours" type="java.lang.Double">
+            <column name="WEDNESDAY_HOURS" precision="22" scale="0" />
+        </property>
+        <property name="thursdayHours" type="java.lang.Double">
+            <column name="THURSDAY_HOURS" precision="22" scale="0" />
+        </property>
+        <property name="fridayHours" type="java.lang.Double">
+            <column name="FRIDAY_HOURS" precision="22" scale="0" />
+        </property>
+        <property name="saturdayHours" type="java.lang.Double">
+            <column name="SATURDAY_HOURS" precision="22" scale="0" />
+        </property>
+        <property name="sundayHours" type="java.lang.Double">
+            <column name="SUNDAY_HOURS" precision="22" scale="0" />
+        </property>
+        <property name="totalBillableHours" type="java.lang.Long">
+            <column name="TOTAL_BILLABLE_HOURS" precision="10" scale="0" />
+        </property>
+        <property name="totalNonBillableHours" type="java.lang.Long">
+            <column name="TOTAL_NON_BILLABLE_HOURS" precision="10" scale="0" />
+        </property>
+        <property name="totalHours" type="java.lang.Double">
+            <column name="TOTAL_HOURS" precision="22" scale="0" />
+        </property>
+        <property name="attribute1" type="string">
+            <column name="ATTRIBUTE1" length="150" />
+        </property>
+        <property name="attribute2" type="string">
+            <column name="ATTRIBUTE2" length="150" />
+        </property>
+        <property name="attribute3" type="string">
+            <column name="ATTRIBUTE3" length="150" />
+        </property>
+        <property name="attribute4" type="string">
+            <column name="ATTRIBUTE4" length="150" />
+        </property>
+        <property name="attribute5" type="string">
+            <column name="ATTRIBUTE5" length="150" />
+        </property>
+        <property name="creationDate" type="date">
+            <column name="CREATION_DATE" length="10" />
+        </property>
+        <property name="createdBy" type="java.lang.Long">
+            <column name="CREATED_BY" precision="10" scale="0" />
+        </property>
+        <property name="lastUpdateDate" type="date">
+            <column name="LAST_UPDATE_DATE" length="10" />
+        </property>
+        <property name="lastUpdatedBy" type="java.lang.Long">
+            <column name="LAST_UPDATED_BY" precision="10" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

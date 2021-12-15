@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26 nov 2021 18:05:13 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.ItgCompany" table="itg_company" catalog="itg_time_module" optimistic-lock="version">
+        <id name="organizacionId" type="java.lang.Integer">
+            <column name="ORGANIZACION_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="orgName" type="string">
+            <column name="ORG_NAME" length="240" />
+        </property>
+        <property name="orgType" type="string">
+            <column name="ORG_TYPE" length="50" />
+        </property>
+        <property name="pathImg" type="string">
+            <column name="PATH_IMG" length="240" />
+        </property>
+        <property name="pathFacebook" type="string">
+            <column name="PATH_FACEBOOK" length="100" />
+        </property>
+        <property name="pathWeb" type="string">
+            <column name="PATH_WEB" length="100" />
+        </property>
+        <property name="pathYoutube" type="string">
+            <column name="PATH_YOUTUBE" length="100" />
+        </property>
+        <property name="pathTwitter" type="string">
+            <column name="PATH_TWITTER" length="100" />
+        </property>
+        <property name="pathLinkedin" type="string">
+            <column name="PATH_LINKEDIN" length="100" />
+        </property>
+        <property name="contactName" type="string">
+            <column name="CONTACT_NAME" length="50" />
+        </property>
+        <property name="contactMail" type="string">
+            <column name="CONTACT_MAIL" length="50" />
+        </property>
+        <property name="contactNumberPhone" type="string">
+            <column name="CONTACT_NUMBER_PHONE" length="50" />
+        </property>
+        <property name="companyAddress" type="string">
+            <column name="COMPANY_ADDRESS" length="100" />
+        </property>
+        <property name="contactCopyright" type="string">
+            <column name="CONTACT_COPYRIGHT" length="100" />
+        </property>
+        <property name="pathReport" type="string">
+            <column name="PATH_REPORT" length="100" />
+        </property>
+        <property name="pathFooter" type="string">
+            <column name="PATH_FOOTER" length="100" />
+        </property>
+        <property name="pathLogo" type="string">
+            <column name="PATH_LOGO" length="100" />
+        </property>
+        <property name="reportAddress" type="string">
+            <column name="REPORT_ADDRESS" length="50" />
+        </property>
+        <set name="itgUsersAlls" table="itg_users_all" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ORGANIZACION_ID" />
+            </key>
+            <one-to-many class="Model.ItgUsersAll" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+        <title>Ver Reporte</title>
+        <link href="../resources/css/LoginStyle.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/sb-admin.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css2/Formularios.css" rel="stylesheet" type="text/css"/>        
+        <style type="text/css">
+            .ui-growl{
+                position:absolute;
+                top:9%;
+                left:75%;
+                z-index:9999;
+            }
+        </style>
+        <script lang="javaScript" type="text/javascript">
+            function cambio() {
+                document.getElementById("Consultor").value = document.getElementById("Elaborado").value;
+            }
+        </script>
+    </h:head>
+
+    <body>
+        <ui:composition template="../../plantillas/Tema3.xhtml">
+
+            <ui:define name="top">
+                3
+
+            </ui:define>
+
+            <ui:define name="left">
+
+            </ui:define>
+
+
+            <ui:define name="content"><div id="wrapper">
+
+                    <!-- Navigation -->
+
+
+                    <div id="page-wrapper">
+
+                        <div class="container-fluid">
+
+                            <!-- Page Heading -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1 class="page-header">
+
+                                        <small>Generar Reportes</small>
+                                    </h1>
+                                    <ol class="breadcrumb">
+                                        <li>
+                                    <i class="fa fa-home"></i><h:link outcome="Direccionindex"> Inicio</h:link>
+                                </li>
+                                <li>
+                                        <a href="javascript:;" data-toggle="collapse" data-target="#customer"><i class="fa fa-fw fa-building"></i> Clientes<i class="fa fa-fw fa-caret-down"></i></a>
+                                    </li>
+                                <li>
+                                    <i class="fa fa-fw fa-search"></i><h:link outcome="CustomerFSearch"> Buscar Cliente</h:link>
+                                </li>
+                                <li>
+                                    <i class="fa fa-female"></i><h:link outcome="CustomerF"> Física</h:link>
+                                </li>
+                                <li>
+                                    <i class="fa fa-building-o"></i><h:link outcome="CustomerM"> Moral</h:link>
+                                </li>
+                                         <li class="active">
+                                            <i class="fa a-fw fa-file-pdf-o"></i>Generar Reportes
+                                         </li>   
+                              
+                                    </ol>
+                                </div>
+                            </div>
+                            <div class="clientes">    
+                                <h:form id="formfisico"  >   
+                                    <p:panel header= "Clientes Fisicos " widgetVar="dlg" >
+                                        <h:panelGrid columns="2" cellpadding="5">
+                                            <f:facet name="footer">                          
+                                                Seleccionar datos del reporte:                            
+                                                <br/>                                            
+                                                <div class="form-group input-group">
+                                                    <span class="input-group-addon">* Cliente </span>
+                                                    <h:selectOneMenu class="form-control" value="#{ReportIndCustomerFBean.clienteF}" requiredMessage="* Obligatorio - Cliente">
+                                                        <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                                        <f:selectItems value="#{ReporteBean.listarClienteF}"/>
+                                                    </h:selectOneMenu>                                
+                                                </div>                        
+
+                                                <div class="form-group input-group">
+                                                    <p:commandButton action="#{ReportIndCustomerFBean.verReporte()}" value="Reporte"  ajax="false" onclick="target = '_blank';"/>                                
+                                                </div>
+                                            </f:facet>  
+                                        </h:panelGrid>
+                                    </p:panel>                
+                                </h:form>
+                                <br/>
+
+                                <h:form id="formmoral"  >   
+                                    <p:panel header= "Clientes Morales " widgetVar="dlg" >
+                                        <h:panelGrid columns="2" cellpadding="5">
+
+                                            <f:facet name="footer">
+                                                Seleccionar datos del reporte:
+                                                <br/>
+
+                                                <div class="form-group input-group">
+                                                    <span class="input-group-addon">* Cliente </span>
+                                                    <h:selectOneMenu class="form-control"  value="#{ReportIndCustomerMBean.clienteM}" requiredMessage="* Obligatorio - Cliente">
+                                                        <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                                        <f:selectItems value="#{ReporteBean.listarClienteM}"/>
+                                                    </h:selectOneMenu>
+                                                </div>
+
+
+                                                <div class="form-group input-group">
+                                                    <p:commandButton action="#{ReportIndCustomerMBean.verReporte()}" value="Reporte"  ajax="false" onclick="target = '_blank';"/>
+                                                </div>
+                                            </f:facet>  
+                                        </h:panelGrid>
+                                    </p:panel>                
+                                </h:form>
+                          </div>
+                        </div>
+                        <!-- /.container-fluid -->
+                    </div>
+                    <!-- /#page-wrapper -->
+                    <br/>
+                </div>   
+                <!-- /#wrapper -->
+                <!-- Bootstrap Core JavaScript -->
+                <script src="../../resources/js/bootstrap.min.js" type="text/javascript"></script>
+
+            </ui:define>
+
+        </ui:composition>
+    </body>
+</html>

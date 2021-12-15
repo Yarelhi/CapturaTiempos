@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="itg_time_module"/>
+  <table-filter match-name="itg_projects_all"/>
+  <table-filter match-name="itg_vouchers_status"/>
+  <table-filter match-name="itg_cities_all"/>
+  <table-filter match-name="itg_list_values_det"/>
+  <table-filter match-name="itg_expense_reports_all"/>
+  <table-filter match-name="itg_personal_info_all"/>
+  <table-filter match-name="itg_employees_types_all"/>
+  <table-filter match-name="itg_activities_detail"/>
+  <table-filter match-name="itg_states_all"/>
+  <table-filter match-name="itg_users_all"/>
+  <table-filter match-name="itg_invoice_all"/>
+  <table-filter match-name="itg_prueba"/>
+  <table-filter match-name="itg_countries_all"/>
+  <table-filter match-name="itg_expense_reports_detail"/>
+  <table-filter match-name="itg_expense_types"/>
+  <table-filter match-name="itg_list_values"/>
+  <table-filter match-name="itg_activities_all"/>
+  <table-filter match-name="itg_report_status"/>
+  <table-filter match-name="itg_user_roles_all"/>
+  <table-filter match-name="itg_work_area"/>
+  <table-filter match-name="itg_parties"/>
+  <table-filter match-name="itg_company"/>
+</hibernate-reverse-engineering>
+
+

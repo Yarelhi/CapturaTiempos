@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        
+        
+        <title>Reportes por aprobar</title>
+        
+        <link href="../resources/css/login.css" rel="stylesheet" type="text/css"/>
+            <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../../resources/css/sb-admin.css" rel="stylesheet" type="text/css"/>
+            <link href="../../resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../../resources/css2/Formularios.css" rel="stylesheet" type="text/css"/>
+            <style type="text/css">
+                .ui-growl{
+                    position:absolute;
+                    top:9%;
+                    left:75%;
+                    z-index:9999;
+                }
+                 .old {
+                     background-color: #fca752 !important;
+                     background-image: none !important;
+                     color: #000000 !important;
+                 }
+      
+                
+            </style>
+    </head>
+    <body>
+        <ui:composition template="../../plantillas/Tema4.xhtml">
+            <ui:define name="top">
+                
+                
+            </ui:define>
+            
+            <ui:define name="left">
+               
+            </ui:define>
+            <ui:define name="content">
+                 <div id="wrapper">
+            
+        <!-- Navigation-->
+        
+        <div id="page-wrapper">
+            
+            <div class="container-fluid">
+                
+                
+                 <!-- Page Heading -->
+             <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            
+                            <small>Reportes por Aprobar</small>
+                            
+                                  
+             
+                                
+                                
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i><h:link outcome="G-Index"> Inicio</h:link>
+                            </li>
+                            <li>
+                                <i class="fa fa-fw fa-plus-square"></i><h:link outcome="G-NewReport"> Nuevo Reporte</h:link>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-fa fa-file-pdf-o"></i><h:link outcome="G-ViewReport">Ver Reportes</h:link>
+                            </li>
+                             <li class="active">
+                                <i class="fa fa-pencil-square-o"></i>Aprobar Reportes
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                 <p:growl id="MensajeGrl" autoUpdate="true" showDetail="true" />
+                <h:form id="FormMostrarReportes">
+                    <p:dataTable id="tablaMostrarReportes" var="reportes" value="#{loginBeanSession.listaTabAproRe}"
+                                 emptyMessage="No hay Reportes" scrollable="true"
+                                  scrollWidth="100%" paginator="true" rows="10" reflow="true" editable="true">
+                    <p:column headerText="Acciones" width="370">
+                        <p:commandButton value="Status" disabled="#{reportes.attribute4}" oncomplete="PF('dlgmodificarStatus').show();"
+                                                 update=":formModificarS">
+                                                 
+                            <f:setPropertyActionListener target="#{reportExpensesBean.status}" value="#{reportes}"/>                                                     
+                                </p:commandButton> 
+                        
+                        <p:commandButton value="Comprobantes" oncomplete="PF('dlgmodificarComprobantes').show();"
+                                                 update=":formModificarCM">
+                            <f:setPropertyActionListener target="#{reportExpensesBean.comprobantes}" value="#{reportes}"/>                                                     
+                                </p:commandButton>
+                        
+                        <p:commandButton action="#{reportExpensesBean.generarReporte()}" value="PDF"  ajax="false"  onclick="target='_blank';">
+                            <f:setPropertyActionListener target="#{reportExpensesBean.obtenerReporte}" value="#{reportes}"/>
+                        </p:commandButton>
+                        
+                                    </p:column>
+                         <p:column headerText="Número de Reporte" width="150">
+                             <h:outputText value="#{reportes.reportId}" />
+                        </p:column>
+                        <p:column headerText="Nombre del empleado" width="200" filterBy="#{reportes.itgPersonalInfoAll.name} #{reportes.itgPersonalInfoAll.paternSurname}">
+                            <h:outputText value="#{reportes.itgPersonalInfoAll.name} #{reportes.itgPersonalInfoAll.paternSurname}" />
+                        </p:column>
+                        
+                        <p:column headerText="Fecha de creación" width="200">
+                            <h:outputText value="#{reportes.reportDate}" />
+                        </p:column>
+                        
+                        <p:column headerText="Total de Gastos $" width="200">
+                            <h:outputText value="#{reportes.totalExpenseReport}" />
+                        </p:column>
+                        
+                        <p:column headerText="Status" width="250" filterBy="#{reportes.itgReportStatus.statusName}">
+                            <h:outputText value="#{reportes.itgReportStatus.statusName}" />
+                        </p:column>
+                        
+                        <p:column headerText="Comprobantes" width="200" >
+                            <h:outputText value="#{reportes.itgVouchersStatus.nameStatus}" />
+                        </p:column>
+                        <p:column headerText="Comentarios" width="200" >
+                            <h:outputText value="#{reportes.attribute1}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+                 
+                 <p:dialog id="dlg" widgetVar="dlgmodificarStatus" header="Modificar Status del Reporte" showEffect="explode" hideEffect="explode" modal="true">
+                                <h:form id="formModificarS">
+                                    <p:panelGrid columns="2" style="margin: 0 auto">
+                                        <p:outputLabel value="Status:"/>
+                                        <h:selectOneMenu class="form-control" id="Pro2" value="#{reportExpensesBean.status.itgReportStatus.statusId}" immediate="true" valueChangeListener="#{reportExpensesBean.valueChangeDisa}">
+                                            <f:selectItems value="#{reportExpensesBean.listStatusReport}"/>
+                                        </h:selectOneMenu>
+                                        
+                                        <p:outputLabel value="Comentarios:"/>
+                                        <h:inputText class="form-control" value="#{reportExpensesBean.status.attribute1}"/>
+                                       
+                                        
+                                        <p:commandButton  value="Modificar" oncomplete="PF('dlgmodificarStatus').hide();" 
+                                                          actionListener="#{reportExpensesBean.modificarStatus()}"
+                                                 update=":FormMostrarReportes:tablaMostrarReportes"/>
+                                         <p:commandButton value="Cancelar" onclick="PF('dlgmodificarStatus').hide();" />
+                                        
+                                    </p:panelGrid>
+                                </h:form>
+                            </p:dialog>
+                 
+                 <p:dialog id="dlg3" widgetVar="dlgmodificarComprobantes" header="Modificar Status de comprobantes " showEffect="explode" hideEffect="explode" modal="true">
+                                <h:form id="formModificarCM">
+                                    <p:panelGrid columns="4" style="margin: 0 auto">
+                                        <p:outputLabel value="Comprobantes:"/>
+                                        <h:selectOneMenu class="form-control" id="Pro" value="#{reportExpensesBean.comprobantes.itgVouchersStatus.voucherId}">
+                                            <f:selectItems value="#{reportExpensesBean.listStatusReportVo}"/>
+                                        </h:selectOneMenu>
+                                       
+                                        
+                                        <p:commandButton  value="Modificar" oncomplete="PF('dlgmodificarComprobantes').hide();" 
+                                                          actionListener="#{reportExpensesBean.modificarComprobantes()}"
+                                                 update=":FormMostrarReportes:tablaMostrarReportes"/>
+                                         <p:commandButton value="Cancelar" onclick="PF('dlgmodificarComprobantes').hide();" />
+                                        
+                                    </p:panelGrid>
+                                </h:form>
+                            </p:dialog>
+                 
+                  
+                
+                
+                
+                
+                
+            </div>
+        </div>    
+        </div>
+                 <script src="../../resources/js/bootstrap.min.js" type="text/javascript"></script>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

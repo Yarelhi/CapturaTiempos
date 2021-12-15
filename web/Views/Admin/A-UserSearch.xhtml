@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+        <title>Usuarios</title>
+       <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/sb-admin.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css2/Formularios.css" rel="stylesheet" type="text/css"/>
+        <style type="text/css">
+            .ui-growl{
+                position:absolute;
+                top:9%;
+                left:75%;
+                z-index:9999;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+ <ui:composition template="../../plantillas/Tema.xhtml">
+ 
+            <ui:define name="top">
+                
+                
+            </ui:define>
+     
+     
+ <ui:define name="left">
+               
+            </ui:define>
+     
+   
+     <ui:define name="content">
+             
+           
+        <div id="wrapper">
+
+            <!-- Navigation -->
+            
+
+            <div id="page-wrapper">
+
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">
+
+                                <small><font color="gray" >Búsqueda de usuarios </font></small>
+                            </h1>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <i class="fa fa-home"></i><h:link outcome="A-AdminIndex"> Inicio</h:link>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-users"></i> <h:link outcome="A-Users"> Nuevo Usuario</h:link>
+                                </li>
+                                <li>
+                                    <i class="fa fa-fw fa-search"></i>Buscar Usuario
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+                      <p:growl id="MensajeGrl" autoUpdate="true" showDetail="true" />
+                    <h:form id="FormMostrarUsuarios">
+                        <p:dataTable  id="tablaMostrarUsuarios" var="user" value="#{loginBean.listarUsuario}"
+                                     emptyMessage="No hay Datos de empleados" scrollable="true"
+                                     scrollWidth="100%" paginator="true" rows="10" reflow="true" editable="true">
+                            <p:column headerText="Modificar" width="100">
+                                <p:commandButton value="Status" oncomplete="PF('dlgmodificarUsuarios').show();"
+                                                 update=":formModificarUsuarios">
+                                    <f:setPropertyActionListener target="#{loginBean.status}" value="#{user}"/>                                                     
+                                </p:commandButton> 
+                                
+                                <p:commandButton value="Contraseña" oncomplete="PF('dlgmodificarUsuarios2').show();"
+                                                 update=":formModificarUsuarios">
+                                    <f:setPropertyActionListener target="#{loginBean.usuario}" value="#{user}"/>                                                     
+                                </p:commandButton> 
+                                
+                                <p:commandButton value="Empresa" oncomplete="PF('dlgmodificarUsuarios3').show();"
+                                                 update=":formModificarUsuarios">
+                                    <f:setPropertyActionListener target="#{loginBean.org}" value="#{user}"/>                                                     
+                                </p:commandButton> 
+                            </p:column>
+                            
+                            <p:column headerText="Usuario" width="150" filterBy="#{user.username}">
+                                <h:outputText value="#{user.username}"/>
+                            </p:column>
+                            <p:column headerText="Ultimo login" width="150" filterBy="#{user.lastLogin}" visible="false">
+                                <h:outputText value="#{user.lastLogin}"/>
+                            </p:column>
+                            <p:column headerText="Rol" width="150" filterBy="#{user.itgUserRolesAll.userRoleName}">
+                                <h:outputText value="#{user.itgUserRolesAll.userRoleName}"/>
+                            </p:column>
+                            <p:column headerText="Estatus" width="150">
+                                <h:selectOneMenu class="form-control" value="#{user.status}" a:required="true" requiredMessage="* Obligatorio - Status" readonly="true">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItems value="#{loginBean.listavalor}"/><!-- Aqui va, empleado, becario, practicante,ex-empleado-->
+                                </h:selectOneMenu>
+                            </p:column>
+                              <p:column headerText="Empresa" width="150" filterBy="#{user.itgCompany.orgName}">
+                                <h:outputText value="#{user.itgCompany.orgName}"/>
+                            </p:column>
+                                                    
+                        </p:dataTable>
+                    </h:form><br></br>
+                    
+                    <p:dialog id="dlg" widgetVar="dlgmodificarUsuarios" header="Modificar Datos" showEffect="explode" hideEffect="explode" modal="true">
+                        <h:form id="formModificarUsuarios2">
+                            <p:panelGrid columns="2" style="margin: 0 auto">
+                                <p:column headerText="Estatus" width="150">
+                                    <h:selectOneMenu class="form-control" value="#{loginBean.status.status}" a:required="true" requiredMessage="* Obligatorio - Status">
+                                        <p:outputLabel value ="Status:"/>
+                                        <f:selectItems value="#{loginBean.listavalor}"/>
+                                    </h:selectOneMenu>
+                                </p:column>
+                                
+                            </p:panelGrid>
+                            <p:commandButton value="Modificar" oncomplete="PF('dlgmodificarUsuarios').hide();" 
+                                             actionListener="#{loginBean.modificarStatus()}"
+                                                 update=":FormMostrarUsuarios:tablaMostrarUsuarios"/>
+                            <p:commandButton value="Cancelar" onclick="PF('dlgmodificarUsuarios').hide();" />
+
+                        </h:form><br></br>
+                        
+                    </p:dialog><br></br>
+                    <p:dialog id="dlg2" widgetVar="dlgmodificarUsuarios2" header="Modificar Datos" showEffect="explode" hideEffect="explode" modal="true">
+                        <h:form id="formModificarUsuarios">
+                                           <p:panelGrid columns="2" style="margin: 0 auto">
+                                <p:column>
+                                    <p:outputLabel value="Nueva contraseña: "/>
+                                    <h:inputText class="form-control" value="#{loginBean.usuario.password}"/>
+                                </p:column>
+                            </p:panelGrid>
+                            <p:commandButton value="Modificar" oncomplete="PF('dlgmodificarUsuarios2').hide();" 
+                                                 actionListener="#{loginBean.modificarUsuario()}"
+                                                 update=":FormMostrarUsuarios:tablaMostrarUsuarios"/>
+                            <p:commandButton value="Cancelar" onclick="PF('dlgmodificarUsuarios2').hide();" />
+                           
+
+                        </h:form><br></br>
+                    </p:dialog><br></br>
+                    
+                    <p:dialog id="dlg3" widgetVar="dlgmodificarUsuarios3" header="Modificar Datos" showEffect="explode" hideEffect="explode" modal="true">
+                        <h:form id="formModificarUsuarios3">
+                            <p:panelGrid columns="2" style="margin: 0 auto">
+                                <p:column headerText="Estatus" width="150">
+                                    <h:selectOneMenu class="form-control" value="#{loginBean.org.itgCompany.organizacionId}" a:required="true" requiredMessage="* Obligatorio - Status">
+                                        <p:outputLabel value ="Empresa:"/>
+                                        <f:selectItems value="#{orgBean.listEmpresa}"/>
+                                    </h:selectOneMenu>
+                                </p:column>
+                                
+                            </p:panelGrid>
+                            <p:commandButton value="Modificar" oncomplete="PF('dlgmodificarUsuarios3').hide();" 
+                                             actionListener="#{loginBean.modificarOrg()}"
+                                                 update=":FormMostrarUsuarios:tablaMostrarUsuarios"/>
+                            <p:commandButton value="Cancelar" onclick="PF('dlgmodificarUsuarios3').hide();" />
+
+                        </h:form><br></br>
+                        
+                        </p:dialog><br></br>
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- /#page-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- jQuery 
+        <script src="../resources/js/jquery.js" type="text/javascript"></script>-->
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../../resources/js/bootstrap.min.js" type="text/javascript"></script>
+         </ui:define>
+</ui:composition>
+    </h:body>
+
+</html>

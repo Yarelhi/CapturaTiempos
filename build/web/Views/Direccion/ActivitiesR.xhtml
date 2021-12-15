@@ -1,0 +1,368 @@
+<!DOCTYPE html[
+    
+    <!ENTITY nbsp "&#160;">
+    ]>
+   <html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:h="http://xmlns.jcp.org/jsf/html"
+          xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+          xmlns:f="http://xmlns.jcp.org/jsf/core"
+          xmlns:p="http://primefaces.org/ui"
+          xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+<h:head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Reportes Actividades</title>
+        
+        
+        <link href="../resources/css/login.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/sb-admin.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css2/Formularios.css" rel="stylesheet" type="text/css"/>
+        <style type="text/css">
+            .ui-growl{
+                position:absolute;
+                top:9%;
+                left:75%;
+                z-index:9999;
+            }
+        </style>
+
+
+
+</h:head>
+
+<body>
+   
+<ui:composition template="../../plantillas/Tema3.xhtml">
+ 
+            <ui:define name="top">
+                
+                
+            </ui:define>
+     
+     
+ <ui:define name="left">
+               
+            </ui:define>
+     
+   
+     <ui:define name="content">
+    <div id="wrapper">
+
+        <!-- Navigation -->
+         
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            
+                            <small>Reporte de Actividades</small>
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i><h:link outcome="Direccionindex"> Inicio</h:link>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-file-excel-o"></i> Reporte de Actividades
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+                
+                <h:form id="contact_form" class="contact_form" >
+                        <p:growl id="message" showDetail="true" />
+                        <div class="col-lg-6">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">Realizó: </span>
+                                 <h:selectOneMenu  class="form-control"  id="Elaborado"  value="#{activitiesBean.realizo}">
+                                    <f:selectItem itemLabel="Confirma tu nombre" itemValue="#{loginBeanSession.usuario.itgPersonalInfoAll.personalDataId}"/>
+                                    <f:selectItem itemLabel="#{loginBeanSession.usuario.itgPersonalInfoAll.name} #{loginBeanSession.usuario.itgPersonalInfoAll.paternSurname} #{loginBeanSession.usuario.itgPersonalInfoAll.maternSurname}" itemValue="#{loginBeanSession.usuario.itgPersonalInfoAll.personalDataId}"/>
+                                    
+                                    <f:ajax execute="Elaborado" render="Proyecto"/>
+                                </h:selectOneMenu>
+                            </div>                        
+                        </div> 
+                        <div class="col-lg-6">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">* Proyecto: </span>
+                                <h:selectOneMenu class="form-control" id="Proyecto"  value="#{activitiesBean.project}" a:required="true"
+                                                 requiredMessage="* Obligatorio - Proyecto" >
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItems value="#{activitiesBean.listAct}"/>
+                                    <f:ajax execute="Proyecto" render="Semana"/>
+                                </h:selectOneMenu>
+                            </div>                        
+                        </div>
+                        <div class="col-lg-9">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">* Mes:  </span>
+                                <h:selectOneMenu class="form-control" value="#{activitiesBean.mes}" a:required="true"
+                                                 requiredMessage="* Obligatorio - Mes" id="month">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Enero" itemValue="Enero"/>
+                                    <f:selectItem itemLabel="Febrero" itemValue="Febrero"/>
+                                    <f:selectItem itemLabel="Marzo" itemValue="Marzo"/>
+                                    <f:selectItem itemLabel="Abril" itemValue="Abril"/>
+                                    <f:selectItem itemLabel="Mayo" itemValue="Mayo"/>
+                                    <f:selectItem itemLabel="Junio" itemValue="Junio"/>
+                                    <f:selectItem itemLabel="Julio" itemValue="Julio"/>
+                                    <f:selectItem itemLabel="Agosto" itemValue="Agosto"/>
+                                    <f:selectItem itemLabel="Septiembre" itemValue="Septiembre"/>
+                                    <f:selectItem itemLabel="Octubre" itemValue="Octubre"/>
+                                    <f:selectItem itemLabel="Noviembre" itemValue="Noviembre"/>
+                                    <f:selectItem itemLabel="Diciembre" itemValue="Diciembre"/> 
+                                    <f:ajax execute="month" render="Semana"/>
+                                </h:selectOneMenu>
+                            </div>                        
+                        </div>
+                         <div class="col-lg-9">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">* Semana: </span>
+                                <h:selectOneMenu class="form-control" id="Semana"  value="#{activitiesBean.actividades.activityId}" a:required="true"
+                                                 requiredMessage="* Obligatorio - Semana" >
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItems value="#{activitiesBean.listActividad}"/>
+                                    <f:ajax execute="Proyecto" render=":FormMostrarHoras"/>
+                                </h:selectOneMenu>
+                            </div>                        
+                        </div>
+
+                        <br></br>
+                        <br></br>                        
+                       <br></br>
+                        <br></br> 
+                        <br/><br/><br/>
+                      <!--  <div class="col-lg-12">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">Datos del consultor: </span>
+                            <h:outputText id="tablaMostrarEmp" class="form-control" a:required="true" value="{activitiesBean.actividad.xxeksActivities.elaboratedBy}"/>
+                        </div>  
+                        </div>-->
+                        
+                        <br></br>
+                        
+                        
+                        
+    <p:growl id="msgs" />
+ 
+    <p:panel header="Crear Nueva Actividad" style="margin-bottom:20px">
+                        
+                        <div class="col-lg-4"><br></br>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">Actividad: </span>
+                            <h:inputText class="form-control" a:placeholder="Actividad Realizada" value="#{activitiesBean.actividad.activity}" requiredMessage="Obligatorio campo actividad" />
+                        </div>                        
+                    </div>
+                    <div class="col-lg-1">
+                        <div class="form-group input-group">&nbsp;&nbsp;Lunes&nbsp;&nbsp;
+                            <h:inputText class="form-control" a:type="number" a:min="1"  maxlength="1" a:max="8" a:placeholder="hr"   a:id="lu"   a:Onchange="Sumar()" validatorMessage="Inserta valor de 0 a 8" value="#{activitiesBean.actividad.mondayHours}" />
+                            
+                        </div>                        
+                    </div>
+                    <div class="col-lg-1">
+                        <div class="form-group input-group">&nbsp;&nbsp;Martes&nbsp;&nbsp;
+                            <h:inputText class="form-control" a:type="number" a:min="1"  maxlength="1" a:max="8" a:placeholder="hr"   a:id="ma"   a:Onchange="Sumar()" validatorMessage="Inserta valor de 0 a 8" value="#{activitiesBean.actividad.tuesdayHours}" />
+                        </div>                        
+                    </div>
+                    <div class="col-lg-1">
+                        <div class="form-group input-group">Miércoles
+                            <h:inputText class="form-control" a:type="number" a:min="1"  maxlength="1" a:max="8" a:placeholder="hr"   a:id="mi"   a:Onchange="Sumar()" validatorMessage="Inserta valor de 0 a 8" value="#{activitiesBean.actividad.wednesdayHours}" />
+                            
+                        </div>                        
+                    </div>
+                    <div class="col-lg-1">
+                        <div class="form-group input-group">&nbsp;&nbsp;Jueves&nbsp;&nbsp;
+                            <h:inputText class="form-control" a:type="number" a:min="1"  maxlength="1" a:max="8" a:placeholder="hr"   a:id="ju"   a:Onchange="Sumar()" validatorMessage="Inserta valor de 0 a 8" value="#{activitiesBean.actividad.thursdayHours}" />
+                        </div>                        
+                    </div>
+                    <div class="col-lg-1">
+                        <div class="form-group input-group">&nbsp;Viernes&nbsp;
+                            <h:inputText class="form-control" a:type="number" a:min="1"  maxlength="1" a:max="8" a:placeholder="hr"   a:id="vi"   a:Onchange="Sumar()" validatorMessage="Inserta valor de 0 a 8" value="#{activitiesBean.actividad.fridayHours}" />
+                        </div>                        
+                    </div>
+                    <div class="col-lg-1">
+                        <div class="form-group input-group">&nbsp;Sábado&nbsp;
+                            <h:inputText class="form-control" a:type="number" a:min="1"  maxlength="1" a:max="8" a:placeholder="hr"   a:id="sa"   a:Onchange="Sumar()" validatorMessage="Inserta valor de 0 a 8" value="#{activitiesBean.actividad.saturdayHours}" />
+                        </div>                        
+                    </div>
+                    <div class="col-lg-1">
+                        <div class="form-group input-group">Domingo
+                            <h:inputText class="form-control" a:type="number" a:min="1"  maxlength="1" a:max="8" a:placeholder="hr"   a:id="dom"   a:Onchange="Sumar()" validatorMessage="Inserta valor de 0 a 8" value="#{activitiesBean.actividad.sundayHours}" />
+                        </div>                        
+                    </div>
+                    <div class="col-lg-1">
+                        <div class="form-group input-group">&nbsp;&nbsp;&nbsp;Total&nbsp;&nbsp;&nbsp;
+                            <h:inputText a:type="text"  class="form-control"  a:id="total"  value="#{activitiesBean.actividad.totalHours}" />
+                        </div>                               
+                    </div>
+                         <p:commandButton value="Guardar" styleClass="btn btn-default btn btn-primary" actionListener="#{activitiesBean.nuevoReporte()}" update="message :contact_form :FormMostrarHoras"/>
+                                
+                            <p:commandButton value="Cancelar" styleClass="btn btn-default btn btn-primary">
+                                <p:ajax update=":contact_form" resetValues="true" />
+                            </p:commandButton>
+          
+        
+    </p:panel>
+                       
+                   
+                        
+                        
+                    </h:form>
+              
+                <br></br>
+               
+                
+                <p:growl id="MensajeGrl" autoUpdate="true" showDetail="true" />
+                    <h:form id="FormMostrarHoras">
+                        <p:dataTable id="tablaMostrarHoras" var="horas" value="#{activitiesBean.listaTable}"
+                                     emptyMessage="No hay Datos" scrollable="true"
+                                     scrollWidth="100%" paginator="true" rows="10" reflow="true" editable="true">
+                            <p:column headerText="Acciones" width="240">
+                                <p:commandButton value="Modificar" oncomplete="PF('dlgmodificar').show();"
+                                    update=":formModificar">
+                                    <f:setPropertyActionListener target="#{activitiesBean.obtenerHoras}" value="#{horas}"/>                                                     
+                                </p:commandButton> 
+                                 <p:commandButton value="Eliminar" oncomplete="PF('dlgeliminar').show();"
+                                    update=":formEliminar">
+                                    <f:setPropertyActionListener target="#{activitiesBean.obtenerHoras}" value="#{horas}"/>                                                     
+                                </p:commandButton> 
+                                
+                            </p:column>
+                            <p:column headerText="Actividad" width="200" filterBy="#{horas.activity}">
+                                <h:outputText value="#{horas.activity}"/>
+                            </p:column>
+                            <p:column headerText="Semana/ Mes" width="200" >
+                                <h:outputText value="#{horas.itgActivitiesAll.numberWeek}/ #{horas.itgActivitiesAll.month}"/>
+                            </p:column>
+                            <p:column headerText="Proyecto" width="200">
+                                <h:outputText value="#{horas.itgActivitiesAll.itgProjectsAll.projectName}"/>
+                            </p:column>
+                            <p:column headerText="Lunes" width="200">
+                                <h:outputText value="#{horas.mondayHours}"/>
+                            </p:column>
+                            <p:column headerText="Martes" width="200">
+                                <h:outputText value="#{horas.tuesdayHours}"/>
+                            </p:column>
+                            <p:column headerText="Miércoles" width="200">
+                                <h:outputText value="#{horas.wednesdayHours}"/>
+                            </p:column>
+                            <p:column headerText="Jueves" width="200">
+                                <h:outputText value="#{horas.thursdayHours}"/>
+                            </p:column>
+                            <p:column headerText="Viernes" width="200">
+                                <h:outputText value="#{horas.fridayHours}"/>
+                            </p:column>
+                            <p:column headerText="Sábado" width="200">
+                                <h:outputText value="#{horas.saturdayHours}"/>
+                            </p:column>
+                            <p:column headerText="Domingo" width="200">
+                                <h:outputText value="#{horas.sundayHours}"/>
+                            </p:column>
+                            <p:column headerText="Total" width="200">
+                                <h:outputText value="#{horas.totalHours}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form><br></br>
+
+                    <p:dialog id="dlg" widgetVar="dlgmodificar" header="Modificar Datos" showEffect="explode" hideEffect="explode" modal="true">
+                        <h:form id="formModificar">
+                            <p:panelGrid columns="4" style="margin: 0 auto">
+                                <p:outputLabel value="Actividad:"/>
+                                <h:inputText class="form-control" value="#{activitiesBean.obtenerHoras.activity}"/>
+                                <p:outputLabel value="Lunes:"/>
+                                <h:inputText class="form-control" a:id="mod_lu" a:onkeyup="SumarTabla()" value="#{activitiesBean.obtenerHoras.mondayHours}"/>
+                                <p:outputLabel value="Martes:"/>
+                                <h:inputText class="form-control" a:id="mod_ma" a:onkeyup="SumarTabla()" value="#{activitiesBean.obtenerHoras.tuesdayHours}"/>
+                                <p:outputLabel value="Miércoles:"/>
+                                <h:inputText class="form-control" a:id="mod_mi" a:onkeyup="SumarTabla()" value="#{activitiesBean.obtenerHoras.wednesdayHours}"/>
+                                <p:outputLabel value="Jueves:"/>
+                                <h:inputText class="form-control" a:id="mod_ju" a:onkeyup="SumarTabla()" value="#{activitiesBean.obtenerHoras.thursdayHours}"/>
+                                <p:outputLabel value="Viernes:"/>
+                                <h:inputText class="form-control" a:id="mod_vi" a:onkeyup="SumarTabla()" value="#{activitiesBean.obtenerHoras.fridayHours}"/>
+                                <p:outputLabel value="Sábado:"/>
+                                <h:inputText class="form-control" a:id="mod_sa" a:onkeyup="SumarTabla()" value="#{activitiesBean.obtenerHoras.saturdayHours}"/>
+                                <p:outputLabel value="Domingo:"/>
+                                <h:inputText class="form-control" a:id="mod_do" a:onkeyup="SumarTabla()" value="#{activitiesBean.obtenerHoras.sundayHours}"/>
+                                <p:outputLabel value="Total"/>
+                                <h:inputText class="form-control" a:id="mod_total" value="#{activitiesBean.obtenerHoras.totalHours}"/>
+                                
+
+                                <p:commandButton value="Modificar" oncomplete="PF('dlgmodificar').hide();" 
+                                                 actionListener="#{activitiesBean.modificarActividad()}"
+                                                 update=":FormMostrarHoras:tablaMostrarHoras"/>
+                                <p:commandButton value="Cancelar" onclick="PF('dlgmodificar').hide();" />
+                            </p:panelGrid>
+
+                        </h:form><br></br>
+                    </p:dialog>
+                     <p:dialog id="dlg2" widgetVar="dlgeliminar" header="Eliminar Datos" showEffect="explode" hideEffect="explode" modal="true">
+                        <h:form id="formEliminar">
+                            <h:outputText value="¿Desea eliminar este registro?"/>
+                            <br/>
+                            <p:commandButton value="Si" actionListener="#{activitiesBean.eliminarActividad()}"
+                                             update=":FormMostrarHoras:tablaMostrarHoras" oncomplete="PF('dlgeliminar').hide();"/>
+                            <p:commandButton value="No" onclick="PF('dlgeliminar').hide();"/>
+                        </h:form><br></br>
+                    </p:dialog>
+                    
+                    
+                   
+            </div>
+ 
+            <!-- /.container-fluid -->
+                  
+                    </div>
+        <!-- /#page-wrapper -->
+        <br/>
+                
+            </div>   
+    <!-- /#wrapper -->
+
+    <!-- jQuery -->
+   <!-- <script src="../resources/js/jquery.js" type="text/javascript"></script>-->
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../resources/js/bootstrap.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+	function Sumar () {
+		a=document.contact_form.lu.value;
+		b=document.contact_form.ma.value;
+		c=document.contact_form.mi.value;
+		d=document.contact_form.ju.value;
+		e=document.contact_form.vi.value;
+		f=document.contact_form.sa.value;
+		g=document.contact_form.dom.value;
+		h=parseFloat(a)+parseFloat(b)+parseFloat(c)+parseFloat(d)+parseFloat(e)+parseFloat(f)+parseFloat(g);
+		document.contact_form.total.value=h;
+	}</script>
+    
+    <script type="text/javascript">
+	function SumarTabla () {
+		a=document.formModificar.mod_lu.value;
+		b=document.formModificar.mod_ma.value;
+		c=document.formModificar.mod_mi.value;
+		d=document.formModificar.mod_ju.value;
+		e=document.formModificar.mod_vi.value;
+		f=document.formModificar.mod_sa.value;
+		g=document.formModificar.mod_do.value;
+		h=parseFloat(a)+parseFloat(b)+parseFloat(c)+parseFloat(d)+parseFloat(e)+parseFloat(f)+parseFloat(g);
+		document.formModificar.mod_total.value=h;
+	}</script>
+     </ui:define>
+</ui:composition>
+
+</body>
+
+</html>

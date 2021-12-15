@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/10/2021 05:06:06 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.ItgVouchersStatus" table="itg_vouchers_status" catalog="itg_time_module" optimistic-lock="version">
+        <id name="voucherId" type="java.lang.Integer">
+            <column name="VOUCHER_ID" />
+            <generator class="identity" />
+        </id>
+        <property name="nameStatus" type="string">
+            <column name="NAME_STATUS" length="80" />
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="80" />
+        </property>
+        <property name="attribute1" type="string">
+            <column name="ATTRIBUTE1" length="80" />
+        </property>
+        <property name="attribute2" type="date">
+            <column name="ATTRIBUTE2" length="10" />
+        </property>
+        <property name="creationDate" type="date">
+            <column name="CREATION_DATE" length="10" />
+        </property>
+        <property name="createdBy" type="java.lang.Long">
+            <column name="CREATED_BY" precision="10" scale="0" />
+        </property>
+        <property name="lastUpdateDate" type="date">
+            <column name="LAST_UPDATE_DATE" length="10" />
+        </property>
+        <property name="lastUpdatedBy" type="java.lang.Long">
+            <column name="LAST_UPDATED_BY" precision="10" scale="0" />
+        </property>
+        <set name="itgExpenseReportsAlls" table="itg_expense_reports_all" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ITG_VOUCHERS_STATUS_VOUCHER_ID" />
+            </key>
+            <one-to-many class="Model.ItgExpenseReportsAll" />
+        </set>
+    </class>
+</hibernate-mapping>

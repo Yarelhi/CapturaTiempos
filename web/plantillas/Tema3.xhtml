@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../../resources/css/sb-admin.css" rel="stylesheet" type="text/css"/>
+    <link href="../../resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="../../resources/css2/Formularios.css" rel="stylesheet" type="text/css"/>
+    <link href="../../resources/css/default.css/" rel="stylesheet" type="text/css"/>
+    <link href="../../resources/css/cssLayout.css/" rel="stylesheet" type="text/css"/>
+    <link href="../../resources/css/session.css" rel="stylesheet" type="text/css"/>
+    <link href="../../resources/css2/LoginStyle.css" rel="stylesheet" type="text/css"/>    
+    <h:head>                
+        <title>Captura Tiempos</title>                     
+    </h:head>
+
+    <h:body>
+        <div id="top" class="top">
+            <div id="wrapper">
+                <!-- Navigation -->
+                <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">                                                            
+                    <!-- Top Menu Items -->
+                    <br></br>
+                    <img src="../../resources/img/imgtel.png" width="230pxl" height="38pxl"/>
+                    <img src="../../resources/img/head.png" width="750pxl" height="38pxl"/>
+                    <div class="nav navbar-right top-nav">                   
+                        <div class="nav navbar-right top-nav">                      
+                            <div class="dropdown">                       
+                                <div id="sessionUsuario">                       
+                                    <spam>
+                                        <h:form>                                
+                                            <!-- (#{loginBeanSession.usuario.itgUserRolesAll.userRoleName}) -->
+                                            <p:outputLabel  value="Hola, " />
+                                            <input id="id"  type="hidden" size="1" value="#{loginBeanSession.usuario.itgUserRolesAll.userRoleId}"/> 
+                                            <p:outputLabel value="#{loginBeanSession.usuario.itgPersonalInfoAll.name} #{loginBeanSession.usuario.itgPersonalInfoAll.paternSurname} #{loginBeanSession.usuario.itgPersonalInfoAll.maternSurname} "/>
+                                            <br></br>
+                                            <p:commandButton id="btnSalir" value="Salir" action="#{loginBeanSession.cerrarSession()}"/>
+
+                                        </h:form>
+                                    </spam>
+                                </div>
+                            </div>
+
+                        </div>                   
+                    </div>               
+                    <!-- Brand and toggle get grouped for better mobile display -->                
+                    <!-- Top Menu Items -->             
+                    <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->                
+                    <div class="collapse navbar-collapse">                                                                                                                                                  
+                        <ul class="nav navbar-nav side-nav"> 
+                            <a id="logo" href="http://www.it-globalsolutions.com/"  onclick="target = '_blank';">                                        
+                                <img src="../../resources/img/logo-it-global-inferior.png" width="195pxl" height="100pxl"/>
+                            </a>
+                            <li>
+                                <h:link outcome="Direccionindex" ><i class="fa fa-fw fa-home"></i> Inicio</h:link>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#customer"><i class="fa fa-fw fa-building"></i> Clientes<i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="customer" class="collapse">
+                                    <li>
+                                        <h:link outcome="CustomerFSearch"><i class="fa fa-fw fa-search"></i> Buscar Cliente</h:link>
+                                    </li>
+                                    <li>
+                                        <h:link outcome="CustomerF"><i class="fa fa-fw fa-female"></i> Física</h:link>
+                                    </li>
+                                    <li>
+                                        <h:link outcome="CustomerM"><i class="fa fa-fw fa-building-o"></i> Moral</h:link>
+                                    </li>
+                                    <li>
+                                        <h:link outcome="RClientes"><i class="fa fa-fw fa-file-archive-o"></i> Generar Reportes</h:link>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#emp"><i class="fa fa-fw fa-male" ></i>Empleados<i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="emp" class="collapse">
+                                    <li>
+                                        <h:link outcome="EmployeeSearch"><i class="fa fa-fw fa-search"></i> Buscar Empleado</h:link>
+                                    </li>
+                                    <li>
+                                        <h:link outcome="Employees"><i class="fa fa-fw fa-male"></i> Nuevo Empleado</h:link>
+                                    </li>                                                               
+                                </ul>
+                            </li>              
+                            <li>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#proyecto"><i class="fa fa-fw fa-pencil-square-o" ></i>Proyectos<i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="proyecto" class="collapse">
+                                    <li>
+                                        <h:link outcome="ProjectsSearch"><i class="fa fa-fw fa-search"></i> Buscar proyecto</h:link>
+                                    </li>
+                                    <li>
+                                        <h:link outcome="Projects"><i class="fa fa-fw fa-plus-square"></i> Nuevo proyecto</h:link>
+                                    </li>
+                                    <li>
+                                    <h:link outcome="DAG-Projects"><i class="fa fa-fw fa-money"></i> Agregar tipos de gastos a proyecto</h:link>
+                                </li>
+
+                                </ul>
+                            </li>                        
+                            <li>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#activities"><i class="fa fa-fw fa-table"></i> Actividades<i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="activities" class="collapse">
+                                    <li>
+                                        <h:link outcome="ActivitiesC"><i class="fa fa-fw fa-file"></i> Asignar consultor a proyecto</h:link>
+                                    </li>
+                                    <li>
+                                        <h:link outcome="ActivitiesSearch"><i class="fa fa-fw fa-file"></i> Busqueda de consultor asignado</h:link>
+                                    </li>
+                                    <li>
+                                        <h:link outcome="ActivitiesR"><i class="fa fa-fw fa-file-text-o"></i> Reporte de Actividades</h:link>
+                                    </li>
+                                    <li>
+                                        <h:link outcome="VerReporte"><i class="fa fa-fw fa-file-archive-o"></i> Ver reportes</h:link>
+                                    </li>
+                                </ul>
+                            </li>
+                            
+                            <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#gasto"><i class="fa fa-fw fa-money" ></i>Gastos<i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="gasto" class="collapse">
+                                <li>
+                                    <h:link outcome="D-NewReport"><i class="fa fa-fw fa-plus-square"></i>Nuevo Reporte</h:link>
+                                </li>
+                                <li>
+                                    <h:link outcome="D-ViewReport"><i class="fa fa-file-pdf-o"></i> Ver Reportes</h:link>
+                                </li>
+                                <li>
+                                    <h:link outcome="ReportAprobar"><i class="fa fa-pencil-square-o"></i>Aprobar Reportes</h:link>
+                                </li>
+                                
+                            </ul>
+                        </li>
+<!--                            <li>
+                                <a href="javascript:;" data-toggle="collapse" data-target="#user"><i class="fa fa-fw fa-user"></i> Usuarios<i class="fa fa-fw fa-caret-down"></i></a>
+                                <ul id="user" class="collapse">
+                                    <li>
+                                        <h:link outcome="UserSearch"><i class="fa fa-fw fa-search"></i> Buscar Usuarios</h:link>
+                                    </li>
+                                    <li>
+                                        <h:link outcome="Users"><i class="fa fa-fw fa-users"></i> Nuevo usuario</h:link>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li>
+                                <h:link outcome="Invoised_2"><i class="fa fa-fw fa-cloud"></i> Facturación </h:link>
+                            </li>                        -->
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </nav>
+            </div>             
+        </div>
+        <!-- /.navbar-collapse -->
+        <div id="content" class="content">
+            <ui:insert name="content">    </ui:insert>
+        </div>         
+        <div class="navbar-fixed-bottom " id="wrapper"> 
+            <div align="center" >
+                <table width="100%" border="0" background="../../resources/img/paginaPie.jpg">                                                                                
+                    <tr>
+                        <td width="30%">                            
+                            <span style="color:#A9F5F2">&copy; Copyright 2017 It-Global Solutions</span>
+                        </td>
+                        <td width="40%" ALIGN="center"> <span style="color:#FDFEFE">Cel. +52 01 241 41 73043 <br></br>Dir. Calle Emilio Carranza 911-A , Apizaco Tlax.  </span> </td>
+                        <td width="40%" ALIGN="RIGHT">                            
+                            <a href="https://twitter.com/IT_Global16" target="_blank">
+                                <img alt="" src="../../resources/img/redes-TW.png" width="28pxl" height="25pxl"/></a>
+                            <a href="https://www.facebook.com/IT-Global-305088833199401/" target="_blank">
+                                <img alt="" src="../../resources/img/redes-Fc.png" width="28pxl" height="25pxl"/></a>
+                            <a href="https://www.linkedin.com/company/it-global?report%2Esuccess=8zaNG1HwhPbAR9iQhZ5rfGeqz_vQFftHun0ZWU0Wy9vNemRJ8vtcKdJvzQfW8XagyOJSKg0XvfJ1dp" target="_blank">
+                                <img alt="" src="../../resources/img/redes-in.png" width="28pxl" height="25pxl"/></a>
+                            <a href="https://www.youtube.com/channel/UCjd2yAsLggO1qhjUsEHJw2Q" target="_blank">
+                                <img alt="" src="../../resources/img/redes-YT.png" width="28pxl" height="25pxl"/></a>
+                            <a href="http://www.it-globalsolutions.com/" target="_blank">
+                                <img alt="" src="../../resources/img/logo-it-global-inferior.png" width="65pxl" height="30pxl"/></a>
+                        </td>                            
+                    </tr>
+                </table>                
+            </div>            
+        </div>
+    </h:body>
+    <!-- background="../../resources/img/piePagina.jpg" -->            
+    <script type="text/javascript">
+        a = document.getElementById("id").value;
+
+
+        if (a != 1) {
+
+
+            if (a == 2) {
+                location.href = ("/CapturaTiempos/faces/Views/Admin/A-AdminIndex.xhtml");
+
+            } else if (a == 4) {
+                location.href = ("/CapturaTiempos/faces/Views/Consultor/C-Index.xhtml");
+            } else if (a == 3) {
+                location.href = ("/CapturaTiempos/faces/Views/Gerente/G-Index.xhtml");
+            }else if(a == 10){
+        location.href=("/CapturaTiempos/faces/Views/Contador/CP-Index.xhtml");
+        
+    }
+        }
+
+
+    </script>
+</html>

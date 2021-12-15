@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/10/2021 05:06:06 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.ItgInvoiceAll" table="itg_invoice_all" catalog="itg_time_module" optimistic-lock="version">
+        <id name="idInvoiseReport" type="java.lang.Integer">
+            <column name="ID_INVOISE_REPORT" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="itgActivitiesAll" class="Model.ItgActivitiesAll" fetch="select">
+            <column name="ITG_PERSONAL_INFO_ALL_PERSONAL_DATA_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="itgProjectsAll" class="Model.ItgProjectsAll" fetch="select">
+            <column name="ITG_PROJECTS_ALL_PROJECT_ID" not-null="true" />
+        </many-to-one>
+        <property name="xml" type="binary">
+            <column name="XML" not-null="true" />
+        </property>
+        <property name="date" type="date">
+            <column name="DATE" length="10" not-null="true" />
+        </property>
+        <property name="empresa" type="string">
+            <column name="EMPRESA" length="150" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

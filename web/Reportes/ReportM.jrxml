@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="baf71db7-cc03-480b-b45d-deb70a55aab6">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="128"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#473F7D">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#D2CFE6">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="924b2880-2a73-41a2-8fbe-fa8291fd6ffc"/>
+	<parameter name="CustomerM" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Path" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="piePagina" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Oracle" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM
+itg_personal_info_all,itg_cities_all,itg_countries_all,itg_states_all
+ WHERE NAME =$P{CustomerM}]]>
+	</queryString>
+	<field name="PERSONAL_DATA_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ALIAS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PATERN_SURNAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MATERN_SURNAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DISCHARGE_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NATIONALITY" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PHONE_NUMBER_1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PHONE_NUMBER_2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PHONE_NUMBER_3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CURP" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="RFC" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MAIL_1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MAIL_2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="MAIL_3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CUSTOMER_NUMBER" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="DELEGATION" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="STREET_NUMBER" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COLONY" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="POSTAL_CODE" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CIVIL_STATUS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="NSS" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="BIRTHDATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ADMISSION_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="JOB" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="SUPERIOR" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="EMPLOYEE_NUMBER" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ATTRIBUTE1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ATTRIBUTE2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ATTRIBUTE3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ATTRIBUTE4" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Status" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CREATE_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CREATED_BY" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LAST_UPDATE_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="LAST_UPDATED_BY" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ITG_COUNTRIES_ALL_COUNTRY_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ITG_CITIES_ALL_CITY_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ITG_STATES_ALL_STATE_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ITG_EMPLOYEES_CUSTOMERS_ALL_EMPLOYEE_CUSTOMER_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CITY_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CITY_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ATTRIBUTE5" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="CREATION_DATE" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COUNTRY_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="COUNTRY_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="STATE_ID" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="STATE_NAME" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="ALIAS_1" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{ALIAS}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="412" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="131" height="92" uuid="1e12ed91-3e15-48a2-b610-61502f6ac04f"/>
+				<imageExpression><![CDATA[$P{Path}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="418" y="0" width="137" height="20" uuid="7910764b-fb5c-4ddc-a1f1-4d807a4d8992"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Calle Emilio carranza #911-A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="431" y="12" width="124" height="20" uuid="6e6f5780-98d9-4e07-aeb2-3056196584dc"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Col. San Martin de Porres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="24" width="100" height="20" uuid="90ac58f6-99a8-4de0-bb65-97ba887fc17b"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[C.P: 90337]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="33" width="100" height="20" uuid="dc8ecf44-8be2-40e8-b5cb-e7f63a1dee9c"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apizaco Tlaxcala]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="140" y="53" width="210" height="20" uuid="8fc181d8-5df4-4f92-8094-4f33aa4ce6f1"/>
+				<textElement>
+					<font fontName="SansSerif" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de cliente moral]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="21" y="113" width="139" height="20" uuid="71c51022-c8fb-4de6-bdd1-a89b009d7317"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[Nombre/Razon Social:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="160" y="113" width="259" height="20" uuid="93ba1c2c-1d5f-49d3-94fe-dd84d14aa92c"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="21" y="133" width="31" height="20" uuid="0e112756-43ab-4604-8712-5ca267a785d9"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[RFC:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="52" y="133" width="167" height="20" uuid="b5e8a2a7-3c4c-4eb8-a76f-532ebddf6ded"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{RFC}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="12" y="166" width="258" height="163" uuid="533b022c-e870-4549-b751-f240597d71fb"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="22" y="198" width="82" height="20" uuid="8135d21e-f234-4c8a-953e-4160d4d06083"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[Fecha de alta:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="238" width="82" height="20" uuid="d431e437-6c33-4fbb-8b06-6f327b5f26a9"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[Teléfono:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="104" y="218" width="142" height="20" uuid="8c819349-7562-444d-a055-0e66d8044b89"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NATIONALITY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="258" width="142" height="20" uuid="5496159b-79ac-4bf2-8f5b-d0b64caa77d2"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MAIL_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="22" y="178" width="82" height="20" uuid="3531e29f-bfd4-49ea-bc32-a21c69528aa6"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[Alias:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="104" y="238" width="142" height="20" uuid="d1ceb56e-b875-4475-87e0-9b47cfdfc82f"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PHONE_NUMBER_1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="22" y="218" width="82" height="20" uuid="6ca75ea3-8a9f-4530-8a32-ef9b27d311b1"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[Nacionalidad:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="258" width="82" height="20" uuid="9d9d6523-a636-4771-92df-897babb2a0b6"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[E-MAIL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="104" y="198" width="142" height="20" isRemoveLineWhenBlank="true" uuid="e57499c4-2a6c-4173-b3dd-f82caa357837"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DISCHARGE_DATE}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="10">
+				<reportElement x="280" y="166" width="261" height="163" uuid="04fc2f9f-204d-497e-870c-ad432ffd3161"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="291" y="298" width="81" height="20" uuid="16375c79-8a67-4d50-843c-23a32a48de16"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[Ciudad:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="372" y="298" width="153" height="20" uuid="2245b02c-325f-46f2-9cdc-9167fcf99668"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CITY_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="291" y="198" width="81" height="20" uuid="8b87f138-f43a-43e1-8e02-fcb466c186d0"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[Colonia:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="218" width="81" height="20" uuid="13faa4b6-2a51-4a99-b7b4-6e424e4aee12"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[Delegación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="238" width="81" height="20" uuid="64b1cfe9-6a45-4eb1-8095-001aa5e53e41"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[Codigo postal:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="372" y="238" width="153" height="20" uuid="c6085958-1d97-4be8-9f7f-d53ec74ef07e"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{POSTAL_CODE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="291" y="258" width="81" height="20" uuid="83cbca5c-a71b-439e-9acf-2e1c64e91649"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[País:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="291" y="278" width="81" height="20" uuid="f6f1ff7c-d71e-437e-8be9-f0a656f468a3"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[Estado:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="372" y="178" width="153" height="20" uuid="82180a4f-4284-43ad-b991-35b5c5a5e4cf"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{STREET_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="372" y="258" width="153" height="20" uuid="ac76f8f9-687c-43ef-a85c-d35b322d38b8"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COUNTRY_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="372" y="278" width="153" height="20" uuid="558e5c63-cb6b-4e5f-81e3-3a28962a47ea"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{STATE_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="372" y="198" width="153" height="20" uuid="a9a18d76-b5de-42a7-9dee-ac55ad63b943"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{COLONY}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="291" y="178" width="81" height="20" uuid="3e535917-bf32-4d59-be5a-7f81ca09c98e"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[Calle/Numero:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="372" y="218" width="153" height="20" uuid="a85b5c17-5fda-4d46-b5a8-b227534cb631"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DELEGATION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="178" width="142" height="20" uuid="8de1cec2-6851-4bff-88e3-9557fd5be0af"/>
+				<textElement>
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ALIAS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageFooter>
+		<band height="72" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="44" width="100" height="20" uuid="5b96462e-af13-40b4-86b5-726b7956a021"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="-8" y="8" width="447" height="56" uuid="7005b8fe-0c17-434b-8b6e-ead806af9ec1"/>
+				<imageExpression><![CDATA[$P{piePagina}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="456" y="8" width="92" height="31" uuid="b48321e6-10f2-4694-80d4-facb3a8108d0"/>
+				<imageExpression><![CDATA[$P{Oracle}]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+</jasperReport>

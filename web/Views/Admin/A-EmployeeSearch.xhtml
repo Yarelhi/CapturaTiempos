@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+        <title>Empleados</title>
+        <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/sb-admin.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css2/Formularios.css" rel="stylesheet" type="text/css"/>
+        <style type="text/css">
+            .ui-growl{
+                position:absolute;
+                top:9%;
+                left:75%;
+                z-index:9999;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+
+        <ui:composition template="../../plantillas/Tema.xhtml">
+
+            <ui:define name="top">
+
+
+            </ui:define>
+
+
+            <ui:define name="left">
+
+            </ui:define>
+
+
+            <ui:define name="content">
+
+                <div id="wrapper">
+
+                    <!-- Navigation -->
+
+
+                    <div id="page-wrapper">
+
+                        <div class="container-fluid">
+
+                            <!-- Page Heading -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1 class="page-header">
+
+                                        <small>Búsqueda Empleados</small>
+                                    </h1>
+                                    <ol class="breadcrumb">
+                                        <li>
+                                            <i class="fa fa-home"></i><h:link outcome="A-AdminIndex"> Inicio </h:link>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-plus-circle"></i><h:link outcome="A-Employees"> Nuevo Empleado</h:link>
+                                        </li>
+                                        <li class="active">
+                                            <i class="fa fa-fw fa-search"></i> Buscar Empleados
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                            <p:growl id="MensajeGrl" autoUpdate="true" showDetail="true" />
+                            <h:form id="FormMostrarEmp">
+                                <p:dataTable id="tablaMostrarEmp" var="emp" value="#{customerBean.listaTableEmp}"
+                                             emptyMessage="No hay Datos de empleados" scrollable="true"
+                                             scrollWidth="100%" paginator="true" rows="10" reflow="true" editable="true">
+                                    <p:column headerText="Acciones" width="150">
+                                        <p:commandButton value="Modificar" oncomplete="PF('dlgmodificar').show();"
+                                                         update=":formModificar">
+                                            <f:setPropertyActionListener target="#{customerBean.empleados}" value="#{emp}"/>                                                     
+                                        </p:commandButton> 
+                                    </p:column>
+                                    <p:column headerText="R.F.C" width="200" filterBy="#{emp.rfc}">
+                                        <h:outputText value="#{emp.rfc}" />
+                                    </p:column>
+                                    <p:column colspan="3" headerText="Nombre" width="250" filterBy="#{emp.name}">
+                                        <h:outputText value="#{emp.name}    #{emp.paternSurname}   #{emp.maternSurname}"/>
+                                    </p:column>
+                                    <p:column headerText="C.U.R.P" width="200" filterBy="#{emp.curp}">
+                                        <h:outputText value="#{emp.curp}"/>
+                                    </p:column>
+                                    <p:column headerText="Status" width="200" filterBy="#{emp.itgEmployeesTypesAll.name}">
+                                        <h:outputText value="#{emp.itgEmployeesTypesAll.name}"/>
+                                    </p:column>                          
+                                    <p:column headerText="NSS" width="200" filterBy="#{emp.nss}">
+                                        <h:outputText value="#{emp.nss}"/>
+                                    </p:column>
+
+
+                                    <p:column headerText="Fecha Nacimiento" width="200">
+                                        <h:outputText value="#{emp.birthdate}"/>
+                                    </p:column>
+                                    <p:column headerText="N° Empleado" width="200">
+                                        <h:outputText value="#{emp.employeeNumber}"/>
+                                    </p:column>
+                                </p:dataTable>
+                            </h:form><br></br>
+                            
+                           <p:dialog id="dlg" widgetVar="dlgmodificar" header="Modificar Datos"  hideEffect="explode" modal="true" showEffect="explode" position="center center" width="940" height="440" resizable="false">
+                                <h:form id="formModificar">
+                            <p:panelGrid columns="4" style="margin: 0 auto">
+                                <p:outputLabel value="Nombre:"/>
+                                <h:inputText class="form-control" value="#{customerBean.empleados.name}"/>
+                                <p:outputLabel value="Apellido Paterno:"/>
+                                <h:inputText class="form-control" value="#{customerBean.empleados.paternSurname}"/>
+                                <p:outputLabel value="Apellido Materno:"/>
+                                <h:inputText class="form-control" value="#{customerBean.empleados.maternSurname}"/>
+                                <p:outputLabel value="Fecha de Nacimiento:"/>                                
+                                <p:calendar value="#{customerBean.empleados.birthdate}"  a:required="true" requiredMessage="* Obligatorio - Fecha Alta" locale="de" navigator="true" a:placeholder="aaaa/mm/dd" pattern="yyyy-MM-dd" />
+                                <p:outputLabel value="Estado Civil:"/>
+                                <h:selectOneMenu class="form-control" value="#{customerBean.empleados.civilStatus}">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Soltero" itemValue="Soltero"/>
+                                    <f:selectItem itemLabel="Casado" itemValue="Casado"/>
+                                    <f:selectItem itemLabel="Viudo" itemValue="Viudo"/>
+                                    <f:selectItem itemLabel="Divorciado" itemValue="Divorciado"/>
+                                </h:selectOneMenu>
+                                <p:outputLabel value="Teléfono 1:"/>                                
+                                <p:inputMask class="form-control" value="#{customerBean.empleados.phoneNumber1}" a:min="0" maxlength="12" a:max="12"  a:required="true" requiredMessage="* Obligatorio - Teléfono 1"  mask="9999999999"/>
+                                <p:outputLabel value="Teléfono 2:"/>
+                                <p:inputMask class="form-control" value="#{customerBean.empleados.phoneNumber2}" a:min="0" maxlength="12" a:max="12"   mask="9999999999"/>                                
+                                <p:outputLabel value="C.U.R.P:"/>
+                                <h:inputText class="form-control"  maxlength="18" onkeyup="javascript:this.value=this.value.toUpperCase();" value="#{customerBean.empleados.curp}"/>
+                                <p:outputLabel value="R.F.C:"/>
+                                <h:inputText class="form-control" maxlength="12" onkeyup="javascript:this.value=this.value.toUpperCase();" value="#{customerBean.empleados.rfc}"/>
+                                <p:outputLabel value="Nacionalidad:"/>
+                                <h:selectOneMenu class="form-control" value="#{customerBean.empleados.nationality}" a:required="true" requiredMessage="* Obligatorio - Nacionalidad">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItem itemValue="Mexicana"  itemLabel="Mexicana" />
+                                    <f:selectItem itemValue="Extranjera" itemLabel="Extranjera" />	   							
+                                </h:selectOneMenu>
+                                <p:outputLabel value="NSS:"/>
+                                <h:inputText class="form-control" value="#{customerBean.empleados.nss}"/>
+                                <p:outputLabel value="Fecha de Ingreso"/>                              
+                                 <p:calendar value="#{customerBean.empleados.admissionDate}"  locale="de" navigator="true" a:placeholder="aaaa/mm/dd" pattern="yyyy-MM-dd" />
+                                <p:outputLabel value="Puesto:"/>
+                                <h:inputText class="form-control" value="#{customerBean.empleados.job}"/>
+                                <p:outputLabel value="Superior:"/>
+                                <h:inputText class="form-control" value="#{customerBean.empleados.superior}"/>
+                                <p:outputLabel value="Status:"/>
+                                <h:selectOneMenu class="form-control" value="#{customerBean.empleados.itgEmployeesTypesAll.employeeCustomerId}" a:required="true" requiredMessage="* Obligatorio - Status">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItems value="#{customerBean.listEmpCustomerE}"/><!-- Aqui va, empleado, becario, practicante,ex-empleado-->
+                                </h:selectOneMenu>
+                                <p:outputLabel value="Correo 1:"/>
+                                <h:inputText class="form-control" value="#{customerBean.empleados.mail1}"/>
+                                <p:outputLabel value="Correo 2:"/>
+                                <h:inputText class="form-control" value="#{customerBean.empleados.mail2}"/>
+                                <p:outputLabel value="Calle / Número:"/>
+                                <h:inputText class="form-control" value="#{customerBean.empleados.streetNumber}"/>
+                                <p:outputLabel value="Colonia:"/>
+                                <h:inputText class="form-control" value="#{customerBean.empleados.colony}"/>
+                                <p:outputLabel value="Municipio / Delegación:"/>
+                                <h:inputText class="form-control" value="#{customerBean.empleados.delegation}"/>
+                                <p:outputLabel value="Código Postal"/>
+                                <h:inputText class="form-control" value="#{customerBean.empleados.postalCode}"/>                                                         
+                                <p:outputLabel value="Pais:"/>
+                                <h:selectOneMenu class="form-control" id="Pais" value="#{customerBean.empleados.itgCountriesAll.countryId}" required="required">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItems value="#{customerBean.listPaises}"/>
+                                    <f:ajax execute="Pais" render="Estado"/>
+                                </h:selectOneMenu>
+                                <p:outputLabel value="Estado:"/>
+                                <h:selectOneMenu class="form-control" id="Estado" value="#{customerBean.empleados.itgStatesAll.stateId}" required="required">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItems value="#{customerBean.listEstados}"/>
+                                    <f:ajax execute="Estado" render="Ciudad"/>
+                                </h:selectOneMenu>
+                                <p:outputLabel value="Municipio"/>
+                                <h:selectOneMenu class="form-control" id="Ciudad" value="#{customerBean.empleados.itgCitiesAll.cityId}" required="required">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItems value="#{customerBean.listCiudades}"/>
+                                </h:selectOneMenu>
+                                <p:outputLabel value="Número Empleado:"/>
+                                <h:inputText class="form-control" value="#{customerBean.empleados.employeeNumber}"/>
+
+
+                                <p:commandButton value="Modificar" oncomplete="PF('dlgmodificar').hide();" 
+                                                 actionListener="#{customerBean.modificarEmpleado()}"
+                                                 update=":FormMostrarEmp:tablaMostrarEmp"/>
+                                <p:commandButton value="Cancelar" onclick="PF('dlgmodificar').hide();" />
+                            </p:panelGrid>
+
+                        </h:form><br></br>
+                            </p:dialog>
+
+                            <p:dialog id="dlg2" widgetVar="dlgeliminar" header="Eliminar Datos" showEffect="explode" hideEffect="explode" modal="true">
+                                <h:form id="formEliminar">
+                                    <h:outputText value="¿Desea eliminar este registro?"/>
+                                    <p:commandButton value="Si" actionListener="#{customerBean.eliminarEmpleado()}" update=":FormMostrarEmp" oncomplete="PF('dlgeliminar').hide();"/>
+                                    <p:commandButton value="No" onclick="PF('dlgeliminar').hide();"/>
+
+                                </h:form><br></br>
+                            </p:dialog>
+
+                            <!-- Page Heading -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1 class="page-header">
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- /#page-wrapper -->
+
+                <!--</div>-->
+                <!-- /#wrapper -->
+
+                <!-- jQuery 
+                <script src="../resources/js/jquery.js" type="text/javascript"></script>-->
+                <!-- Bootstrap Core JavaScript -->
+                <script src="../../resources/js/bootstrap.min.js" type="text/javascript"></script>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+
+</html>
+
+

@@ -1,0 +1,286 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/sb-admin.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css2/Formularios.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/default.css/" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/cssLayout.css/" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/session.css" rel="stylesheet" type="text/css"/>
+        <style type="text/css">
+            .ui-growl{
+                position:absolute;
+                top:9%;
+                left:75%;
+                z-index:9999;
+            }
+        </style>
+       <link rel="icon" type="image/x-icon" href="../../resources/img/logo.png"/>
+    <h:head>
+        
+        
+        <title>Captura Tiempos</title>
+    </h:head>
+    
+    <h:body>
+        
+        
+        <div id="top" class="top">
+             
+            <ui:insert name="top"> 
+               
+                 
+      </ui:insert>
+            <div id="wrapper" >
+
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">                                
+                <!-- Top Menu Items -->
+                <br></br>
+                    <img src="../../resources/img/imgtel.png" width="230pxl" height="38pxl"/>
+                    <img src="../../resources/img/head.png" width="750pxl" height="38pxl"/>
+               <div class="nav navbar-right top-nav">
+                  <div class="nav navbar-right top-nav">
+
+                   <div class="dropdown">
+                   <div id="sessionUsuario">
+                       
+                       <spam>
+                         <h:form >
+                             
+                                <p:outputLabel  value="Hola, " />
+                                 <input id="id"  type="hidden" size="1" value="#{loginBeanSession.usuario.itgUserRolesAll.userRoleId}"/> 
+                                 <p:outputLabel value="#{loginBeanSession.usuario.itgPersonalInfoAll.name} #{loginBeanSession.usuario.itgPersonalInfoAll.paternSurname} #{loginBeanSession.usuario.itgPersonalInfoAll.maternSurname} "/>
+                                            
+                                <p:commandButton id="btnSalir" value="Salir" action="#{loginBeanSession.cerrarSession()}"/>
+                                
+                         </h:form>
+                       </spam>
+                   </div>
+               </div>
+                  </div>
+               </div>
+                <!-- Top Menu Items -->
+              <!--  < class="nav navbar-right top-nav">
+
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> Username <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#"><i class="fa fa-fw fa-user"></i> <font color="black">Profile</font></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-fw fa-envelope"></i><font color="black"> Inbox</font></a>
+                            </li>
+                            <li>
+                                <a href="#"><i class="fa fa-fw fa-gear"></i> <font color="black"> Settings</font></a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="Login"><i class="fa fa-fw fa-power-off"></i><font color="black"> Log Out</font></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>-->
+                <!-- Brand and toggle get grouped for better mobile display -->
+                
+                <!-- Top Menu Items -->
+             
+                <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+             <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav side-nav">
+                        <a id="logo" href="http://www.it-globalsolutions.com/"  onclick="target = '_blank';">                                        
+                                <img src="../../resources/img/logo-it-global-inferior.png" width="195pxl" height="100pxl"/>
+                            </a>
+                        <li>
+                            <h:link outcome="A-AdminIndex"><i class="fa fa-fw fa-home"></i> Inicio</h:link>
+                        </li>
+                        <li>
+                                     <a href="javascript:;" data-toggle="collapse" data-target="#customer"><i class="fa fa-fw fa-building"></i> Clientes<i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="customer" class="collapse">
+                                <li>
+                                    <h:link outcome="A-CustomerFSearch"><i class="fa fa-fw fa-search"></i> Buscar Cliente</h:link>
+                                </li>
+                                
+                                <li>
+                                    <h:link outcome="A-CustomerRegister"><i class="fa fa-fw fa-male"></i> Nuevo Cliente</h:link>
+                                </li>
+                                
+                                <li>
+                                    <h:link outcome="A-CustomerF"><i class="fa fa-fw fa-female"></i> Física</h:link>
+                                </li>
+                                <li>
+                                    <h:link outcome="A-CustomerM"><i class="fa fa-fw fa-building-o"></i> Moral</h:link>
+                                </li>
+                                <li>
+                                    <h:link outcome="A-RClientes"><i class="fa fa-fw fa-file-archive-o"></i> Generar Reporte</h:link>
+                                </li>
+                            </ul>
+                        </li>
+                      
+                        <li>
+                                     <a href="javascript:;" data-toggle="collapse" data-target="#emp"><i class="fa fa-fw fa-male" ></i>Empleados<i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="emp" class="collapse">
+                                <li>
+                                    <h:link outcome="A-EmployeeSearch"><i class="fa fa-fw fa-search"></i> Buscar Empleado</h:link>
+                                </li>
+                                <li>
+                                    <h:link outcome="A-Employees"><i class="fa fa-fw fa-male"></i> Nuevo Empleado</h:link>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        
+                        
+                         <li>
+                                     <a href="javascript:;" data-toggle="collapse" data-target="#company"><i class="fa fa-fw fa-male" ></i>Company<i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="company" class="collapse">
+                                <li>
+                                    <h:link outcome="A-CompanySearch"><i class="fa fa-fw fa-search"></i> Buscar Empresa</h:link>
+                                </li>
+                                <li>
+                                    <h:link outcome="A-CompanyRegister"><i class="fa fa-fw fa-male"></i> Nueva Empresa</h:link>
+                                </li> 
+                            </ul>
+                        </li>
+                       
+                         <li>
+                                     <a href="javascript:;" data-toggle="collapse" data-target="#proyecto"><i class="fa fa-fw fa-pencil-square-o" ></i>Proyectos<i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="proyecto" class="collapse">
+                                <li>
+                                    <h:link outcome="A-ProjectsSearch"><i class="fa fa-fw fa-search"></i> Buscar proyecto</h:link>
+                                </li>
+                                <li>
+                                    <h:link outcome="A-Projects"><i class="fa fa-fw fa-plus-square"></i> Nuevo proyecto</h:link>
+                                </li>
+                                <li>
+                                    <h:link outcome="AG-Projects"><i class="fa fa-fw fa-money"></i> Agregar tipos de gastos a proyecto</h:link>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#activities"><i class="fa fa-fw fa-table"></i> Actividades<i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="activities" class="collapse">
+                                <li>
+                                    <h:link outcome="A-ActivitiesC"><i class="fa fa-fw fa-file"></i> Asignar consultor a proyecto</h:link>
+                                </li>
+                                <li>
+                                    <h:link outcome="A-ActivitiesSearch"><i class="fa fa-fw fa-file"></i> Busqueda de consultor asignado</h:link>
+                                </li>
+                                <li>
+                                    <h:link outcome="A-ActivitiesR"><i class="fa fa-fw fa-file-text-o"></i> Reporte de Actividades</h:link>
+                                </li>
+                                <li>
+                                    <h:link outcome="A-VerReporte"><i class="fa fa-fw fa-file-archive-o"></i> Ver reportes</h:link>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                                     <a href="javascript:;" data-toggle="collapse" data-target="#user"><i class="fa fa-fw fa-user"></i> Usuarios<i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="user" class="collapse">
+                                <li>
+                                    <h:link outcome="A-UserSearch"><i class="fa fa-fw fa-search"></i> Buscar Usuarios</h:link>
+                                </li>
+                                <li>
+                                    <h:link outcome="A-Users"><i class="fa fa-fw fa-users"></i> Nuevo usuario</h:link>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                            <li>
+                                    <h:link outcome="A-Invoised_2"><i class="fa fa-fw fa-cloud"></i> Facturación </h:link>
+                                </li>
+                        
+                        <li>
+                            <a href="javascript:;" data-toggle="collapse" data-target="#gasto"><i class="fa fa-fw fa-money" ></i>Gastos<i class="fa fa-fw fa-caret-down"></i></a>
+                            <ul id="gasto" class="collapse">
+                                <li>
+                                    <h:link outcome="A-NewReport"><i class="fa fa-fw fa-plus-square"></i>Nuevo Reporte</h:link>
+                                </li>
+                                <li>
+                                    <h:link outcome="A-ViewReport"><i class="fa fa-file-pdf-o"></i> Ver Reportes</h:link>
+                                </li>
+                                <li>
+                                    <h:link outcome="A-ReportAprobar"><i class="fa fa-pencil-square-o"></i>Aprobar Reportes</h:link>
+                                </li>
+                                
+                            </ul>
+                        </li>
+                        
+                        
+                        
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+                  </div>    
+             
+           
+        </div>
+                <!-- /.navbar-collapse -->
+            
+             
+           
+    
+        
+           
+            <div id="content" class="content">
+                <ui:insert name="content">    </ui:insert>
+            </div><div class="navbar-fixed-bottom " id="wrapper"> 
+            <div align="center" >
+                <table width="100%" border="0" background="../../resources/img/paginaPie.jpg">                                                                                
+                    <tr>
+                        <td width="30%">                            
+                            <span style="color:#A9F5F2">&copy; Copyright 2017 It-Global Solutions</span>
+                        </td>
+                        <td width="40%" ALIGN="center"> <span style="color:#FDFEFE">Cel. +52 01 241 41 73043 <br></br>Dir. Calle Emilio Carranza 911-A , Apizaco Tlax.  </span> </td>
+                        <td width="40%" ALIGN="RIGHT">                            
+                            <a href="https://twitter.com/IT_Global16" target="_blank">
+                                <img alt="" src="../../resources/img/redes-TW.png" width="28pxl" height="25pxl"/></a>
+                            <a href="https://www.facebook.com/IT-Global-305088833199401/" target="_blank">
+                                <img alt="" src="../../resources/img/redes-Fc.png" width="28pxl" height="25pxl"/></a>
+                            <a href="https://www.linkedin.com/company/it-global?report%2Esuccess=8zaNG1HwhPbAR9iQhZ5rfGeqz_vQFftHun0ZWU0Wy9vNemRJ8vtcKdJvzQfW8XagyOJSKg0XvfJ1dp" target="_blank">
+                                <img alt="" src="../../resources/img/redes-in.png" width="28pxl" height="25pxl"/></a>
+                            <a href="https://www.youtube.com/channel/UCjd2yAsLggO1qhjUsEHJw2Q" target="_blank">
+                                <img alt="" src="../../resources/img/redes-YT.png" width="28pxl" height="25pxl"/></a>
+                            <a href="http://www.it-globalsolutions.com/" target="_blank">
+                                <img alt="" src="../../resources/img/logo-it-global-inferior.png" width="65pxl" height="30pxl"/></a>
+                        </td>                            
+                    </tr>
+                </table>                
+            </div>            
+        </div>
+       
+    </h:body>
+    <script type="text/javascript">
+        
+    
+    a=document.getElementById("id").value;
+    
+    if(a != 2){
+       
+        
+        if(a == 1){
+            location.href=("/CapturaTiempos/faces/Views/Direccion/Direccionindex.xhtml");
+        
+    }else if (a == 4){
+        location.href=("/CapturaTiempos/faces/Views/Consultor/C-Index.xhtml");
+    }else if (a == 3){
+        location.href=("/CapturaTiempos/faces/Views/Gerente/G-Index.xhtml");
+    }else if(a == 10){
+        location.href=("/CapturaTiempos/faces/Views/Contador/CP-Index.xhtml");
+        
+    }
+    }
+
+
+</script>
+</html>

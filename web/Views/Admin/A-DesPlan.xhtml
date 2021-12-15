@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+        <title>Proyectos</title>
+        <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/sb-admin.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css2/Formularios.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/session.css" rel="stylesheet" type="text/css"/>
+        <style type="text/css">
+            .ui-growl{
+                position:absolute;
+                top:9%;
+                left:75%;
+                z-index:9999;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+
+        
+
+            <!-- Navigation -->
+           <ui:composition template="../../plantillas/Tema.xhtml">
+ 
+            <ui:define name="top">
+                
+                
+            </ui:define>
+     
+     
+ <ui:define name="left">
+               
+            </ui:define>
+     
+   
+     <ui:define name="content">
+         <div id="wrapper">
+
+            <div id="page-wrapper">
+
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    
+                  <h1 class="page-header">
+     <small>Subir PDF</small>
+                            </h1>
+                    <!-- /.row -->
+                     <h:form id="IdProyecto">
+
+
+                                <font color="#4E80E5" face="Roman"> <h2> Selecciona tu proyecto:</h2></font>
+                                <div class="form-group input-group">
+                                    <h:selectOneMenu id="proyecto" class="form-control" value="#{uploadBean.proyectos.projectId}"  requiredMessage="* Obligatorio - Proyecto">
+                                        <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                        <font color="#4E80E5"> <f:selectItems value="#{uploadBean.listProyecto}"/></font>
+                                        <f:ajax execute="proyecto" render=":FormMostrarProyectos"/>
+                                    </h:selectOneMenu>
+
+                                </div>
+                            </h:form>
+     <p:growl id="MensajeGrl" autoUpdate="true" showDetail="true" />
+
+                            <h:form id="FormMostrarProyectos" enctype="multipart/form-data">
+                                <p:growl id="msg"/>
+                                <p:dataTable id="tablaMostrarProyectos" var="proyecto" value="#{uploadBean.listar}"
+                                             emptyMessage="No hay Datos de Proyectos" scrollable="true"
+                                             scrollWidth="100%" paginator="true" rows="10" >
+
+                                    <p:column headerText="Archivos" width="200">
+
+
+
+                                        <left><h:form enctype="multipart/form-data">
+                                                <p:growl showDetail="true">    
+                                                    <p:growl id="msj" showDetail="true"/>
+                                                    <p:fileUpload value="#{uploadBean.file}" mode="simple" sizeLimit="0"/>
+                                                    <h:commandButton value="Subir" actionListener="#{uploadBean.uploadPlan()}"/>
+                                                </p:growl>
+                                            </h:form></left>
+
+
+
+                                    </p:column>  
+                                    <p:column headerText="Nombre de Proyecto" width="200" filterBy="#{proyecto.projectName}">
+                                        <center> <h:outputText value="#{proyecto.projectName}"/>  </center>                         
+                                    </p:column>
+
+
+
+                                    <p:column headerText="Cliente" width="200">
+                                        <center> <h:outputText value="#{proyecto.itgPersonalInfoAll.name} #{proyecto.itgPersonalInfoAll.paternSurname} #{proyecto.itgPersonalInfoAll.maternSurname}"/></center>
+                                    </p:column>
+
+                                    
+                                </p:dataTable>
+                            </h:form>
+                        
+                        
+                   
+                   
+                
+                    
+                   
+                   
+                   
+                    
+                   
+                    
+
+                    <!-- Page Heading -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">
+                            </h1>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- /#page-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
+
+        <!-- jQuery 
+        <script src="../resources/js/jquery.js" type="text/javascript"></script>-->
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../../resources/js/bootstrap.min.js" type="text/javascript"></script>
+   </ui:define>
+</ui:composition>
+    </h:body>
+
+</html>
+

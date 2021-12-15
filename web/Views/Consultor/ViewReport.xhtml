@@ -1,0 +1,303 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        
+        
+        <title>Reporte de Gastos Generados</title>
+        
+        <link href="../resources/css/login.css" rel="stylesheet" type="text/css"/>
+            <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../../resources/css/sb-admin.css" rel="stylesheet" type="text/css"/>
+            <link href="../../resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../../resources/css2/Formularios.css" rel="stylesheet" type="text/css"/>
+            <style type="text/css">
+                .ui-growl{
+                    position:absolute;
+                    top:9%;
+                    left:75%;
+                    z-index:9999;
+                }
+                 .old {
+                     background-color: #fca752 !important;
+                     background-image: none !important;
+                     color: #000000 !important;
+                 }
+      
+                
+            </style>
+    </h:head>
+    
+    
+    <body>
+        <ui:composition template="../../plantillas/Tema2.xhtml">
+            <ui:define name="top">
+                
+                
+            </ui:define>
+           
+            <ui:define name="left">
+               
+            </ui:define>
+            
+            <ui:define name="content">
+                <div id="wrapper">
+            
+        <!-- Navigation-->
+        
+        <div id="page-wrapper">
+            
+            <div class="container-fluid">
+                
+                
+                <!-- Page Heading -->
+             <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            
+                            <small>Reportes de gastos Generados</small>
+                            
+                                  
+             
+                                
+                                
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i><h:link outcome="C-Index"> Inicio</h:link>
+                            </li>
+                            <li>
+                                <i class="fa fa-fw fa-plus-square"></i><h:link outcome="NewReport"> Nuevo Reporte</h:link>
+                            </li>
+                            <li>
+                                <i class="fa fa-pencil-square-o"></i><h:link outcome="C-ReportAprobar">Aprobar Reportes</h:link>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-fa fa-file-pdf-o"></i> Ver Reportes
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+                <p:growl id="MensajeGrl" autoUpdate="true" showDetail="true" />
+                <h:form id="FormMostrarReportes">
+                    <p:dataTable id="tablaMostrarReportes" var="reportes" value="#{loginBeanSession.listaTabReport}"
+                                 emptyMessage="No hay Reportes Creados" scrollable="true"
+                                  scrollWidth="100%" paginator="true" rows="10" reflow="true" editable="true">
+                    <p:column headerText="Acciones" width="330">
+                        <p:commandButton  value="Modificar" disabled="#{reportes.nameReport}" oncomplete="PF('dlgmodificar').show();"
+                                          action="#{reportExpensesBean.verid()}"  
+                                          update=":formModificar">
+                            <f:setPropertyActionListener target="#{reportExpensesBean.obtenerReporte}"  value="#{reportes}"/>                                                     
+                                </p:commandButton>
+                        <p:commandButton value="Eliminar" disabled="#{reportes.attribute5}" oncomplete="PF('dlgeliminarR').show();"
+                                         action="#{reportExpensesBean.ver3()}"
+                                    update=":formEliminarR">
+                            <f:setPropertyActionListener target="#{reportExpensesBean.obtenerReporte}" value="#{reportes}"/>                                                     
+                                </p:commandButton> 
+                        <p:commandButton action="#{reportExpensesBean.generarReporte()}" value="PDF"  ajax="false"  onclick="target='_blank';">
+                            <f:setPropertyActionListener target="#{reportExpensesBean.obtenerReporte}" value="#{reportes}"/>
+                        </p:commandButton>
+                        
+                                    </p:column>
+                        <p:column headerText="Número de Reporte" width="180" filterBy="#{reportes.reportId}">
+                             <h:outputText value="#{reportes.reportId}" />
+                        </p:column>
+                        
+                        <p:column headerText="Fecha de creación" width="180">
+                            <h:outputText value="#{reportes.reportDate}" />
+                        </p:column>
+                        
+                        <p:column headerText="Status" width="250" filterBy="#{reportes.itgReportStatus.statusName}">
+                            <h:outputText value="#{reportes.itgReportStatus.statusName}" />
+                        </p:column>
+                        
+                        <p:column headerText="Comprobantes" width="200" >
+                            <h:outputText value="#{reportes.itgVouchersStatus.nameStatus}" />
+                        </p:column>
+                        <p:column headerText="Comentarios" width="200" >
+                            <h:outputText value="#{reportes.attribute1}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+                
+                <p:dialog id="dlg" widgetVar="dlgmodificar" header="Modificar Datos del Reporte" showEffect="explode" hideEffect="explode" modal="true">
+                                <h:form id="formModificar">
+                                    <p:panelGrid columns="4"  style="margin: 0 auto">
+                                        <p:outputLabel  value="Realizo:"/>
+                                        <h:inputText size="40" class="form-control" disabled="true" value="#{reportExpensesBean.obtenerReporte.itgPersonalInfoAll.name} #{reportExpensesBean.obtenerReporte.itgPersonalInfoAll.paternSurname} #{reportExpensesBean.obtenerReporte.itgPersonalInfoAll.maternSurname}"/>
+                                        <p:outputLabel value="Fecha del Reporte:"/>
+                                        <h:inputText class="form-control" disabled="true" value="#{reportExpensesBean.obtenerReporte.reportDate}"/>
+                                        <p:outputLabel value="Proyecto:"/>
+                                        <h:inputText class="form-control" disabled="true" value="#{reportExpensesBean.nameProyec}"/>
+                                        <p:outputLabel value="Método de Pago:"/>
+                                        <h:inputText class="form-control" disabled="true" value="#{reportExpensesBean.obtenerReporte.paymentMethod}"/>
+                                        <p:outputLabel value="Motivo del gasto:"/>
+                                        <h:inputText class="form-control" disabled="true" value="#{reportExpensesBean.obtenerReporte.reasonExpense}"/>
+                                        <p:outputLabel  value="Total de Gastos $:"/>
+                                        <h:dataTable id="tablaMostrarReportM" var="gasen" value="#{reportExpensesBean.gastEncaM}" >
+                                        <h:column> 
+                                            <h:outputText class="form-control" value="#{gasen.totalExpenseReport}"/>
+                                        </h:column>           
+                                         </h:dataTable> 
+                                        <p:commandButton  value="Agregar Gastos" oncomplete="PF('dlNuevoGas').show();"
+                                                 update=":formNuevoGas">                                                    
+                                </p:commandButton> 
+                                        <p:commandButton id="aprobacion" value="Enviar para Aprobación" actionListener="#{reportExpensesBean.sendMailM()}"
+                                                         update=":FormMostrarReportes:tablaMostrarReportes">
+                                        <p:confirm header="Confirmación" message="¿Está seguro que desea enviar para aprobación? Una vez enviado no podrá realizar cambios." icon="ui-icon-alert"/>
+                                        </p:commandButton>
+                                        <p:commandButton value="Salir" onclick="PF('dlgmodificar').hide();" />
+                                        
+                                        
+                                         <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+     
+                                        </p:panelGrid>
+                                    
+                                    
+             <p:growl id="MensajeGrl1" autoUpdate="true" showDetail="true" />
+             <p:dataTable id="tablaMostrarGastosReport" var="gastR" value="#{reportExpensesBean.tableGastReportM}"
+                                     emptyMessage="No hay Gastos Agregados" scrollable="true"
+                                     scrollWidth="84%" paginator="true" rows="10" reflow="true" editable="true">
+                            <p:column headerText="Acciones" width="200">
+                                <p:commandButton  value="Modificar" oncomplete="PF('dlgmodificarG').show();"
+                                                 update=":formModificarG"
+                                                 action="#{reportExpensesBean.verid1()}">
+                                    
+                                    <f:setPropertyActionListener target="#{reportExpensesBean.obtenerTiGast}" value="#{gastR}"/>                                                     
+                                </p:commandButton> 
+                                 <p:commandButton value="Eliminar" oncomplete="PF('dlgeliminar').show();"
+                                    update=":formEliminar">
+                                     <f:setPropertyActionListener target="#{reportExpensesBean.obtenerTiGast}" value="#{gastR}"/>                                                     
+                                </p:commandButton> 
+                                
+                            </p:column>
+                     <p:column headerText="Tipo de gasto" width="200" filterBy="#{gastR.itgExpenseTypes.spendName}">
+                                 <h:outputText value="#{gastR.itgExpenseTypes.spendName}"/>
+                            </p:column>
+                            <p:column headerText="Descripción" width="200">
+                                <h:outputText value="#{gastR.description}" />
+                            </p:column>
+                            
+                            <p:column headerText="Fecha" width="200">
+                                <h:outputText value="#{gastR.expenseDate}"/>
+                            </p:column>
+                            <p:column headerText="Total del gasto $" width="200">
+                                <h:outputText value="#{gastR.totalExpense}" />
+                            </p:column>
+                
+                 </p:dataTable>
+             </h:form>
+                                
+                            </p:dialog>
+                
+                <p:dialog id="dl" widgetVar="dlNuevoGas" header="Cargar Gastos" showEffect="explode" hideEffect="explode" modal="true">
+                    <h:form id="formNuevoGas">
+                     <p:panelGrid columns="2" style="margin: 0 auto">
+                         
+                         <p:outputLabel value="*Fecha del gasto:"/>
+                         <p:calendar id="dategas" value="#{reportExpensesBean.gasto.expenseDate}" locale="de" navigator="true" pattern="yyyy-MM-dd" />
+                        
+                         <p:outputLabel value="*Descripción:"/> 
+                         <h:inputText id="descrip" class="form-control" value="#{reportExpensesBean.gasto.description}">
+                                
+                          </h:inputText>
+                         
+                         <p:outputLabel value="*Tipo de gasto"/>
+                                <h:selectOneMenu class="form-control" id="Pro" value="#{reportExpensesBean.gasto.itgExpenseTypes.spendId}"  >
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItems value="#{reportExpensesBean.listGastoReporM}"/>
+                                </h:selectOneMenu>
+                            
+                         
+                         <p:outputLabel value="*Total del gasto $"/>
+                         <h:inputText class="form-control" value="#{reportExpensesBean.gasto.totalExpense}" a:type="number" a:min="0" a:id="valor" />
+                         
+              
+                                    
+                                    <p:commandButton value="Aceptar" oncomplete="PF('dlNuevoGas').hide();" 
+                                                     actionListener="#{reportExpensesBean.nuevoGasM()}" 
+                                                 update=":formModificar:tablaMostrarGastosReport :formModificar:tablaMostrarReportM">
+
+                             
+                                    </p:commandButton>
+                                <p:commandButton value="Cancelar" onclick="PF('dlNuevoGas').hide();" />
+                                        
+                              
+                     </p:panelGrid>
+                         </h:form>
+                 </p:dialog> 
+                
+                 <p:dialog id="dlg1" widgetVar="dlgmodificarG" header="Modificar Datos" showEffect="explode" hideEffect="explode" modal="true">
+                                <h:form id="formModificarG">
+                                    <p:panelGrid columns="4" style="margin: 0 auto">
+                                        <p:outputLabel value="Tipo de Gasto:"/>
+                                        <h:selectOneMenu class="form-control" id="pro2" value="#{reportExpensesBean.obtenerTiGast.itgExpenseTypes.spendId}">
+                                            <f:selectItems value="#{reportExpensesBean.listGastoReporM}"/>
+                                        </h:selectOneMenu>
+                                        <p:outputLabel value="Descripción:"/>
+                                        <h:inputText class="form-control" value="#{reportExpensesBean.obtenerTiGast.description}"/>
+                                        <p:outputLabel value="Fecha del Gasto:"/>
+                                        <p:calendar value="#{reportExpensesBean.obtenerTiGast.expenseDate}" locale="de" navigator="true" pattern="yyyy-MM-dd" />
+                                        <p:outputLabel value="Total del gasto $:"/>
+                                        <h:inputText class="form-control" value="#{reportExpensesBean.obtenerTiGast.totalExpense}" immediate="true" valueChangeListener="#{reportExpensesBean.valueChange}" id="valor2"/>
+                                        
+                                        
+                                  
+                                        
+                                        <p:commandButton  value="Modificar" oncomplete="PF('dlgmodificarG').hide();" 
+                                                          actionListener="#{reportExpensesBean.modificarGastoM()}"
+                                                 update=":formModificar:tablaMostrarGastosReport :formModificar:tablaMostrarReportM"/>
+                                         <p:commandButton value="Cancelar" onclick="PF('dlgmodificarG').hide();" />
+                                        
+                                    </p:panelGrid>
+                                </h:form>
+                            </p:dialog>
+                
+                <p:dialog id="dlg2" widgetVar="dlgeliminar" header="Eliminar Datos" showEffect="explode" hideEffect="explode" modal="true">
+                        <h:form id="formEliminar">
+                            <h:outputText value="¿Desea eliminar este registro?"/>
+                            <br/>
+                            <p:commandButton value="Si" actionListener="#{reportExpensesBean.eliminarGastoM()}"
+                                             update=":formModificar:tablaMostrarGastosReport :formModificar:tablaMostrarReportM" oncomplete="PF('dlgeliminar').hide();"/>
+                            <p:commandButton value="No" onclick="PF('dlgeliminar').hide();"/>
+                        </h:form><br></br>
+                    </p:dialog>
+                
+                <p:dialog id="dlg4" widgetVar="dlgeliminarR" header="Eliminar Datos" showEffect="explode" hideEffect="explode" modal="true">
+                        <h:form id="formEliminarR">
+                            <h:outputText value="¿Desea eliminar este registro?"/>
+                            <br/>
+                            <p:commandButton value="Si" actionListener="#{reportExpensesBean.eliminarReporteL()}"
+                                             update=":FormMostrarReportes:tablaMostrarReportes" oncomplete="PF('dlgeliminarR').hide();"/>
+                            <p:commandButton value="No" onclick="PF('dlgeliminarR').hide();"/>
+                        </h:form><br></br>
+                    </p:dialog>
+
+                </div>
+            
+        </div>
+                </div>
+                <script src="../../resources/js/bootstrap.min.js" type="text/javascript"></script>
+                
+                
+                
+            </ui:define>
+        </ui:composition>
+      
+    </body>
+</html>
+

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+        <title>Empleados</title>
+        <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css/sb-admin.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../../resources/css2/Formularios.css" rel="stylesheet" type="text/css"/>
+        <style type="text/css">
+            .ui-growl{
+                position:absolute;
+                top:9%;
+                left:75%;
+                z-index:9999;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+
+        <ui:composition template="../../plantillas/Tema.xhtml">
+
+            <ui:define name="top">
+
+
+            </ui:define>
+
+
+            <ui:define name="left">
+
+            </ui:define>
+
+
+            <ui:define name="content">
+
+                <div id="wrapper">
+
+                    <!-- Navigation -->
+
+
+                    <div id="page-wrapper">
+
+                        <div class="container-fluid">
+
+                            <!-- Page Heading -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1 class="page-header">
+
+                                        <small>Búsqueda Empresas</small>
+                                    </h1>
+                                    <ol class="breadcrumb">
+                                        <li>
+                                            <i class="fa fa-home"></i><h:link outcome="A-AdminIndex"> Inicio </h:link>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-plus-circle"></i><h:link outcome="A-CompanyRegister"> Nueva Empresa</h:link>
+                                        </li>
+                                        <li class="active">
+                                            <i class="fa fa-fw fa-search"></i> Buscar Empresas
+                                        </li>
+                                    </ol>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                            <p:growl id="MensajeGrl" autoUpdate="true" showDetail="true" />
+                            <h:form id="FormMostrarEmp">
+                                <p:dataTable id="tablaMostrarEmp" var="emp" value="#{orgBean.listarTableEmp}"
+                                             emptyMessage="No hay Datos de empresas" scrollable="true"
+                                             scrollWidth="100%" paginator="true" rows="10" reflow="true" editable="true">
+                                    <p:column headerText="Acciones" width="150">
+                                        <p:commandButton value="Modificar" oncomplete="PF('dlgmodificar').show();"
+                                                         update=":formModificar">
+                                            <f:setPropertyActionListener target="#{orgBean.empresa}" value="#{emp}"/>                                                     
+                                        </p:commandButton> 
+                                    </p:column>
+                                    <p:column headerText="Nombre" width="200" filterBy="#{emp.orgName}">
+                                        <h:outputText value="#{emp.orgName}" />
+                                    </p:column>
+                                    <p:column colspan="3" headerText="Nombre de contacto" width="250" filterBy="#{emp.contactName}">
+                                        <h:outputText value="#{emp.contactName} "/>
+                                    </p:column>
+                                    <p:column headerText="Correo" width="200" filterBy="#{emp.contactMail}">
+                                        <h:outputText value="#{emp.contactMail}"/>
+                                    </p:column>
+                                    <p:column headerText="Telefono" width="200" filterBy="#{emp.contactNumberPhone}">
+                                        <h:outputText value="#{emp.contactNumberPhone}"/>
+                                    </p:column>                          
+                                    <p:column headerText="Direccion" width="200" filterBy="#{emp.companyAddress}">
+                                        <h:outputText value="#{emp.companyAddress}"/>
+                                    </p:column>
+
+
+                                    <!--<p:column headerText="Fecha Nacimiento" width="200">
+                                        <h:outputText value="#{emp.birthdate}"/>
+                                    </p:column>
+                                    <p:column headerText="N° Empleado" width="200">
+                                        <h:outputText value="#{emp.employeeNumber}"/>
+                                    </p:column>-->
+                                </p:dataTable>
+                            </h:form><br></br>
+                            
+                         
+
+                            <p:dialog id="dlg2" widgetVar="dlgeliminar" header="Eliminar Datos" showEffect="explode" hideEffect="explode" modal="true">
+                                <h:form id="formEliminar">
+                                    <h:outputText value="¿Desea eliminar este registro?"/>
+                                    <p:commandButton value="Si" actionListener="#{orgBean.eliminarEmpresa()}" update=":FormMostrarEmp" oncomplete="PF('dlgeliminar').hide();"/>
+                                    <p:commandButton value="No" onclick="PF('dlgeliminar').hide();"/>
+
+                                </h:form><br></br>
+                            </p:dialog>
+
+                            <!-- Page Heading -->
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h1 class="page-header">
+                                    </h1>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.container-fluid -->
+
+                </div>
+                <!-- /#page-wrapper -->
+
+                <!--</div>-->
+                <!-- /#wrapper -->
+
+                <!-- jQuery 
+                <script src="../resources/js/jquery.js" type="text/javascript"></script>-->
+                <!-- Bootstrap Core JavaScript -->
+                <script src="../../resources/js/bootstrap.min.js" type="text/javascript"></script>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+
+</html>
+
+
+

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+           xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+        <title>Busqueda de consultores asignados a proyecto</title>
+        <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../resources/css/sb-admin.css" rel="stylesheet" type="text/css"/>
+        <link href="../resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <style type="text/css">
+            .ui-growl{
+                position:absolute;
+                top:9%;
+                left:75%;
+                z-index:9999;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+<ui:composition template="../../plantillas/Tema3.xhtml">
+ 
+            <ui:define name="top">
+                
+                
+            </ui:define>
+     
+     
+ <ui:define name="left">
+               
+            </ui:define>
+     
+   
+     <ui:define name="content">
+        <div id="wrapper">
+       
+
+          
+
+            <div id="page-wrapper">
+
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">
+
+                                <small><font color="gray" >Asignación de consultores a proyectos</font></small>
+                            </h1>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <i class="fa fa-home"></i><h:link outcome="Direccionindex"> Inicio</h:link>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-file"></i> Modificar asignación de consultores
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+                    <p:growl id="MensajeGrl" autoUpdate="true" showDetail="true" />
+                    <h:form id="FormMostrarConsultor">
+                        <p:dataTable id="tablaMostrarConsultor" var="consultor" value="#{activitiesBean.listaTableConsultor}"
+                                     emptyMessage="No hay Datos" scrollable="true"
+                                     scrollWidth="100%" paginator="true" rows="10" reflow="true" editable="true">
+                            <p:column headerText="Acciones" width="240">
+                                <p:commandButton value="Modificar" oncomplete="PF('dlgmodificar').show();"
+                                    update=":formModificar">
+                                    <f:setPropertyActionListener target="#{activitiesBean.obtenerConsultor}" value="#{consultor}"/>                                                     
+                                </p:commandButton>                      
+                            </p:column>
+                            <p:column headerText="Nombre" width="200" filterBy="#{consultor.itgPersonalInfoAll.name}">
+                                <h:outputText value="#{consultor.itgPersonalInfoAll.name} #{consultor.itgPersonalInfoAll.paternSurname} #{consultor.itgPersonalInfoAll.maternSurname}"/>
+                            </p:column>
+                            <p:column headerText="Proyecto" width="200" >
+                                <h:outputText value="#{consultor.itgProjectsAll.projectName}"/>
+                            </p:column>
+                            <p:column headerText="Semana" width="200">
+                                <h:outputText value="#{consultor.numberWeek} / #{consultor.month} / #{consultor.year}"/>
+                            </p:column>
+                            <p:column headerText="Autorizo" width="200">
+                                <h:outputText value="#{consultor.authorizedBy}"/>
+                            </p:column>
+                            
+                        </p:dataTable>
+                    </h:form><br></br>
+                    <p:dialog id="dlg" widgetVar="dlgmodificar" header="Modificar Datos" showEffect="explode" hideEffect="explode" modal="true">
+                        <h:form id="formModificar">
+                            <p:panelGrid columns="4" style="margin: 0 auto">
+                                <p:outputLabel value="Autorizó"/>
+                                <h:inputText class="form-control" value="#{activitiesBean.obtenerConsultor.authorizedBy}"/>
+                                
+                                <p:commandButton value="Modificar" oncomplete="PF('dlgmodificar').hide();" 
+                                                 actionListener="#{activitiesBean.modificarConsultor()}"
+                                                 update=":FormMostrarConsultor:tablaMostrarConsultor"/>
+                                <p:commandButton value="Cancelar" onclick="PF('dlgmodificar').hide();" />
+                            </p:panelGrid>
+
+                        </h:form><br></br>
+                    </p:dialog>
+                    <!-- Page Heading -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+        <!--</div>-->
+        <!-- /#wrapper -->
+
+        <!-- jQuery 
+        <script src="../resources/js/jquery.js" type="text/javascript"></script>-->
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../../resources/js/bootstrap.min.js" type="text/javascript"></script>
+        </ui:define>
+</ui:composition>
+    </h:body>
+
+</html>

@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 26/10/2021 05:06:06 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Model.ItgProjectsAll" table="itg_projects_all" catalog="itg_time_module" optimistic-lock="version">
+        <id name="projectId" type="java.lang.Integer">
+            <column name="PROJECT_ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="itgParties" class="Model.ItgParties" fetch="select">
+            <column name="PARTY_ID" />
+        </many-to-one>
+        <!--<many-to-one name="itgPersonalInfoAll" class="Model.ItgPersonalInfoAll" fetch="select">
+            <column name="ITG_PERSONAL_INFO_ALL_PERSONAL_DATA_ID" />
+        </many-to-one>-->
+        <many-to-one name="itgPersonalApprover" class="Model.ItgPersonalInfoAll" fetch="select">
+            <column name="ITG_PERSONAL_INFO_ALL_APPROVER_ID" />
+        </many-to-one>
+        <many-to-one name="itgUserRolesAll" class="Model.ItgUserRolesAll" fetch="select">
+            <column name="ITG_USER_ROLES_ALL_USER_ROLE_ID" />
+        </many-to-one>
+        <many-to-one name="itgWorkArea" class="Model.ItgWorkArea" fetch="select">
+            <column name="ITG_WORK_AREA_AREA_ID" />
+        </many-to-one>
+        <property name="projectName" type="string">
+            <column name="PROJECT_NAME" length="240" />
+        </property>
+        <property name="projectStartDate" type="date">
+            <column name="PROJECT_START_DATE" length="10" />
+        </property>
+        <property name="projectEndDate" type="date">
+            <column name="PROJECT_END_DATE" length="10" />
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="240" />
+        </property>
+        <property name="contractNumber" type="string">
+            <column name="CONTRACT_NUMBER" length="150" />
+        </property>
+        <property name="workOrder" type="string">
+            <column name="WORK_ORDER" length="150" />
+        </property>
+        <!--<property name="totalExpense" type="java.lang.Long">
+            <column name="TOTAL_EXPENSE" precision="10" scale="0" />
+        </property>-->
+        <property name="deliverables" type="string">
+            <column name="DELIVERABLES" length="240" />
+        </property>
+        <property name="workplan" type="string">
+            <column name="WORKPLAN" length="100" />
+        </property>
+        <property name="projectNumber" type="java.lang.Long">
+            <column name="PROJECT_NUMBER" precision="10" scale="0" />
+        </property>
+        <property name="approver" type="string">
+            <column name="APPROVER" length="150" />
+        </property>
+        <property name="attribute1" type="binary">
+            <column name="ATTRIBUTE1" />
+        </property>
+        <property name="attribute2" type="binary">
+            <column name="ATTRIBUTE2" />
+        </property>
+        <property name="attribute3" type="string">
+            <column name="ATTRIBUTE3" length="150" />
+        </property>
+        <property name="attribute4" type="string">
+            <column name="ATTRIBUTE4" length="150" />
+        </property>
+        <property name="attribute5" type="binary">
+            <column name="ATTRIBUTE5" />
+        </property>
+        <property name="attribute6" type="string">
+            <column name="ATTRIBUTE6" length="150" />
+        </property>
+        <property name="creationDate" type="date">
+            <column name="CREATION_DATE" length="10" />
+        </property>
+        <property name="createdBy" type="java.lang.Long">
+            <column name="CREATED_BY" precision="10" scale="0" />
+        </property>
+        <property name="lastUpdateDate" type="date">
+            <column name="LAST_UPDATE_DATE" length="10" />
+        </property>
+        <property name="lastUpdatedBy" type="java.lang.Long">
+            <column name="LAST_UPDATED_BY" precision="10" scale="0" />
+        </property>
+        <set name="itgActivitiesAlls" table="itg_activities_all" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ITG_PROJECTS_ALL_PROJECT_ID" not-null="true" />
+            </key>
+            <one-to-many class="Model.ItgActivitiesAll" />
+        </set>
+        <set name="itgExpenseReportsAlls" table="itg_expense_reports_all" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ITG_PROJECTS_ALL_PROJECT_ID" />
+            </key>
+            <one-to-many class="Model.ItgExpenseReportsAll" />
+        </set>
+        <!--<set name="itgInvoiceAlls" table="itg_invoice_all" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ITG_PROJECTS_ALL_PROJECT_ID" not-null="true" />
+            </key>
+            <one-to-many class="Model.ItgInvoiceAll" />
+        </set>-->
+        <set name="itgExpenseTypeses" table="itg_expense_types" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ITG_PROJECTS_ALL_PROJECT_ID" />
+            </key>
+            <one-to-many class="Model.ItgExpenseTypes" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+
+        <title>Clientes</title>
+        <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link href="../resources/css/sb-admin.css" rel="stylesheet" type="text/css"/>
+        <link href="../resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+        <style type="text/css">
+            .ui-growl{
+                position:absolute;
+                top:9%;
+                left:75%;
+                z-index:9999;
+            }
+        </style>
+    </h:head>
+
+    <h:body>
+<ui:composition template="../../plantillas/Tema.xhtml">
+ 
+            <ui:define name="top">
+                
+                
+            </ui:define>
+     
+     
+ <ui:define name="left">
+               
+            </ui:define>
+     
+   
+     <ui:define name="content">
+        <div id="wrapper">
+       
+
+          
+
+            <div id="page-wrapper">
+
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">
+
+                                <small>Búsqueda Clientes</small>
+                            </h1>
+                            <ol class="breadcrumb">
+                                <li>
+                                    <i class="fa fa-home"></i><h:link outcome="A-AdminIndex"> Inicio</h:link>
+                                </li>                                                              
+                                <li>
+                                    <i class="fa fa-building-o"></i><h:link outcome="A-CustomerM"> Moral</h:link>
+                                </li>
+                                <li>
+                                    <i class="fa fa-female"></i><h:link outcome="A-CustomerF"> Física</h:link>
+                                </li>
+                                <li class="active">
+                                    <i class="fa fa-fw fa-search"></i> Buscar Cliente
+                                </li>                                
+                                <ul class="nav navbar-nav navbar-right">
+                                    <i class="fa a-fw fa-file-pdf-o"></i><h:link outcome="A-RClientes"> Generar Reportes</h:link>
+                                </ul>                                
+                            </ol>
+                        </div>
+                    </div>
+                    <!-- /.row -->
+
+                     <p:growl id="MensajeGrl" autoUpdate="true" showDetail="true" />
+                    <h:form id="FormMostrarClientes">
+                        <p:dataTable id="tablaMostrarClientes" var="cliente" value="#{partiesBean.listaTable}"
+                                     emptyMessage="No hay Datos de clientes" scrollable="true"
+                                     scrollWidth="100%" paginator="true" rows="10" reflow="true" editable="true">
+                            <p:column headerText="Acciones" width="150">
+                                <p:commandButton value="Modificar" oncomplete="PF('dlgmodificar').show();"
+                                    update=":formModificar">
+                                    <f:setPropertyActionListener target="#{partiesBean.clientes}" value="#{cliente}"/>                                                     
+                                </p:commandButton> 
+                                <!--<p:commandButton value="Eliminar" oncomplete="PF('dlgeliminar').show();"
+                                    update=":formEliminar">
+                                    <f:setPropertyActionListener target="#{partiesBean.clientes}" value="#{cliente}"/>                                                     
+                                </p:commandButton>-->
+                            </p:column>
+                            <p:column headerText="Tipo de cliente" width="200" filterBy="#{cliente.attribute1}">
+                                <h:outputText value="#{cliente.attribute1}"/>
+                            </p:column>
+                            <p:column headerText="Estatus" width="150">
+                                <h:selectOneMenu class="form-control" value="#{cliente.status}" required="true" requiredMessage="* Obligatorio - Status" readonly="true">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItems value="#{loginBean.listavalor}"/><!-- Aqui va, empleado, becario, practicante,ex-empleado-->
+                                </h:selectOneMenu>
+                            </p:column>
+                            <p:column headerText="R.F.C" width="200" filterBy="#{cliente.rfc}">
+                                <h:outputText value="#{cliente.rfc}"/>
+                            </p:column>
+                            <p:column headerText="Nombre / Razón Social" width="200" filterBy="#{cliente.partyName}">
+                                <h:outputText value="#{cliente.partyName} "/>
+                            </p:column>
+                            <p:column headerText="Alias" width="200">
+                                <h:outputText value="#{cliente.alias}"/>
+                            </p:column>
+                           
+                            <p:column headerText="Fecha Alta" width="200">
+                                <h:outputText value="#{cliente.dischargeDate}"/>
+                            </p:column>
+                            <p:column headerText="Nacionalidad" width="200">
+                                <h:outputText value="#{cliente.nationality}"/>
+                            </p:column>
+                            <p:column headerText="Telefono1" width="200">
+                                <h:outputText value="#{cliente.phoneNumber1}"/>
+                            </p:column>
+                            <p:column headerText="Telefono2" width="200">
+                                <h:outputText value="#{cliente.phoneNumber2}"/>
+                            </p:column>
+                            <p:column headerText="Telefono3" width="200">
+                                <h:outputText value="#{cliente.phoneNumber3}"/>
+                            </p:column>     
+                            <p:column headerText="Correo1" width="200">
+                                <h:outputText value="#{cliente.mail1}"/>
+                            </p:column>
+                            <p:column headerText="Correo2" width="200">
+                                <h:outputText value="#{cliente.mail2}"/>
+                            </p:column>
+                            <p:column headerText="Correo3" width="200">
+                                <h:outputText value="#{cliente.mail3}"/>
+                            </p:column>
+                            <p:column headerText="Pais" width="200">
+                                <h:outputText value="#{cliente.itgCountriesAll.countryName}"/>
+                            </p:column>
+                            <p:column headerText="Estado" width="200">
+                                <h:outputText value="#{cliente.itgStatesAll.stateName}"/>
+                            </p:column>
+                            <p:column headerText="Ciudad" width="200">
+                                <h:outputText value="#{cliente.itgCitiesAll.cityName}"/>
+                            </p:column>
+                            <p:column headerText="Calle / Número" width="200">
+                                <h:outputText value="#{cliente.streetNumber}"/>
+                            </p:column>
+                            <p:column headerText="Colonia" width="200">
+                                <h:outputText value="#{cliente.colony}"/>
+                            </p:column>
+                            <p:column headerText="Municipio / Delegación" width="200">
+                                <h:outputText value="#{cliente.delegation}"/>
+                            </p:column>
+                            <p:column headerText="Código Postal" width="200">
+                                <h:outputText value="#{cliente.postalCode}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form><br></br>
+                    
+                    <p:dialog id="dlg" widgetVar="dlgmodificar" header="Modificar Datos" showEffect="explode" hideEffect="explode" modal="true" width="900" height="450">                    
+                        <h:form id="formModificar">
+                            <p:panelGrid columns="4" style="margin: 0 auto">
+                                <p:outputLabel value="Nombre / Razón Social:"/>
+                                <h:inputText class="form-control" value="#{partiesBean.clientes.partyName}"/>
+                                <p:outputLabel value="Alias:"/>
+                                <h:inputText class="form-control" value="#{partiesBean.clientes.alias}"/>
+                                <p:outputLabel value="Apellido Paterno:"/>
+                                <h:inputText class="form-control" value="#{partiesBean.clientes.paternSurname}"/>
+                                <p:outputLabel value="Apellido Materno:"/>
+                                <h:inputText class="form-control" value="#{partiesBean.clientes.maternSurname}"/>
+                               
+                                 
+                                <p:outputLabel value="Nacionalidad:"/>
+                                <h:selectOneMenu class="form-control" value="#{partiesBean.clientes.nationality}" required="required">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItem itemValue="Nacional"  itemLabel="Nacional" />
+                                    <f:selectItem itemValue="Extranjera" itemLabel="Extranjera" />	   							
+                                </h:selectOneMenu>
+                                <p:outputLabel value="Teléfono 1:"/>
+                                <h:inputText class="form-control" a:min="0" maxlength="12" a:max="10" value="#{partiesBean.clientes.phoneNumber1}"/>
+                                <p:outputLabel value="Teléfono 2:"/>
+                                <h:inputText class="form-control"  a:min="0" maxlength="12" a:max="10" value="#{partiesBean.clientes.phoneNumber2}"/>
+                                <p:outputLabel value="Teléfono 3:"/>
+                                <h:inputText class="form-control"  a:min="0" maxlength="12" a:max="10" value="#{partiesBean.clientes.phoneNumber3}"/>
+                                
+                                <p:outputLabel value="R.F.C:"/>
+                                <h:inputText class="form-control" maxlength="13" onkeyup="javascript:this.value=this.value.toUpperCase();" value="#{partiesBean.clientes.rfc}"/>
+                                <p:outputLabel value="Status:"/>
+                                <h:selectOneMenu class="form-control" required="true">
+                                    <f:selectItems value="#{partiesBean.listavalor}"/>
+                                </h:selectOneMenu>
+                                <p:outputLabel value="Correo 1:"/>
+                                <h:inputText class="form-control" value="#{partiesBean.clientes.mail1}"/>
+                                <p:outputLabel value="Correo 2:"/>
+                                <h:inputText class="form-control" value="#{partiesBean.clientes.mail2}"/>
+                                <p:outputLabel value="Correo 3:"/>
+                                <h:inputText class="form-control" value="#{partiesBean.clientes.mail3}"/>
+                                <p:outputLabel value="Calle / Número:"/>
+                                <h:inputText class="form-control" value="#{partiesBean.clientes.streetNumber}"/>
+                                <p:outputLabel value="Colonia:"/>
+                                <h:inputText class="form-control" value="#{partiesBean.clientes.colony}"/>
+                                <p:outputLabel value="Municipio / Delegación:"/>
+                                <h:inputText class="form-control" value="#{partiesBean.clientes.delegation}"/>
+                                <p:outputLabel value="Código Postal"/>
+                                <h:inputText class="form-control" value="#{partiesBean.clientes.postalCode}"/>      
+                                <p:outputLabel value="Pais:"/>
+                                <h:selectOneMenu class="form-control" id="Pais" value="#{partiesBean.clientes.itgCountriesAll.countryId}" required="required">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItems value="#{partiesBean.listPaises}"/>
+                                    <f:ajax execute="Pais" render="Estado"/>
+                                </h:selectOneMenu>
+                                <p:outputLabel value="Estado:"/>
+                                <h:selectOneMenu class="form-control" id="Estado" value="#{partiesBean.clientes.itgStatesAll.stateId}" required="required">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItems value="#{partiesBean.listEstados}"/>
+                                    <f:ajax execute="Estado" render="Ciudad"/>
+                                </h:selectOneMenu>
+                                <p:outputLabel value="Ciudad:"/>
+                                <h:selectOneMenu class="form-control" id="Ciudad" value="#{partiesBean.clientes.itgCitiesAll.cityId}" required="required">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItems value="#{partiesBean.listCiudades}"/>
+                                </h:selectOneMenu>
+                                <p:outputLabel value="Status:"/>
+                                <h:selectOneMenu class="form-control" value="#{partiesBean.clientes.status}" required="true" requiredMessage="* Obligatorio - Status">                                    
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItems value="#{loginBean.listavalor}"/>
+                                </h:selectOneMenu>
+                                
+                                <p:outputLabel value="Nombre y Apellidos / Contacto:"/>
+                                <h:inputText class="form-control" value="#{partiesBean.clientes.attribute4}"/>
+                                <p:outputLabel value="Teléfono / Contacto:"/>
+                                <h:inputText class="form-control" value="#{partiesBean.clientes.phoneNumber3}"/> 
+                                <p:outputLabel value="Correo / Contacto:"/>
+                                <h:inputText class="form-control" value="#{partiesBean.clientes.mail3}"/> 
+
+                                <p:commandButton value="Modificar" oncomplete="PF('dlgmodificar').hide();" 
+                                                 actionListener="#{partiesBean.modificarCliente()}"
+                                                 update=":FormMostrarClientes:tablaMostrarClientes"/>
+                                <p:commandButton value="Cancelar" onclick="PF('dlgmodificar').hide();" />
+                            </p:panelGrid>
+
+                        </h:form><br></br>
+                    </p:dialog>
+                    
+                    <p:dialog id="dlg2" widgetVar="dlgeliminar" header="Eliminar Datos" showEffect="explode" hideEffect="explode" modal="true">
+                        <h:form id="formEliminar">
+                            <h:outputText value="¿Desea eliminar este registro?"/>
+                            <p:commandButton value="Si" actionListener="#{partiesBean.eliminarCliente()}" update=":FormMostrarClientes" oncomplete="PF('dlgeliminar').hide();"/>
+                            <p:commandButton value="No" onclick="PF('dlgeliminar').hide();"/>
+                            
+                        </h:form><br></br>
+                    </p:dialog>
+                    <!-- Page Heading -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1 class="page-header">
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.container-fluid -->
+
+        </div>
+        <!-- /#page-wrapper -->
+
+        <!--</div>-->
+        <!-- /#wrapper -->
+
+        <!-- jQuery 
+        <script src="../resources/js/jquery.js" type="text/javascript"></script>-->
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../../resources/js/bootstrap.min.js" type="text/javascript"></script>
+        </ui:define>
+</ui:composition>
+    </h:body>
+
+</html>
+

@@ -1,0 +1,610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 7.5.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteGastos" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cfda78e5-6834-4d61-9fd4-2867240927ba">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="xxeks_module_times_db"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="102"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="890"/>
+	<parameter name="Path" class="java.lang.String"/>
+	<parameter name="Oracle" class="java.lang.String"/>
+	<parameter name="piePagina" class="java.lang.String"/>
+	<parameter name="idReport" class="java.lang.Integer"/>
+	<parameter name="nameProyect" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{nameProyect} == null?"-":$P{nameProyect}]]></defaultValueExpression>
+	</parameter>
+	<queryString language="SQL">
+		<![CDATA[SELECT * FROM itg_expense_reports_all AS re, itg_expense_reports_detail AS ex, itg_projects_all AS pro, itg_personal_info_all AS per, itg_expense_types AS ty
+WHERE re.REPORT_ID  =  ex.ITG_EXPENSE_REPORTS_ALL_ALL_REPORT_ID 
+AND re.ITG_PROJECTS_ALL_PROJECT_ID = pro.PROJECT_ID
+AND ex.ITG_EXPENSE_REPORTS_ALL_ALL_REPORT_ID =  re.REPORT_ID 
+AND per.PERSONAL_DATA_ID = re.ITG_PERSONAL_INFO_ALL_PERSONAL_DATA_ID
+AND ty.SPEND_ID = ex.ITG_EXPENSE_TYPES_SPEND_ID
+AND re.REPORT_ID = $P{idReport}]]>
+	</queryString>
+	<field name="REPORT_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="REPORT_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="NAME_REPORT" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="NAME_REPORT"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="REASON_EXPENSE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="REASON_EXPENSE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="REPORT_DATE" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="REPORT_DATE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="PAYMENT_METHOD" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PAYMENT_METHOD"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="ANEXOS" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="ANEXOS"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="PDF" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="PDF"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="TOTAL_EXPENSE_REPORT" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_EXPENSE_REPORT"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="ATTRIBUTE1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ATTRIBUTE1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="ATTRIBUTE2" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="ATTRIBUTE2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="ATTRIBUTE3" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="ATTRIBUTE3"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="ITG_REPORT_STATUS_STATUS_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ITG_REPORT_STATUS_STATUS_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="ITG_VOUCHERS_STATUS_VOUCHER_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ITG_VOUCHERS_STATUS_VOUCHER_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="ITG_PERSONAL_INFO_ALL_PERSONAL_DATA_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ITG_PERSONAL_INFO_ALL_PERSONAL_DATA_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="ITG_PROJECTS_ALL_PROJECT_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ITG_PROJECTS_ALL_PROJECT_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="CREATION_DATE" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="CREATION_DATE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="CREATED_BY" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="CREATED_BY"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="LAST_UPDATE_DATE" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="LAST_UPDATE_DATE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="LAST_UPDATED_BY" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="LAST_UPDATED_BY"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="ITG_PERSONAL_INFO_ALL_APROVER_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ITG_PERSONAL_INFO_ALL_APROVER_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_all"/>
+	</field>
+	<field name="PROJECT_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="PROJECT_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_projects_all"/>
+	</field>
+	<field name="PROJECT_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PROJECT_NAME"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_projects_all"/>
+	</field>
+	<field name="PROJECT_START_DATE" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="PROJECT_START_DATE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_projects_all"/>
+	</field>
+	<field name="PROJECT_END_DATE" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="PROJECT_END_DATE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_projects_all"/>
+	</field>
+	<field name="CONTRACT_NUMBER" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CONTRACT_NUMBER"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_projects_all"/>
+	</field>
+	<field name="WORK_ORDER" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="WORK_ORDER"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_projects_all"/>
+	</field>
+	<field name="DELIVERABLES" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DELIVERABLES"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_projects_all"/>
+	</field>
+	<field name="WORKPLAN" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="WORKPLAN"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_projects_all"/>
+	</field>
+	<field name="PROJECT_NUMBER" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="PROJECT_NUMBER"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_projects_all"/>
+	</field>
+	<field name="APPROVER" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="APPROVER"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_projects_all"/>
+	</field>
+	<field name="ATTRIBUTE4" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ATTRIBUTE4"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_projects_all"/>
+	</field>
+	<field name="ATTRIBUTE5" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.label" value="ATTRIBUTE5"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_projects_all"/>
+	</field>
+	<field name="ATTRIBUTE6" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ATTRIBUTE6"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_projects_all"/>
+	</field>
+	<field name="ITG_WORK_AREA_AREA_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ITG_WORK_AREA_AREA_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_projects_all"/>
+	</field>
+	<field name="ITG_USER_ROLES_ALL_USER_ROLE_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ITG_USER_ROLES_ALL_USER_ROLE_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_projects_all"/>
+	</field>
+	<field name="ITG_PERSONAL_INFO_ALL_APPROVER_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ITG_PERSONAL_INFO_ALL_APPROVER_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_projects_all"/>
+	</field>
+	<field name="PERSONAL_DATA_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="PERSONAL_DATA_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="NAME"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="ALIAS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="ALIAS"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="PATERN_SURNAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="PATERN_SURNAME"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="MATERN_SURNAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="MATERN_SURNAME"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="DISCHARGE_DATE" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="DISCHARGE_DATE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="NATIONALITY" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="NATIONALITY"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="PHONE_NUMBER_1" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="PHONE_NUMBER_1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="PHONE_NUMBER_2" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="PHONE_NUMBER_2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="PHONE_NUMBER_3" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="PHONE_NUMBER_3"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="CURP" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CURP"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="RFC" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="RFC"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="MAIL_1" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="MAIL_1"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="MAIL_2" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="MAIL_2"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="MAIL_3" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="MAIL_3"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="CUSTOMER_NUMBER" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="CUSTOMER_NUMBER"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="DELEGATION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DELEGATION"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="STREET_NUMBER" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="STREET_NUMBER"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="COLONY" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="COLONY"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="POSTAL_CODE" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="POSTAL_CODE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="CIVIL_STATUS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="CIVIL_STATUS"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="NSS" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="NSS"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="BIRTHDATE" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="BIRTHDATE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="ADMISSION_DATE" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="ADMISSION_DATE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="JOB" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="JOB"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="SUPERIOR" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="SUPERIOR"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="EMPLOYEE_NUMBER" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="EMPLOYEE_NUMBER"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="Status" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="Status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="CREATE_DATE" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="CREATE_DATE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="ITG_COUNTRIES_ALL_COUNTRY_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ITG_COUNTRIES_ALL_COUNTRY_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="ITG_CITIES_ALL_CITY_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ITG_CITIES_ALL_CITY_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="ITG_STATES_ALL_STATE_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ITG_STATES_ALL_STATE_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="ITG_EMPLOYEES_CUSTOMERS_ALL_EMPLOYEE_CUSTOMER_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ITG_EMPLOYEES_CUSTOMERS_ALL_EMPLOYEE_CUSTOMER_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_personal_info_all"/>
+	</field>
+	<field name="EXPENSE_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="EXPENSE_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_detail"/>
+	</field>
+	<field name="EXPENSE_DATE" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.label" value="EXPENSE_DATE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_detail"/>
+	</field>
+	<field name="SPECIFY" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="SPECIFY"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_detail"/>
+	</field>
+	<field name="DESCRIPTION" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="DESCRIPTION"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_detail"/>
+	</field>
+	<field name="TOTAL_EXPENSE" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_EXPENSE"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_detail"/>
+	</field>
+	<field name="ITG_EXPENSE_REPORTS_ALL_ALL_REPORT_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ITG_EXPENSE_REPORTS_ALL_ALL_REPORT_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_detail"/>
+	</field>
+	<field name="ITG_EXPENSE_TYPES_SPEND_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="ITG_EXPENSE_TYPES_SPEND_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_reports_detail"/>
+	</field>
+	<field name="SPEND_ID" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.label" value="SPEND_ID"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_types"/>
+	</field>
+	<field name="SPEND_NAME" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="SPEND_NAME"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_types"/>
+	</field>
+	<field name="TOTAL_MAXIMO" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.label" value="TOTAL_MAXIMO"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="itg_expense_types"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement x="400" y="40" width="100" height="20" uuid="9694ebd3-e1ac-4171-a37b-58f21ec158cb"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apizaco Tlaxcala]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="0" width="137" height="20" uuid="e04c3ab7-f412-45e3-ba03-be04e6381a3e"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Calle Emilio carranza #911-A]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="373" y="15" width="124" height="20" uuid="b0f1ede0-4f32-4bd1-9612-bdd0b4542b64"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Col. San Martin de Porres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="397" y="28" width="100" height="20" uuid="b0de12ec-8587-4e22-a6ff-37c9a529245d"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[C.P: 90337]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="510" height="50" uuid="113fb7d5-8534-4378-8a64-e8a5421a7916"/>
+				<imageExpression><![CDATA[$P{Path}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="180" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="33" width="100" height="30" uuid="c7ffc586-c602-4d7b-8b04-c856469e247f">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b49839c5-9eb4-4b53-a5e7-0ce568a9cf4c"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Realizó]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="65" width="99" height="30" uuid="602b8111-b65b-452b-ba07-302ed94dbbe4">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ffb1f971-0434-45d3-ad5f-b153a0d56268"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proyecto]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="65" width="100" height="30" uuid="8c0e7f08-efeb-446a-8cb7-da46bdd935ca">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="ffb1f971-0434-45d3-ad5f-b153a0d56268"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{PROJECT_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="330" y="34" width="100" height="30" uuid="75a28981-f76a-4fbd-ad69-97b642015bfd">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="66d536b1-c4d2-417e-a054-be03b4bdb266"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha del Reporte]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="431" y="34" width="100" height="30" uuid="0f9a6b65-cc05-4f1b-8c2c-09df3f9d602d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="66d536b1-c4d2-417e-a054-be03b4bdb266"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{REPORT_DATE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="330" y="65" width="100" height="30" uuid="c2027709-98e3-4879-a8ab-3eb7537d79e1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3cffa0eb-c0e7-4f55-bb8e-95ec8690f536"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Método de pago]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="431" y="65" width="100" height="30" uuid="7f3ab596-9f81-46b5-bd18-bf40dabe2c8b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="3cffa0eb-c0e7-4f55-bb8e-95ec8690f536"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{PAYMENT_METHOD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="330" y="96" width="100" height="30" uuid="3415f62d-639c-45a2-9b6c-976364ae09c8">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c0a5946b-8cfc-45d6-9a1b-2063b0984752"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de Gastos $]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="431" y="96" width="100" height="30" uuid="2fa65e62-d4ea-4a44-9c9d-387f887fcc8d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c0a5946b-8cfc-45d6-9a1b-2063b0984752"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{TOTAL_EXPENSE_REPORT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="97" width="100" height="30" uuid="cf134cfc-ad1f-40f4-a999-f0b846445727">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4b5946d6-8898-4f8e-8b1f-68cf51955439"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Motivo del gasto]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="97" width="100" height="30" uuid="b92d1fbe-1b35-4bdf-a1aa-4ca10d78438e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4b5946d6-8898-4f8e-8b1f-68cf51955439"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{REASON_EXPENSE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="34" width="90" height="30" uuid="b5bf2189-3986-4750-a5e6-cad2098c83e9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b931deee-f267-4209-b7bd-2189299824b0"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="60" y="2" width="417" height="30" uuid="da684a13-8489-420d-b548-9a41112e5aa7"/>
+				<textElement textAlignment="Center">
+					<font size="18"/>
+				</textElement>
+				<text><![CDATA[Reporte de Gastos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="155" width="100" height="20" uuid="eee624e5-338a-496c-b462-23db39858864"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tipo de Gasto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="180" y="154" width="100" height="20" uuid="316d6967-69cf-4fce-8125-061ff73826c5"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descripción]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="316" y="154" width="100" height="20" uuid="b421aba4-6378-4ace-981d-27cf6b68aa89"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="442" y="155" width="100" height="20" uuid="965230cb-4909-4814-bb6d-141e7a4ee4d6"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total del Gasto $]]></text>
+			</staticText>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="153" y="150" width="1" height="30" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="74c37c40-7688-43ec-881c-11367d96ade8"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="301" y="150" width="1" height="30" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="4367f624-0346-4a0c-9ff8-fb8cddeaf8cb"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="432" y="150" width="1" height="30" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="3ec62e26-dd4c-451a-9645-01a214fd7aec"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="554" y="150" width="1" height="30" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="9b9c4913-4e1c-4738-bba7-74f6b3f2a779"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="1" y="150" width="1" height="30" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="d0c4014d-7655-480c-96ae-fd1f24de0edc"/>
+			</line>
+			<textField>
+				<reportElement x="196" y="34" width="81" height="26" uuid="a35e35d6-61a7-418b-8839-b89ae1c52e2c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="230b000c-1045-4267-ba0c-499df8197c09"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{PATERN_SURNAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="-30" width="553" height="1" uuid="9bb31ff1-56a1-4628-86a7-800a3a9b5180"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="1" y="0" width="1" height="30" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="bcdb94a8-a34b-424b-97d4-6987d2bd97f7"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="153" y="0" width="1" height="29" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="3f2a71f1-021d-43a6-9b2a-793b7aecee48"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="301" y="0" width="1" height="30" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="2d34bcda-36db-4997-86af-80e855abf766"/>
+			</line>
+			<textField>
+				<reportElement x="153" y="1" width="149" height="29" uuid="4bc512d9-5c85-48e9-89bd-6e8a4b8e3b1a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="94064f19-3153-4020-ae18-513f2b327146"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{DESCRIPTION}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="301" y="0" width="130" height="30" uuid="22830ede-739e-433a-bc91-4ba36dbc19a1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="712e391a-cd82-4a57-b96b-68ae717f75ca"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{EXPENSE_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="432" y="0" width="121" height="30" uuid="788e0a4b-2123-4665-acb6-71234e0817db">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9100ab55-cd32-4d5f-b381-7c2e51d1dbaf"/>
+				</reportElement>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{TOTAL_EXPENSE}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="432" y="0" width="1" height="29" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="8aa27165-1584-4952-8ecf-e2401f54ea68"/>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="554" y="0" width="1" height="30" isRemoveLineWhenBlank="true" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="2d4121ed-d03a-44b4-9c24-17df870b4090"/>
+			</line>
+			<line>
+				<reportElement x="1" y="0" width="553" height="1" uuid="7a0aead1-4cec-443e-8e9e-7cea8ae6155e"/>
+			</line>
+			<textField>
+				<reportElement x="30" y="-1" width="100" height="30" uuid="a88732d1-d9b3-4645-8c7a-e99d0ef2f848">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="c21141bb-fd51-4be0-9bee-662b3499798a"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{SPEND_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="65" splitType="Stretch">
+			<textField>
+				<reportElement x="465" y="30" width="88" height="20" uuid="8311d996-05cb-4d0d-b278-36ea2979a976"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="460" height="50" uuid="28649d0c-6c43-463e-aee6-8c42b5dc805c"/>
+				<imageExpression><![CDATA[$P{piePagina}]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="465" y="0" width="89" height="30" uuid="c9a7084d-ddbb-44b8-9247-2e7093df16b4"/>
+				<imageExpression><![CDATA[$P{Oracle}]]></imageExpression>
+			</image>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="28" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="0" width="553" height="1" uuid="ed756c3b-e80f-4468-a18d-5193e0632ed8"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,380 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content=""/>
+        <meta name="author" content=""/>
+        
+        
+        <title>Reporte de Gastos</title>
+        
+            <link href="../resources/css/login.css" rel="stylesheet" type="text/css"/>
+            <link href="../../resources/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../../resources/css/sb-admin.css" rel="stylesheet" type="text/css"/>
+            <link href="../../resources/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+            <link href="../../resources/css2/Formularios.css" rel="stylesheet" type="text/css"/>
+            <style type="text/css">
+                .ui-growl{
+                    position:absolute;
+                    top:9%;
+                    left:75%;
+                    z-index:9999;
+                }
+                 .old {
+                     background-color: #fca752 !important;
+                     background-image: none !important;
+                     color: #000000 !important;
+                 }
+      
+                
+            </style>
+            
+           
+        
+    </h:head>
+    
+    
+    
+    
+<body>
+<ui:composition template="../../plantillas/Tema4.xhtml">
+            
+            <ui:define name="top">
+                
+                
+            </ui:define>
+            
+    <ui:define name="left">
+               
+        </ui:define>
+    
+    
+    <ui:define name="content">
+        <div id="wrapper">
+            
+        <!-- Navigation-->
+        
+        <div id="page-wrapper">
+            
+            <div class="container-fluid">
+                
+             <!-- Page Heading -->
+             <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            
+                            <small>Crear Reporte de gastos</small>
+                            
+                                  
+             
+                                
+                                
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-home"></i><h:link outcome="G-Index"> Inicio</h:link>
+                            </li>
+                            <li>
+                                <i class="fa fa-file-pdf-o"></i><h:link outcome="G-ViewReport"> Ver Reportes</h:link>
+                            </li>
+                            <li>
+                                <i class="fa fa-pencil-square-o"></i><h:link outcome="G-ReportAprobar">Aprobar Reportes</h:link>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-fw fa-plus-square"></i> Nuevo Reporte
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+             
+             
+             
+             <!-- Formulario-->
+             
+             <h:form id="contact_form" class="contact_form" >
+                 
+                 <div class="col-lg-6">
+                 
+                     <p:commandButton value="Guardar" styleClass="btn btn-default btn btn-primary" onclick="location='G-ViewReport.xhtml'" update="message :contact_form">
+                                <p:confirm header="Confirmación" message="¿Está seguro que desea guardar? El reporte aun no será enviado para aprobación" icon="ui-icon-alert"/>
+    
+                            </p:commandButton>
+                     
+                           <p:commandButton value="Salir" styleClass="btn btn-default btn btn-primary"  onclick="location='G-ViewReport.xhtml'">
+                                        
+                                    </p:commandButton>
+                 </div>
+                 
+                 <div class="col-lg-6">
+                     <p:commandButton id="aprobacion" value="Enviar para Aprobación" actionListener="#{reportExpensesBean.sendMail()}" update=":contact_form">
+                     <p:confirm header="Confirmación" message="¿Está seguro que desea enviar para aprobación? Una vez enviado no podrá realizar cambios." icon="ui-icon-alert"/>
+                     </p:commandButton>
+                 </div>
+                 
+                  <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                    <p:commandButton value="Si" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                </p:confirmDialog>
+                 
+                  
+                 
+                 <br></br>
+                 <br></br>
+                 
+           
+                 <p:growl id="message" showDetail="true" />
+                        <div class="col-lg-6">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">Realizó: </span>
+                                <h:selectOneMenu  class="form-control"  id="Elaborado"  value="#{reportExpensesBean.realizo}">
+                                    <f:selectItem itemLabel="Confirma tu nombre" itemValue="#{loginBeanSession.usuario.itgPersonalInfoAll.personalDataId}"/>
+                                    <f:selectItem itemLabel="#{loginBeanSession.usuario.itgPersonalInfoAll.name} #{loginBeanSession.usuario.itgPersonalInfoAll.paternSurname} #{loginBeanSession.usuario.itgPersonalInfoAll.maternSurname}" itemValue="#{loginBeanSession.usuario.itgPersonalInfoAll.personalDataId}"/>
+                                    
+                                    <f:ajax execute="Elaborado" render="Proyecto"/>
+                                </h:selectOneMenu>
+                            </div>
+                            
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">* Proyecto: </span>
+                                <h:selectOneMenu class="form-control" id="Proyecto"  value="#{reportExpensesBean.project}" immediate="true" valueChangeListener="#{reportExpensesBean.valuProy}" a:required="true" requiredMessage="* Obligatorio - Proyecto">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItems value="#{reportExpensesBean.listAct}"/>
+                                    <f:ajax execute="Proyecto" render="Pro"/>
+                                </h:selectOneMenu>
+                            </div>
+                                       
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">* Motivo del gasto: </span>
+                                <h:inputText id="motgas" class="form-control" value="#{reportExpensesBean.reporte.reasonExpense}" a:required="true" requiredMessage="* Obligatorio - Motivo del gasto" validatorMessage="Campo Motivo del gasto solo acepta texto">
+                                <f:validateRegex pattern="[A-Za-z /^([a-z ñáéíóú]]+"/>
+                                </h:inputText>    
+                            </div>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            
+                            
+                       <!--<p:commandButton value="Basic" type="button" onclick="PF('dlg1').show();" />-->
+                       <p:commandButton value="Agregar Gastos" type="button" onclick="PF('dlNuevoGas').show();"/>
+                    
+                            
+                      
+                                                                       
+                  
+                        </div> 
+                 
+           
+                 <div class="col-lg-6">
+                     <div class="form-group input-group">
+                                <span class="input-group-addon">* Fecha del reporte: </span>                                
+                                <p:calendar id="daterep" value="#{reportExpensesBean.reporte.reportDate}"  a:required="true" requiredMessage="* Obligatorio - Fecha del reporte" locale="de" navigator="true" pattern="yyyy-MM-dd" />
+                            </div>
+                     
+                     
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">* Método de pago:  </span>
+                                <h:selectOneMenu class="form-control" value="#{reportExpensesBean.reporte.paymentMethod}" a:required="true"
+                                                 requiredMessage="* Obligatorio - Método de pago" id="method">
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItem itemLabel="Efectivo" itemValue="Efectivo"/>
+                                    
+                                </h:selectOneMenu>
+                            </div>                        
+                  
+                     <div class="form-group input-group" style="display:none">
+                                <span class="input-group-addon">* Total del Gasto $: </span>
+                                <h:inputText class="form-control" a:id="acumulado" value="#{reportExpensesBean.reporte.totalExpenseReport}" a:type="number" a:min="0" id="acumulado" a:disabled="true"/>
+                                
+                            </div>
+                     <div class="form-group input-group">
+                         <span class="input-group-addon"> *Total de Gastos $ </span>
+                     <h:dataTable id="tablaMostrarReport" var="gasen" value="#{reportExpensesBean.gastEnca}" >
+                     <h:column> 
+                         <h:outputText class="form-control" value="#{gasen.totalExpenseReport}"/>
+                     </h:column>           
+                 </h:dataTable>         
+                     </div>    
+                     
+       
+                                      </div>
+                 
+                 
+                 
+           
+                 <!--Formulario para cargar Gastos-->
+                 
+                 
+                 <p:dialog id="dl" widgetVar="dlNuevoGas" header="Cargar Gastos" showEffect="explode" hideEffect="explode" modal="true">
+                     
+                     <p:panelGrid columns="2" style="margin: 0 auto">
+                         
+                         <p:outputLabel value="*Fecha del gasto:"/>
+                         <p:calendar id="dategas" value="#{reportExpensesBean.gasto.expenseDate}" locale="de" navigator="true" pattern="yyyy-MM-dd" a:required="true" requiredMessage="* Obligatorio - Fecha del gasto" />
+                        
+                         <p:outputLabel value="Descripción:"/> 
+                         <h:inputText id="descrip" class="form-control" value="#{reportExpensesBean.gasto.description}">
+                                
+                          </h:inputText>
+                         
+                         <p:outputLabel value="*Tipo de gasto"/>
+                                <h:selectOneMenu class="form-control" id="Pro" value="#{reportExpensesBean.gasto.itgExpenseTypes.spendId}" a:required="true" requiredMessage="* Obligatorio - Tipo de Gasto" >
+                                    <f:selectItem itemLabel="-- Seleccionar --" itemValue="#{null}"/>
+                                    <f:selectItems value="#{reportExpensesBean.listGastoRepor}"/>
+                                </h:selectOneMenu>
+                            
+                         
+                         <p:outputLabel value="*Total del gasto $"/>
+                         <h:inputText class="form-control" value="#{reportExpensesBean.gasto.totalExpense}" a:type="number" a:min="0"  a:id="valor" a:required="true" requiredMessage="* Obligatorio - Total del Gasto"/>
+                         
+              
+                                    
+                                    <p:commandButton value="Aceptar" oncomplete="PF('dlNuevoGas').hide();" 
+                                                     actionListener="#{reportExpensesBean.nuevoGastReport()}" 
+                                                 update=":formMostrarGastosReport :contact_form:tablaMostrarReport">
+
+                                        
+                                    </p:commandButton>
+                                <p:commandButton value="Cancelar" onclick="PF('dlNuevoGas').hide();" />
+                                        
+                              
+                     </p:panelGrid>
+                         
+                 </p:dialog>    
+                 
+               
+             </h:form>
+              
+             
+             
+             
+             <br></br> <br></br>
+              <br></br>
+               <br></br>
+                <br></br>
+                 <br></br> <br></br> <br></br> <br></br> <br></br>
+                  <br></br>
+                  <br></br>
+                 
+             
+             <p:growl id="MensajeGrl" autoUpdate="true" showDetail="true" />
+             <h:form id="formMostrarGastosReport"> 
+                 <p:dataTable id="tablaMostrarGastosReport" var="gastR" value="#{reportExpensesBean.tableGastReport}"
+                                     emptyMessage="No hay Gastos Agregados" scrollable="true"
+                                     scrollWidth="100%" paginator="true" rows="10" reflow="true" editable="true">
+                            <p:column headerText="Acciones" width="240">
+                                <p:commandButton  value="Modificar" oncomplete="PF('dlgmodificar').show();"
+                                                 update=":formModificar">
+                                    <f:setPropertyActionListener target="#{reportExpensesBean.obtenerTiGast}" value="#{gastR}"/>                                                     
+                                </p:commandButton> 
+                                 <p:commandButton value="Eliminar" oncomplete="PF('dlgeliminar').show();"
+                                    update=":formEliminar">
+                                     <f:setPropertyActionListener target="#{reportExpensesBean.obtenerTiGast}" value="#{gastR}"/>                                                     
+                                </p:commandButton> 
+                                
+                            </p:column>
+                     <p:column headerText="Tipo de gasto" width="200" filterBy="#{gastR.itgExpenseTypes.spendName}">
+                                 <h:outputText value="#{gastR.itgExpenseTypes.spendName}"/>
+                            </p:column>
+                            <p:column headerText="Descripción" width="200">
+                                <h:outputText value="#{gastR.description}" />
+                            </p:column>
+                            
+                            <p:column headerText="Fecha" width="200">
+                                <h:outputText value="#{gastR.expenseDate}"/>
+                            </p:column>
+                            <p:column headerText="Total del gasto $" width="200">
+                                <h:outputText value="#{gastR.totalExpense}" />
+                            </p:column>
+                
+                 </p:dataTable>
+            </h:form>
+             
+             <p:dialog id="dlg" widgetVar="dlgmodificar" header="Modificar Datos" showEffect="explode" hideEffect="explode" modal="true">
+                                <h:form id="formModificar">
+                                    <p:panelGrid columns="4" style="margin: 0 auto">
+                                        <p:outputLabel value="Tipo de Gasto:"/>
+                                        <h:selectOneMenu class="form-control" id="Pro2" value="#{reportExpensesBean.obtenerTiGast.itgExpenseTypes.spendId}">
+                                            <f:selectItems value="#{reportExpensesBean.listGastoRepor}"/>
+                                        </h:selectOneMenu>
+                                        <p:outputLabel value="Descripción:"/>
+                                        <h:inputText class="form-control" value="#{reportExpensesBean.obtenerTiGast.description}"/>
+                                        <p:outputLabel value="Fecha del gasto:"/>
+                                        <p:calendar  value="#{reportExpensesBean.obtenerTiGast.expenseDate}" locale="de" navigator="true" pattern="yyyy-MM-dd" />
+                                        <p:outputLabel value="Total del gasto $:"/>
+                                        <h:inputText class="form-control" value="#{reportExpensesBean.obtenerTiGast.totalExpense}" immediate="true" valueChangeListener="#{reportExpensesBean.valueChangeMethod}" id="valor2"/>
+                                        
+                                        
+                                  
+                                        
+                                        <p:commandButton  value="Modificar" oncomplete="PF('dlgmodificar').hide();" 
+                                                         actionListener="#{reportExpensesBean.modificarGasto()}"
+                                                 update=":formMostrarGastosReport:tablaMostrarGastosReport :contact_form:tablaMostrarReport"/>
+                                         <p:commandButton value="Cancelar" onclick="PF('dlgmodificar').hide();" />
+                                        
+                                    </p:panelGrid>
+                                </h:form>
+                            </p:dialog>
+             
+             <p:dialog id="dlg2" widgetVar="dlgeliminar" header="Eliminar Datos" showEffect="explode" hideEffect="explode" modal="true">
+                        <h:form id="formEliminar">
+                            <h:outputText value="¿Desea eliminar este registro?"/>
+                            <br/>
+                            <p:commandButton value="Si" actionListener="#{reportExpensesBean.eliminarGasto()}"
+                                             update=":formMostrarGastosReport:tablaMostrarGastosReport :contact_form:tablaMostrarReport" oncomplete="PF('dlgeliminar').hide();"/>
+                            <p:commandButton value="No" onclick="PF('dlgeliminar').hide();"/>
+                        </h:form><br></br>
+                    </p:dialog>
+             
+            
+             
+                
+            </div>
+            
+            
+        </div>
+        
+
+            
+            
+        </div>
+         <script src="../../resources/js/bootstrap.min.js" type="text/javascript"></script>
+         <script type="text/javascript">
+             function actualizar(){location.reload(true);}
+            //Función para actualizar cada 4 segundos
+            //setInterval("actualizar()",4000);
+         </script>
+        <!-- <script type="text/javascript">
+             var variableAcumuladora = 0;
+	function Sumar () {
+            
+            
+             var valor = parseInt(document.getElementById("valor").value);
+                valor = isNaN(valor) ? 0 : valor;
+ 
+                variableAcumuladora += valor;
+                
+                valor=document.contact_form.valor.value;
+                variableAcumuladora=document.contact_form.acumulado.value=variableAcumuladora;
+                
+                }</script> -->
+         
+         
+         
+          
+    </ui:define>
+    
+            
+        </ui:composition>
+        
+    </body>
+</html>
+
